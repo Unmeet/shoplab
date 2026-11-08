@@ -395,6 +395,93 @@ footer a { color: var(--muted); }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 
+/* ---------- v2 additions ---------- */
+.strip-tools { margin-left: auto; display: inline-flex; align-items: center; gap: .7rem; flex-wrap: wrap; }
+.strip-tools label { font-weight: 600; font-size: .85rem; }
+.strip-tools select { width: auto; margin: 0; padding: .2em .5em; font-size: .85rem; }
+.two-col.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: .8rem; }
+.panel-head h2 { margin: 0; }
+hr.rule { border: 0; border-top: 1px solid var(--line); margin: 1.3rem 0; }
+.sale-badge { position: absolute; top: .7rem; left: .7rem; background: var(--bad); color: #fff; font: 700 .78rem/1 var(--font-body); padding: .4em .6em; border-radius: 6px; }
+.price-wrap { display: inline-flex; align-items: baseline; gap: .45rem; flex-wrap: wrap; }
+s.was { color: var(--muted); font-size: .88rem; }
+s.was.big { font-size: 1.1rem; }
+.savings { display: inline-block; color: var(--ok); font-weight: 700; font-size: .92rem; }
+.compare-check { font-size: .85rem; margin: .3rem 0 0; }
+.compare-tray { position: fixed; left: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 70; background: var(--surface); border: 1.5px solid var(--accent); border-radius: 999px; box-shadow: var(--shadow); padding: .5rem .6rem .5rem 1.1rem; display: flex; align-items: center; gap: .8rem; font-size: .92rem; }
+body.has-cookie-banner .compare-tray, body.has-cookie-banner .toasts { bottom: calc(7.5rem + env(safe-area-inset-bottom, 0px)); }
+.compare-table th[scope="row"] { width: 140px; }
+.compare-table td, .compare-table th { min-width: 180px; }
+.cmp-head { display: grid; gap: .5rem; font-weight: 600; text-transform: none; color: var(--ink); font-size: .95rem; }
+.cmp-head .thumb { border-radius: var(--radius); aspect-ratio: 16 / 9; }
+.cmp-head .thumb span { font-size: 2rem; }
+.notify-box { margin-top: 1rem; padding: 1rem; border: 1.5px dashed var(--line); border-radius: var(--radius); }
+.recent { margin-top: 2.5rem; }
+.cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 75; background: var(--surface); border-top: 2px solid var(--tag); box-shadow: 0 -10px 30px rgba(0, 0, 0, .12); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.cb-inner { max-width: 1240px; margin: 0 auto; padding: 1rem 1.25rem; display: flex; gap: 1.2rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.cb-inner p { margin: 0; max-width: 70ch; font-size: .93rem; }
+.saved-addresses { border: 0; padding: 0; margin: 0 0 1rem; }
+.saved-addresses legend { font-weight: 700; font-size: .9rem; margin-bottom: .5rem; padding: 0; }
+.address-card { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.address-card:last-child { border-bottom: 0; }
+.address-card p { margin: .3rem 0 0; font-size: .92rem; }
+.status.return_requested { background: #FFE6CC; color: #9A4B00; }
+.status.refunded { background: var(--surface-2); color: var(--muted); }
+.invoice-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 1rem; flex-wrap: wrap; }
+.invoice { max-width: 860px; }
+.inv-head { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 1rem; margin-bottom: 1.2rem; }
+.inv-meta { display: grid; grid-template-columns: auto auto; gap: .25rem 1rem; margin: 0; font-size: .92rem; }
+.inv-meta dt { color: var(--muted); }
+.inv-meta dd { margin: 0; font-weight: 600; }
+.inv-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.2rem; }
+.inv-parties h2 { font-size: .95rem; color: var(--muted); }
+.invoice tfoot td { font-weight: 600; }
+.invoice tfoot .grand td { font: 700 1.1rem var(--font-display); border-top: 2px solid var(--ink); }
+.inbox-bar { display: flex; gap: .6rem; align-items: end; flex-wrap: wrap; margin-bottom: .4rem; }
+.inbox-bar input { margin: .3em 0 0; }
+.inbox { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 1.25rem; align-items: start; margin-top: 1rem; }
+.inbox-list { padding: .8rem; max-height: 70vh; overflow-y: auto; }
+.mail { display: grid; grid-template-columns: 1fr auto; gap: .15rem .6rem; width: 100%; text-align: left; background: none; border: 0; border-radius: var(--radius-sm); padding: .7rem .75rem; cursor: pointer; color: var(--ink); font: inherit; border-bottom: 1px solid var(--line); }
+.mail:hover, .mail.open { background: var(--surface-2); }
+.mail.unread .mail-subject { font-weight: 700; }
+.mail.unread .mail-subject::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: .45rem; vertical-align: middle; }
+.mail-subject { font-size: .94rem; }
+.mail-time { color: var(--muted); font-size: .76rem; white-space: nowrap; }
+.mail-preview { grid-column: 1 / -1; color: var(--muted); font-size: .84rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mail-body { white-space: pre-wrap; font: .9rem/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; border-top: 1px solid var(--line); padding-top: 1rem; }
+.mail-body mark { background: var(--tag); color: var(--tag-ink); padding: 0 .2em; border-radius: 3px; font-weight: 700; font-family: ui-monospace, Menlo, monospace; }
+.scen-progress .progress { height: 12px; }
+.scen-progress p { margin-bottom: .4rem; }
+.scenario-list { display: grid; gap: .6rem; }
+.scenario { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.scenario.done { border-color: var(--ok); }
+.scenario summary { cursor: pointer; padding: .85rem 1rem; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; list-style: none; }
+.scenario summary::-webkit-details-marker { display: none; }
+.scen-id { font: 700 .82rem ui-monospace, Menlo, monospace; color: var(--muted); }
+.scen-title { font-weight: 600; flex: 1 1 260px; }
+.scen-tags { display: flex; gap: .3rem; flex-wrap: wrap; }
+.tag { font-size: .75rem; font-weight: 600; padding: .2em .55em; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+.tag.pri-high { background: var(--bad-soft); color: var(--bad); }
+.tag.pri-medium { background: var(--warn-soft); color: #A86500; }
+.tag.done-tag { background: var(--ok-soft); color: var(--ok); }
+.scen-body { padding: 0 1rem 1rem; border-top: 1px solid var(--line); }
+.scen-body > p { margin-top: .9rem; }
+.scen-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.scen-cols h3 { font-size: .9rem; }
+.scen-cols ol, .scen-cols ul { margin: 0; padding-left: 1.2rem; font-size: .92rem; }
+.scen-cols li { margin-bottom: .3rem; }
+@media (max-width: 960px) {
+  .two-col.even, .inbox, .inv-parties, .scen-cols { grid-template-columns: minmax(0, 1fr); }
+  .strip-tools { margin-left: 0; }
+}
+@media print {
+  .site-header, .mode-strip, #mode-strip, footer, .no-print, .toasts, .cookie-banner, .compare-tray { display: none !important; }
+  body { background: #fff; color: #000; }
+  .invoice { border: 0; padding: 0; max-width: none; }
+}
+.footer-links { display: flex; gap: .4rem 1rem; flex-wrap: wrap; }
+
 </style>
 </head>
 <body>
@@ -411,6 +498,7 @@ footer a { color: var(--muted); }
       <a href="#shop" data-nav="shop" id="nav-shop" class="hide-sm">Shop</a>
       <a href="#lab" data-nav="lab" id="nav-lab" data-testid="nav-lab">Practice lab</a>
       <a href="#api" data-nav="api" id="nav-api" data-testid="nav-api">API console</a>
+      <a href="#scenarios" data-nav="scenarios" id="nav-scenarios" data-testid="nav-scenarios" class="hide-sm">Scenarios</a>
       <a href="#wishlist" data-nav="wishlist" id="nav-wishlist" data-testid="nav-wishlist" aria-label="Wishlist"><span aria-hidden="true">♡</span><span class="badge" id="wishlist-count" data-testid="wishlist-count">0</span></a>
       <a href="#cart" data-nav="cart" id="nav-cart" data-testid="nav-cart">Cart <span class="badge" id="cart-count" data-testid="cart-count">0</span></a>
       <div class="user-menu" id="user-menu"></div>
@@ -420,7 +508,7 @@ footer a { color: var(--muted); }
 </header>
 <div id="mode-strip"></div>
 <main id="app" tabindex="-1" data-testid="app"></main>
-<footer><div class="inner"><span>ShopLab is a practice store. No real orders, payments or deliveries happen here.</span><span><a href="#lab">Practice lab</a> &nbsp; <a href="#api">API console</a> &nbsp; <a href="#register">Create account</a></span></div></footer>
+<footer><div class="inner"><span>ShopLab is a practice store. No real orders, payments or deliveries happen here.</span><nav aria-label="Footer" class="footer-links"><a href="#track" id="footer-track">Track an order</a> <a href="#inbox" id="footer-inbox">Inbox</a> <a href="#scenarios" id="footer-scenarios">Test scenarios</a> <a href="#test-settings" id="footer-settings">Test settings</a> <a href="#lab">Practice lab</a> <a href="#api">API console</a> <a href="#register">Create account</a></nav></div></footer>
 <div id="toasts" class="toasts" role="status" aria-live="polite" data-testid="toasts"></div>
 <div id="modal-root"></div>
 <script>window.__SHOPLAB_MODE__ = "mock";</script>
@@ -487,8 +575,14 @@ var ShopLabCore = (function () {
     { id: 2, username: 'locked_user', email: 'locked@shoplab.test', firstName: 'Lee', lastName: 'Locked', role: 'customer', status: 'locked', phone: '+1 555 010 1002', behaviour: 'Login is refused with HTTP 423.' },
     { id: 3, username: 'slow_user', email: 'slow@shoplab.test', firstName: 'Sky', lastName: 'Slow', role: 'customer', status: 'active', phone: '+1 555 010 1003', behaviour: 'Login takes 3 seconds. Practise waits.' },
     { id: 4, username: 'error_user', email: 'error@shoplab.test', firstName: 'Eli', lastName: 'Error', role: 'customer', status: 'active', phone: '+1 555 010 1004', behaviour: 'Placing an order always fails with HTTP 500.' },
-    { id: 5, username: 'admin', email: 'admin@shoplab.test', firstName: 'Ada', lastName: 'Admin', role: 'admin', status: 'active', phone: '+1 555 010 1005', behaviour: 'Admin. Can create, edit and delete products and list users.' }
+    { id: 5, username: 'admin', email: 'admin@shoplab.test', firstName: 'Ada', lastName: 'Admin', role: 'admin', status: 'active', phone: '+1 555 010 1005', behaviour: 'Admin. Manages products, users and order statuses.' },
+    { id: 6, username: 'otp_user', email: 'otp@shoplab.test', firstName: 'Olu', lastName: 'Otp', role: 'customer', status: 'active', phone: '+1 555 010 1006', mfa: true, behaviour: 'Login needs a 6-digit code sent to the ShopLab inbox.' },
+    { id: 7, username: 'returning_user', email: 'returning@shoplab.test', firstName: 'Rae', lastName: 'Returning', role: 'customer', status: 'active', phone: '+91 98765 43210', behaviour: 'Has saved addresses, a wishlist and past orders, including one you can return.' }
   ];
+
+  const GROUPS = ['Auth', 'Products', 'Cart', 'Wishlist', 'Addresses', 'Orders', 'Inbox', 'Users', 'Utilities'];
+  const SALE = { 1: 149.99, 6: 99.0, 9: 45.0, 12: 52.0, 17: 55.0, 19: 30.0, 21: 40.0 };
+  const RETURN_REASONS = { damaged: 'Arrived damaged', 'wrong-item': 'Wrong item sent', 'not-as-described': 'Not as described', 'changed-mind': 'Changed my mind', other: 'Other' };
 
   const ENDPOINTS = [
     { group: 'Utilities', method: 'GET', path: '/api/health', auth: 'none', desc: 'Service health and mode.' },
@@ -498,13 +592,19 @@ var ShopLabCore = (function () {
     { group: 'Auth', method: 'GET', path: '/api/auth/me', auth: 'user', desc: 'The logged-in user and session.' },
     { group: 'Auth', method: 'PATCH', path: '/api/auth/me', auth: 'user', desc: 'Update your profile.', body: { firstName: 'Samuel', phone: '+1 555 010 9999' } },
     { group: 'Auth', method: 'POST', path: '/api/auth/logout', auth: 'user', desc: 'Invalidate the current token.' },
-    { group: 'Products', method: 'GET', path: '/api/products', sample: '/api/products?category=electronics&sort=price_asc&page=1&limit=5', auth: 'none', desc: 'List with search, category, minPrice, maxPrice, minRating, inStock, sort, page, limit.' },
+    { group: 'Auth', method: 'POST', path: '/api/auth/verify-otp', auth: 'none', desc: 'Second login step for otp_user: send the mfaToken from login and the code from the inbox.', body: { mfaToken: 'mfa_paste_from_login', code: '123456' } },
+    { group: 'Auth', method: 'POST', path: '/api/auth/resend-otp', auth: 'none', desc: 'New sign-in code. Allowed once every 30 seconds.', body: { mfaToken: 'mfa_paste_from_login' } },
+    { group: 'Auth', method: 'POST', path: '/api/auth/forgot-password', auth: 'none', desc: 'Emails a 6-digit reset code. Always 200, so it never reveals which emails exist.', body: { email: 'standard@shoplab.test' } },
+    { group: 'Auth', method: 'POST', path: '/api/auth/reset-password', auth: 'none', desc: 'Set a new password with the emailed code. Logs out every session.', body: { email: 'standard@shoplab.test', code: '123456', newPassword: 'NewPass@123' } },
+    { group: 'Auth', method: 'POST', path: '/api/auth/change-password', auth: 'user', desc: 'Change password while logged in.', body: { currentPassword: 'Practice@123', newPassword: 'NewPass@123' } },
+    { group: 'Products', method: 'GET', path: '/api/products', sample: '/api/products?category=electronics&sort=price_asc&page=1&limit=5', auth: 'none', desc: 'List with search, category, minPrice, maxPrice, minRating, inStock, onSale, sort, page, limit.' },
     { group: 'Products', method: 'GET', path: '/api/products/:id', sample: '/api/products/1', auth: 'none', desc: 'One product.' },
     { group: 'Products', method: 'POST', path: '/api/products', auth: 'admin', desc: 'Create a product.', body: { name: 'Test Product', category: 'electronics', price: 9.99, stock: 10, description: 'Created by an API test.' } },
     { group: 'Products', method: 'PUT', path: '/api/products/:id', sample: '/api/products/1', auth: 'admin', desc: 'Replace a product (all fields).', body: { name: 'Aurora Wireless Headphones', category: 'electronics', price: 119.99, stock: 30, description: 'Updated by PUT.' } },
     { group: 'Products', method: 'PATCH', path: '/api/products/:id', sample: '/api/products/1', auth: 'admin', desc: 'Update some fields.', body: { price: 99.99 } },
     { group: 'Products', method: 'DELETE', path: '/api/products/:id', sample: '/api/products/24', auth: 'admin', desc: 'Delete a product. Returns 204.' },
     { group: 'Products', method: 'GET', path: '/api/categories', auth: 'none', desc: 'Categories with product counts.' },
+    { group: 'Products', method: 'POST', path: '/api/products/:id/notify', sample: '/api/products/3/notify', auth: 'none', desc: 'Back-in-stock alert for a sold-out product. Emails when stock returns.', body: { email: 'standard@shoplab.test' } },
     { group: 'Products', method: 'GET', path: '/api/products/:id/reviews', sample: '/api/products/1/reviews', auth: 'none', desc: 'Written reviews for a product.' },
     { group: 'Products', method: 'POST', path: '/api/products/:id/reviews', sample: '/api/products/2/reviews', auth: 'user', desc: 'Add a review (one per user per product).', body: { rating: 5, comment: 'Works exactly as described.' } },
     { group: 'Cart', method: 'GET', path: '/api/cart', auth: 'user', desc: 'Your cart with totals.' },
@@ -520,10 +620,22 @@ var ShopLabCore = (function () {
     { group: 'Wishlist', method: 'GET', path: '/api/wishlist', auth: 'user', desc: 'Saved products.' },
     { group: 'Wishlist', method: 'POST', path: '/api/wishlist', auth: 'user', desc: 'Save a product.', body: { productId: 5 } },
     { group: 'Wishlist', method: 'DELETE', path: '/api/wishlist/:productId', sample: '/api/wishlist/5', auth: 'user', desc: 'Remove a saved product. Returns 204.' },
-    { group: 'Orders', method: 'POST', path: '/api/orders', auth: 'user', desc: 'Place an order from the cart. Card 4111 1111 1111 1111 passes, 4000 0000 0000 0002 is declined.', body: { shippingAddress: { fullName: 'Sam Standard', phone: '+1 555 010 1001', line1: '12 Test Street', city: 'Austin', state: 'TX', zip: '73301', country: 'US' }, payment: { cardName: 'Sam Standard', cardNumber: '4111 1111 1111 1111', expiry: '12/30', cvv: '123' } } },
+    { group: 'Addresses', method: 'GET', path: '/api/addresses', auth: 'user', desc: 'Your saved addresses.' },
+    { group: 'Addresses', method: 'POST', path: '/api/addresses', auth: 'user', desc: 'Save an address (up to 5). The first one becomes the default.', body: { label: 'Home', fullName: 'Sam Standard', phone: '+1 555 010 1001', line1: '12 Test Street', city: 'Austin', state: 'TX', zip: '73301', country: 'US' } },
+    { group: 'Addresses', method: 'PUT', path: '/api/addresses/:id', sample: '/api/addresses/1', auth: 'user', desc: 'Replace a saved address.', body: { label: 'Home', fullName: 'Rae Returning', phone: '+91 98765 43210', line1: '221 Lake View Road', city: 'Bengaluru', state: 'KA', zip: '560001', country: 'IN' } },
+    { group: 'Addresses', method: 'POST', path: '/api/addresses/:id/default', sample: '/api/addresses/2/default', auth: 'user', desc: 'Make an address the default.' },
+    { group: 'Addresses', method: 'DELETE', path: '/api/addresses/:id', sample: '/api/addresses/2', auth: 'user', desc: 'Delete an address. Returns 204.' },
+    { group: 'Orders', method: 'POST', path: '/api/orders', auth: 'user', desc: 'Place an order from the cart. Send shippingAddress or a saved addressId. Card 4111 1111 1111 1111 passes, 4000 0000 0000 0002 is declined.', body: { shippingAddress: { fullName: 'Sam Standard', phone: '+1 555 010 1001', line1: '12 Test Street', city: 'Austin', state: 'TX', zip: '73301', country: 'US' }, payment: { cardName: 'Sam Standard', cardNumber: '4111 1111 1111 1111', expiry: '12/30', cvv: '123' } } },
     { group: 'Orders', method: 'GET', path: '/api/orders', sample: '/api/orders?status=placed&sort=newest', auth: 'user', desc: 'Your orders. Filter by status, sort by newest, oldest or total_desc.' },
     { group: 'Orders', method: 'GET', path: '/api/orders/:id', sample: '/api/orders/1001', auth: 'user', desc: 'One order. Status moves from placed to delivered over 10 minutes.' },
-    { group: 'Orders', method: 'POST', path: '/api/orders/:id/cancel', sample: '/api/orders/1001/cancel', auth: 'user', desc: 'Cancel an order before it ships.' },
+    { group: 'Orders', method: 'POST', path: '/api/orders/:id/cancel', sample: '/api/orders/1002/cancel', auth: 'user', desc: 'Cancel an order before it ships.' },
+    { group: 'Orders', method: 'POST', path: '/api/orders/:id/return', sample: '/api/orders/1001/return', auth: 'user', desc: 'Return a delivered order. Reasons: damaged, wrong-item, not-as-described, changed-mind, other (needs a comment).', body: { reason: 'damaged', comment: 'Handle was cracked.' } },
+    { group: 'Orders', method: 'POST', path: '/api/orders/:id/reorder', sample: '/api/orders/1001/reorder', auth: 'user', desc: 'Buy again: adds available items to the cart and reports skipped ones.' },
+    { group: 'Orders', method: 'POST', path: '/api/orders/track', auth: 'none', desc: 'Public order tracking by order number and email.', body: { orderId: 1001, email: 'returning@shoplab.test' } },
+    { group: 'Orders', method: 'PATCH', path: '/api/orders/:id/status', sample: '/api/orders/1002/status', auth: 'admin', desc: 'Admin: set placed, processing, shipped, delivered, or refunded (after a return).', body: { status: 'delivered' } },
+    { group: 'Inbox', method: 'GET', path: '/api/inbox', sample: '/api/inbox?email=standard@shoplab.test', auth: 'none', desc: 'Test mailbox for any address: confirmations, codes and alerts.' },
+    { group: 'Inbox', method: 'GET', path: '/api/inbox/:id', sample: '/api/inbox/1', auth: 'none', desc: 'One email with its full body. Marks it as read.' },
+    { group: 'Inbox', method: 'DELETE', path: '/api/inbox', sample: '/api/inbox?email=standard@shoplab.test', auth: 'none', desc: 'Delete every email for an address. Returns 204.' },
     { group: 'Users', method: 'GET', path: '/api/users', auth: 'admin', desc: 'All users (admin only).' },
     { group: 'Users', method: 'GET', path: '/api/users/:id', sample: '/api/users/1', auth: 'admin', desc: 'One user (admin only).' },
     { group: 'Utilities', method: 'GET', path: '/api/delay/:seconds', sample: '/api/delay/2', auth: 'none', desc: 'Responds after 0–10 seconds. Practise timeouts.' },
@@ -531,6 +643,9 @@ var ShopLabCore = (function () {
     { group: 'Utilities', method: 'GET', path: '/api/flaky', auth: 'none', desc: 'Fails with 503 about half the time. Practise retries.' },
     { group: 'Utilities', method: 'GET', path: '/api/limited', auth: 'none', desc: '5 requests per minute per client, then 429 with Retry-After.' },
     { group: 'Utilities', method: 'POST', path: '/api/echo', auth: 'none', desc: 'Echoes your method, headers, query and body. Works with every method.', body: { hello: 'world' } },
+    { group: 'Utilities', method: 'GET', path: '/api/config', auth: 'none', desc: 'Chaos settings: added latency and random failure rate.' },
+    { group: 'Utilities', method: 'PUT', path: '/api/config', auth: 'none', desc: 'Add 0–5000 ms latency and a 0–50% random 503 rate to every other endpoint.', body: { latencyMs: 800, failureRate: 20 } },
+    { group: 'Utilities', method: 'POST', path: '/api/newsletter', auth: 'none', desc: 'Subscribe an email. A welcome email with a coupon arrives in the inbox.', body: { email: 'standard@shoplab.test' } },
     { group: 'Utilities', method: 'POST', path: '/api/upload', auth: 'none', desc: 'Accepts any body and reports its size and content type.' },
     { group: 'Utilities', method: 'GET', path: '/api/files/sample.csv', auth: 'none', desc: 'A CSV file download (Content-Disposition: attachment).' }
   ];
@@ -540,6 +655,10 @@ var ShopLabCore = (function () {
   function rid(n) { const c = 'abcdefghijklmnopqrstuvwxyz0123456789'; let s = ''; for (let i = 0; i < n; i++) s += c[Math.floor(Math.random() * c.length)]; return s; }
   function isInt(v) { return typeof v === 'number' && Number.isInteger(v); }
   function str(v) { return typeof v === 'string' ? v.trim() : ''; }
+  function code6() { return String(100000 + Math.floor(Math.random() * 900000)); }
+  function maskEmail(e) { return String(e).replace(/^(.)(.*)(@.*)$/, (m, a, b, c) => a + '*'.repeat(Math.max(3, b.length)) + c); }
+  function pwOk(pw) { return typeof pw === 'string' && pw.length >= 8 && /[A-Z]/.test(pw) && /[a-z]/.test(pw) && /\d/.test(pw) && /[^A-Za-z0-9]/.test(pw); }
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   function luhn(num) {
     let sum = 0, alt = false;
     for (let i = num.length - 1; i >= 0; i--) { let d = +num[i]; if (alt) { d *= 2; if (d > 9) d -= 9; } sum += d; alt = !alt; }
@@ -549,7 +668,7 @@ var ShopLabCore = (function () {
   function seed() {
     const products = P.map((p, i) => ({
       id: i + 1, sku: 'SL-' + (1001 + i), name: p[0], category: p[1], price: p[2], rating: p[3], ratingsCount: p[10],
-      stock: p[4], emoji: p[5], hue: p[6], description: p[7], colors: p[8], sizes: p[9],
+      stock: p[4], emoji: p[5], hue: p[6], description: p[7], colors: p[8], sizes: p[9], compareAtPrice: SALE[i + 1] || null,
       createdAt: new Date(Date.UTC(2026, 0, 1 + i, 9)).toISOString()
     }));
     const users = TEST_USERS.map(u => Object.assign({}, u, { password: PASSWORD, createdAt: '2026-01-05T09:00:00.000Z' }));
@@ -563,9 +682,32 @@ var ShopLabCore = (function () {
       { id: 5, productId: 13, userId: 5, author: 'Ada A.', rating: 4, comment: 'Every QA lead should read chapter 3.', createdAt: '2026-05-01T10:00:00.000Z' },
       { id: 6, productId: 11, userId: 3, author: 'Sky S.', rating: 3, comment: 'App pairing took a few tries.', createdAt: '2026-05-15T10:00:00.000Z' }
     ];
+    const day = 86400000, now = Date.now();
+    const home = { id: 1, label: 'Home', fullName: 'Rae Returning', phone: '+91 98765 43210', line1: '221 Lake View Road', line2: 'Flat 4B', city: 'Bengaluru', state: 'KA', zip: '560001', country: 'IN', isDefault: true };
+    const office = { id: 2, label: 'Office', fullName: 'Rae Returning', phone: '+1 555 010 1007', line1: '500 Commerce Ave', line2: 'Suite 300', city: 'Austin', state: 'TX', zip: '78701', country: 'US', isDefault: false };
+    function mkOrder(id, lines, ago, extra) {
+      const items = lines.map(([pid, q]) => { const p = products[pid - 1]; return { productId: pid, name: p.name, sku: p.sku, emoji: p.emoji, hue: p.hue, price: p.price, quantity: q, stock: p.stock, lineTotal: round(p.price * q) }; });
+      const subtotal = round(items.reduce((s, i) => s + i.lineTotal, 0));
+      const shipping = subtotal >= 75 ? 0 : 5.99, tax = round(subtotal * TAX_RATE);
+      const addr = Object.assign({ email: 'returning@shoplab.test' }, home); delete addr.id; delete addr.label; delete addr.isDefault;
+      return Object.assign({ id, userId: 7, items, subtotal, discount: 0, shipping, tax, total: round(subtotal + shipping + tax), coupon: null, shippingMethod: 'standard', shippingAddress: addr, payment: { brand: 'Visa', last4: '1111' }, createdAt: new Date(now - ago).toISOString(), cancelledAt: null, notified: { shipped: true, delivered: true } }, extra || {});
+    }
+    const orders = [
+      mkOrder(1001, [[12, 1], [9, 1], [15, 1]], 3 * day),
+      mkOrder(1002, [[5, 2], [19, 1]], 3600000, { statusOverride: 'processing', notified: {} }),
+      mkOrder(1003, [[8, 1]], 10 * day, { cancelledAt: new Date(now - 10 * day + 3600000).toISOString() })
+    ];
+    const mail = (id, to, subject, body, kind, ago) => ({ id, from: 'ShopLab <no-reply@shoplab.test>', to, subject, body, kind, read: false, createdAt: new Date(now - ago).toISOString(), meta: {} });
+    const emails = [
+      mail(1, 'standard@shoplab.test', 'Welcome to ShopLab, Sam', 'Hi Sam,\n\nYour ShopLab account is ready. Happy testing!\n\nShopLab', 'welcome', 20 * day),
+      mail(2, 'returning@shoplab.test', 'Welcome to ShopLab, Rae', 'Hi Rae,\n\nYour ShopLab account is ready. Happy testing!\n\nShopLab', 'welcome', 30 * day),
+      mail(3, 'returning@shoplab.test', 'Order #1001 has been delivered', 'Hi Rae,\n\nOrder #1001 was delivered. Something wrong? You can request a return from the order page within 30 days.\n\nShopLab', 'order_delivered', 2 * day)
+    ];
     return {
-      version: 1, users, products, reviews, carts: {}, wishlists: {}, orders: [], sessions: {},
-      seq: { product: products.length + 1, user: users.length + 1, order: 1001, review: reviews.length + 1 }
+      version: 2, users, products, reviews, carts: {}, wishlists: { 7: [2, 3] }, orders, sessions: {},
+      addresses: { 7: [home, office] }, emails, notify: [], resetCodes: {}, mfa: {}, loginFails: {}, newsletter: [],
+      config: { latencyMs: 0, failureRate: 0 },
+      seq: { product: products.length + 1, user: users.length + 1, order: 1004, review: reviews.length + 1, address: 3, email: emails.length + 1 }
     };
   }
 
@@ -574,7 +716,7 @@ var ShopLabCore = (function () {
     const started = Date.now();
     let db = null;
     try { db = opts.load ? opts.load() : null; } catch (e) { db = null; }
-    if (!db || db.version !== 1) db = seed();
+    if (!db || db.version !== 2) db = seed();
     const hits = {};
 
     function save() { if (opts.save) { try { opts.save(db); } catch (e) { /* storage full or blocked */ } } }
@@ -585,6 +727,41 @@ var ShopLabCore = (function () {
       return { status, body: { error: e }, headers: {} };
     }
     function publicUser(u) { const c = clone(u); delete c.password; return c; }
+    function sendEmail(to, subject, body, kind, meta) {
+      const m = { id: db.seq.email++, from: 'ShopLab <no-reply@shoplab.test>', to: String(to).toLowerCase(), subject, body, kind, read: false, createdAt: new Date().toISOString(), meta: meta || {} };
+      db.emails.push(m);
+      if (db.emails.length > 400) db.emails.splice(0, db.emails.length - 400);
+      return m;
+    }
+    function validateAddress(a, prefix) {
+      const d = [], p = prefix || '';
+      a = a || {};
+      if (str(a.fullName).length < 2) d.push({ field: p + 'fullName', message: 'Enter the recipient’s full name.' });
+      if (!/^[+\d][\d\s-]{6,19}$/.test(str(a.phone))) d.push({ field: p + 'phone', message: 'Enter a phone number with 7–20 digits.' });
+      if (str(a.line1).length < 3) d.push({ field: p + 'line1', message: 'Enter a street address.' });
+      if (!str(a.city)) d.push({ field: p + 'city', message: 'Enter a city.' });
+      if (!str(a.state)) d.push({ field: p + 'state', message: 'Enter a state or region.' });
+      if (!/^[A-Za-z0-9][A-Za-z0-9 -]{2,9}$/.test(str(a.zip))) d.push({ field: p + 'zip', message: 'Enter a postal code of 3–10 characters.' });
+      if (!/^[A-Z]{2}$/.test(str(a.country))) d.push({ field: p + 'country', message: 'Use a 2-letter country code like US or IN.' });
+      if (a.email !== undefined && a.email !== '' && !EMAIL_RE.test(str(a.email))) d.push({ field: p + 'email', message: 'Enter a valid email address.' });
+      return d;
+    }
+    function cleanAddress(a) { return { fullName: str(a.fullName), phone: str(a.phone), line1: str(a.line1), line2: str(a.line2), city: str(a.city), state: str(a.state), zip: str(a.zip), country: str(a.country) }; }
+    function stockRaised(p, before) {
+      if (before !== 0 || p.stock <= 0) return;
+      db.notify.filter(n => n.productId === p.id).forEach(n => sendEmail(n.email, p.name + ' is back in stock', 'Good news!\n\n' + p.name + ' is back in stock at $' + p.price.toFixed(2) + '. Only ' + p.stock + ' available right now.\n\nOpen it in the shop: #product-' + p.id + '\n\nShopLab', 'back_in_stock', { productId: p.id }));
+      db.notify = db.notify.filter(n => n.productId !== p.id);
+    }
+    function sweepOrders() {
+      db.orders.forEach(o => {
+        if (o.cancelledAt) return;
+        o.notified = o.notified || {};
+        const st = orderStatus(o), to = (o.shippingAddress && o.shippingAddress.email) || (db.users.find(u => u.id === o.userId) || {}).email;
+        if (!to) return;
+        if (['shipped', 'delivered', 'return_requested', 'refunded'].includes(st) && !o.notified.shipped) { o.notified.shipped = true; sendEmail(to, 'Order #' + o.id + ' has shipped', 'Your order #' + o.id + ' is on its way by ' + (SHIPPING[o.shippingMethod] || SHIPPING.standard).label + ' shipping.\n\nTrack it any time on the Track order page with your order number and this email address.\n\nShopLab', 'order_shipped', { orderId: o.id }); }
+        if (['delivered', 'return_requested', 'refunded'].includes(st) && !o.notified.delivered) { o.notified.delivered = true; sendEmail(to, 'Order #' + o.id + ' has been delivered', 'Order #' + o.id + ' was delivered. Something wrong? You can request a return from the order page within 30 days.\n\nShopLab', 'order_delivered', { orderId: o.id }); }
+      });
+    }
     function findProduct(id) { return db.products.find(p => p.id === id); }
     function parseId(v) { return /^\d+$/.test(String(v)) ? parseInt(v, 10) : NaN; }
 
@@ -646,13 +823,16 @@ var ShopLabCore = (function () {
 
     function orderStatus(o) {
       if (o.cancelledAt) return 'cancelled';
+      if (o.refundedAt) return 'refunded';
+      if (o.returnRequest) return 'return_requested';
+      if (o.statusOverride) return o.statusOverride;
       const mins = (Date.now() - Date.parse(o.createdAt)) / 60000;
       if (mins < 2) return 'placed';
       if (mins < 5) return 'processing';
       if (mins < 10) return 'shipped';
       return 'delivered';
     }
-    function orderView(o) { const c = clone(o); c.status = orderStatus(o); return c; }
+    function orderView(o) { const c = clone(o); c.status = orderStatus(o); delete c.notified; delete c.statusOverride; return c; }
 
     function validateProduct(b, partial) {
       const d = [];
@@ -662,6 +842,7 @@ var ShopLabCore = (function () {
       if (!partial || has('price')) { if (typeof b.price !== 'number' || !(b.price > 0) || b.price > 100000) d.push({ field: 'price', message: 'Price must be a number greater than 0.' }); }
       if (!partial || has('stock')) { if (!isInt(b.stock) || b.stock < 0) d.push({ field: 'stock', message: 'Stock must be a whole number of 0 or more.' }); }
       if (has('description') && typeof b.description !== 'string') d.push({ field: 'description', message: 'Description must be a string.' });
+      if (has('compareAtPrice') && b.compareAtPrice !== null && (typeof b.compareAtPrice !== 'number' || !(b.compareAtPrice > 0))) d.push({ field: 'compareAtPrice', message: 'compareAtPrice must be a positive number or null.' });
       return d;
     }
 
@@ -725,7 +906,7 @@ var ShopLabCore = (function () {
       if (!/^[A-Za-z0-9_]{3,20}$/.test(str(b.username))) d.push({ field: 'username', message: 'Username must be 3–20 letters, numbers or underscores.' });
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str(b.email))) d.push({ field: 'email', message: 'Enter a valid email address.' });
       const pw = typeof b.password === 'string' ? b.password : '';
-      if (pw.length < 8 || !/[A-Z]/.test(pw) || !/[a-z]/.test(pw) || !/\d/.test(pw) || !/[^A-Za-z0-9]/.test(pw)) d.push({ field: 'password', message: 'Password needs 8+ characters with upper and lower case, a number and a symbol.' });
+      if (!pwOk(pw)) d.push({ field: 'password', message: 'Password needs 8+ characters with upper and lower case, a number and a symbol.' });
       if (!str(b.firstName)) d.push({ field: 'firstName', message: 'First name is required.' });
       if (!str(b.lastName)) d.push({ field: 'lastName', message: 'Last name is required.' });
       if (d.length) return err(400, 'VALIDATION_ERROR', 'Some fields are invalid.', d);
@@ -733,6 +914,7 @@ var ShopLabCore = (function () {
       if (db.users.some(u => u.email.toLowerCase() === str(b.email).toLowerCase())) return err(409, 'EMAIL_TAKEN', 'That email is already registered.', [{ field: 'email', message: 'Use a different email or log in.' }]);
       const user = { id: db.seq.user++, username: str(b.username), email: str(b.email), firstName: str(b.firstName), lastName: str(b.lastName), role: 'customer', status: 'active', phone: str(b.phone), password: pw, createdAt: new Date().toISOString() };
       db.users.push(user);
+      sendEmail(user.email, 'Welcome to ShopLab, ' + user.firstName, 'Hi ' + user.firstName + ',\n\nYour ShopLab account (' + user.username + ') is ready. Happy testing!\n\nShopLab', 'welcome');
       const s = createSession(user, DEFAULT_TTL);
       return ok(201, Object.assign({ user: publicUser(user) }, s), { location: '/api/users/' + user.id });
     });
@@ -746,10 +928,28 @@ var ShopLabCore = (function () {
         if (!isInt(b.expiresIn) || b.expiresIn < 10 || b.expiresIn > 86400) return err(400, 'VALIDATION_ERROR', 'expiresIn must be a whole number of seconds from 10 to 86400.', [{ field: 'expiresIn', message: 'Use 10–86400.' }]);
         ttl = b.expiresIn;
       }
-      const name = str(b.username);
-      const user = db.users.find(u => u.username === name || u.email.toLowerCase() === name.toLowerCase());
-      if (!user || user.password !== b.password) return err(401, 'INVALID_CREDENTIALS', 'Username and password do not match any user.');
+      const name = str(b.username), key = name.toLowerCase();
+      const fail = db.loginFails[key];
+      if (fail && fail.until > Date.now()) {
+        const wait = Math.ceil((fail.until - Date.now()) / 1000);
+        const r = err(429, 'TOO_MANY_ATTEMPTS', 'Too many failed attempts. Try again in ' + wait + ' seconds.');
+        r.headers['retry-after'] = String(wait);
+        return r;
+      }
+      const user = db.users.find(u => u.username === name || u.email.toLowerCase() === key);
+      if (!user || user.password !== b.password) {
+        const f = db.loginFails[key] = { count: (fail && !fail.until ? fail.count : 0) + 1, until: 0 };
+        if (f.count >= 5) { f.until = Date.now() + 60000; f.count = 0; return err(401, 'INVALID_CREDENTIALS', 'Username and password do not match any user. Login is paused for 60 seconds after 5 failed attempts.'); }
+        return err(401, 'INVALID_CREDENTIALS', 'Username and password do not match any user.');
+      }
+      delete db.loginFails[key];
       if (user.status === 'locked') return err(423, 'ACCOUNT_LOCKED', 'This account is locked. Use another test account.');
+      if (user.mfa) {
+        const mfaToken = 'mfa_' + rid(24), code = code6();
+        db.mfa[mfaToken] = { userId: user.id, code, expiresAt: Date.now() + 300000, attempts: 0, sentAt: Date.now(), ttl };
+        sendEmail(user.email, 'Your ShopLab sign-in code', 'Your sign-in code is ' + code + '.\n\nIt expires in 5 minutes. If you did not try to sign in, ignore this email.\n\nShopLab', 'otp', { code });
+        return ok(200, { mfaRequired: true, mfaToken, deliveredTo: maskEmail(user.email), expiresIn: 300, message: 'Enter the 6-digit code we emailed you.' });
+      }
       const r = ok(200, Object.assign({ user: publicUser(user) }, createSession(user, ttl)));
       if (user.username === 'slow_user') r.delay = 3000;
       return r;
@@ -768,6 +968,76 @@ var ShopLabCore = (function () {
       return ok(200, { user: publicUser(c.user) });
     });
     route('POST', '/api/auth/logout', 'user', c => { delete db.sessions[c.token]; return ok(200, { message: 'Logged out.' }); });
+    route('POST', '/api/auth/verify-otp', null, c => {
+      const t = str(c.body.mfaToken), code = str(c.body.code);
+      const d = [];
+      if (!t) d.push({ field: 'mfaToken', message: 'mfaToken is required.' });
+      if (!/^\d{6}$/.test(code)) d.push({ field: 'code', message: 'The code is 6 digits.' });
+      if (d.length) return err(400, 'VALIDATION_ERROR', 'Send the mfaToken from login and the 6-digit code.', d);
+      const ch = db.mfa[t];
+      if (!ch) return err(401, 'INVALID_MFA_TOKEN', 'This sign-in attempt is not recognised. Log in again.');
+      if (ch.expiresAt < Date.now()) return err(401, 'OTP_EXPIRED', 'The code has expired. Request a new one.');
+      if (code !== ch.code) {
+        ch.attempts += 1;
+        if (ch.attempts >= 5) { delete db.mfa[t]; return err(429, 'TOO_MANY_ATTEMPTS', 'Too many wrong codes. Log in again.'); }
+        return err(401, 'INVALID_OTP', 'That code is not correct. ' + (5 - ch.attempts) + ' attempts left.', [{ field: 'code', message: 'Check the code and try again.' }]);
+      }
+      delete db.mfa[t];
+      const user = db.users.find(u => u.id === ch.userId);
+      return ok(200, Object.assign({ user: publicUser(user) }, createSession(user, ch.ttl)));
+    });
+    route('POST', '/api/auth/resend-otp', null, c => {
+      const ch = db.mfa[str(c.body.mfaToken)];
+      if (!ch) return err(401, 'INVALID_MFA_TOKEN', 'This sign-in attempt is not recognised. Log in again.');
+      const wait = Math.ceil((ch.sentAt + 30000 - Date.now()) / 1000);
+      if (wait > 0) { const r = err(429, 'RESEND_TOO_SOON', 'Wait ' + wait + ' seconds before requesting another code.'); r.headers['retry-after'] = String(wait); return r; }
+      const user = db.users.find(u => u.id === ch.userId);
+      Object.assign(ch, { code: code6(), expiresAt: Date.now() + 300000, attempts: 0, sentAt: Date.now() });
+      sendEmail(user.email, 'Your new ShopLab sign-in code', 'Your new sign-in code is ' + ch.code + '.\n\nIt expires in 5 minutes. Earlier codes no longer work.\n\nShopLab', 'otp', { code: ch.code });
+      return ok(200, { message: 'A new code is on its way.', deliveredTo: maskEmail(user.email), resendAvailableIn: 30 });
+    });
+    route('POST', '/api/auth/forgot-password', null, c => {
+      const email = str(c.body.email).toLowerCase();
+      if (!EMAIL_RE.test(email)) return err(400, 'VALIDATION_ERROR', 'Enter a valid email address.', [{ field: 'email', message: 'Enter a valid email address.' }]);
+      const user = db.users.find(u => u.email.toLowerCase() === email);
+      if (user) {
+        const code = code6();
+        db.resetCodes[user.id] = { code, expiresAt: Date.now() + 900000, attempts: 0 };
+        sendEmail(user.email, 'Reset your ShopLab password', 'Someone asked to reset the password for ' + user.username + '.\n\nYour reset code is ' + code + '. It expires in 15 minutes.\n\nIf this was not you, ignore this email.\n\nShopLab', 'password_reset', { code });
+      }
+      return ok(200, { message: 'If an account exists for that email, we sent a reset code to it.' });
+    });
+    route('POST', '/api/auth/reset-password', null, c => {
+      const b = c.body, email = str(b.email).toLowerCase(), d = [];
+      if (!EMAIL_RE.test(email)) d.push({ field: 'email', message: 'Enter a valid email address.' });
+      if (!/^\d{6}$/.test(str(b.code))) d.push({ field: 'code', message: 'The code is 6 digits.' });
+      if (!pwOk(b.newPassword)) d.push({ field: 'newPassword', message: 'Password needs 8+ characters with upper and lower case, a number and a symbol.' });
+      if (d.length) return err(400, 'VALIDATION_ERROR', 'Some fields are invalid.', d);
+      const user = db.users.find(u => u.email.toLowerCase() === email);
+      const rc = user && db.resetCodes[user.id];
+      if (!rc) return err(400, 'INVALID_RESET_CODE', 'That code is not valid. Request a new one.', [{ field: 'code', message: 'Request a new code.' }]);
+      if (rc.expiresAt < Date.now()) { delete db.resetCodes[user.id]; return err(400, 'RESET_CODE_EXPIRED', 'That code has expired. Request a new one.', [{ field: 'code', message: 'Request a new code.' }]); }
+      if (rc.code !== str(b.code)) {
+        rc.attempts += 1;
+        if (rc.attempts >= 5) { delete db.resetCodes[user.id]; return err(429, 'TOO_MANY_ATTEMPTS', 'Too many wrong codes. Request a new one.'); }
+        return err(400, 'INVALID_RESET_CODE', 'That code is not correct. ' + (5 - rc.attempts) + ' attempts left.', [{ field: 'code', message: 'Check the code in the email.' }]);
+      }
+      user.password = b.newPassword;
+      delete db.resetCodes[user.id];
+      Object.keys(db.sessions).forEach(t => { if (db.sessions[t].userId === user.id) delete db.sessions[t]; });
+      sendEmail(user.email, 'Your ShopLab password was changed', 'The password for ' + user.username + ' was just reset. Every session was logged out.\n\nShopLab', 'password_changed');
+      return ok(200, { message: 'Password updated. Log in with your new password.' });
+    });
+    route('POST', '/api/auth/change-password', 'user', c => {
+      const b = c.body;
+      if (b.currentPassword !== c.user.password) return err(400, 'INVALID_CURRENT_PASSWORD', 'Your current password is not correct.', [{ field: 'currentPassword', message: 'Check your current password.' }]);
+      if (!pwOk(b.newPassword)) return err(400, 'VALIDATION_ERROR', 'Password needs 8+ characters with upper and lower case, a number and a symbol.', [{ field: 'newPassword', message: 'Use a stronger password.' }]);
+      if (b.newPassword === c.user.password) return err(400, 'PASSWORD_REUSED', 'Choose a password different from the current one.', [{ field: 'newPassword', message: 'Use a new password.' }]);
+      c.user.password = b.newPassword;
+      Object.keys(db.sessions).forEach(t => { if (db.sessions[t].userId === c.user.id && t !== c.token) delete db.sessions[t]; });
+      sendEmail(c.user.email, 'Your ShopLab password was changed', 'The password for ' + c.user.username + ' was changed. Other sessions were logged out.\n\nShopLab', 'password_changed');
+      return ok(200, { message: 'Password changed. Other sessions were logged out.' });
+    });
 
     // ---------- catalog ----------
     route('GET', '/api/categories', null, () => ok(200, { data: CATEGORIES.map(cat => Object.assign({}, cat, { productCount: db.products.filter(p => p.category === cat.id).length })) }));
@@ -794,6 +1064,7 @@ var ShopLabCore = (function () {
       if (maxPrice !== undefined) list = list.filter(p => p.price <= maxPrice);
       if (minRating !== undefined) list = list.filter(p => p.rating >= minRating);
       if (q.inStock === 'true') list = list.filter(p => p.stock > 0);
+      if (q.onSale === 'true') list = list.filter(p => p.compareAtPrice && p.compareAtPrice > p.price);
       list.sort(sorts[sort]);
       const total = list.length;
       return ok(200, { data: list.slice((page - 1) * limit, page * limit), meta: { page, limit, total, totalPages: Math.max(1, Math.ceil(total / limit)), sort } });
@@ -808,7 +1079,7 @@ var ShopLabCore = (function () {
       const d = validateProduct(c.body, false);
       if (d.length) return err(400, 'VALIDATION_ERROR', 'Some fields are invalid.', d);
       const b = c.body, id = db.seq.product++;
-      const p = { id, sku: 'SL-' + (1000 + id), name: str(b.name), category: b.category, price: round(b.price), rating: 0, ratingsCount: 0, stock: b.stock, emoji: str(b.emoji) || '📦', hue: isInt(b.hue) ? b.hue : 260, description: str(b.description), colors: Array.isArray(b.colors) ? b.colors : [], sizes: Array.isArray(b.sizes) ? b.sizes : [], createdAt: new Date().toISOString() };
+      const p = { id, sku: 'SL-' + (1000 + id), name: str(b.name), category: b.category, price: round(b.price), rating: 0, ratingsCount: 0, stock: b.stock, emoji: str(b.emoji) || '📦', hue: isInt(b.hue) ? b.hue : 260, description: str(b.description), colors: Array.isArray(b.colors) ? b.colors : [], sizes: Array.isArray(b.sizes) ? b.sizes : [], compareAtPrice: typeof b.compareAtPrice === 'number' ? round(b.compareAtPrice) : null, createdAt: new Date().toISOString() };
       db.products.push(p);
       return ok(201, p, { location: '/api/products/' + id });
     });
@@ -819,10 +1090,12 @@ var ShopLabCore = (function () {
       if (!p) return err(404, 'PRODUCT_NOT_FOUND', 'No product has id ' + id + '.');
       const d = validateProduct(c.body, partial);
       if (d.length) return err(400, 'VALIDATION_ERROR', 'Some fields are invalid.', d);
-      const b = c.body;
+      const b = c.body, before = p.stock;
       ['name', 'description', 'emoji'].forEach(k => { if (b[k] !== undefined) p[k] = str(b[k]); else if (!partial && k === 'description') p[k] = ''; });
       ['category', 'stock', 'colors', 'sizes', 'hue'].forEach(k => { if (b[k] !== undefined) p[k] = b[k]; });
       if (b.price !== undefined) p.price = round(b.price);
+      if (b.compareAtPrice !== undefined) p.compareAtPrice = b.compareAtPrice === null ? null : round(b.compareAtPrice);
+      stockRaised(p, before);
       return ok(200, p);
     }
     route('PUT', '/api/products/:id', 'admin', c => updateProduct(c, false));
@@ -835,6 +1108,16 @@ var ShopLabCore = (function () {
       db.products.splice(i, 1);
       Object.keys(db.wishlists).forEach(u => { db.wishlists[u] = db.wishlists[u].filter(x => x !== id); });
       return ok(204, null);
+    });
+    route('POST', '/api/products/:id/notify', null, c => {
+      const id = parseId(c.params.id), p = findProduct(id);
+      if (!p) return err(404, 'PRODUCT_NOT_FOUND', 'No product has id ' + c.params.id + '.');
+      const email = str(c.body.email).toLowerCase();
+      if (!EMAIL_RE.test(email)) return err(400, 'VALIDATION_ERROR', 'Enter a valid email address.', [{ field: 'email', message: 'Enter a valid email address.' }]);
+      if (p.stock > 0) return err(409, 'IN_STOCK', p.name + ' is in stock, so you can buy it now.');
+      if (db.notify.some(n => n.productId === id && n.email === email)) return err(409, 'ALREADY_SUBSCRIBED', email + ' is already on the list for ' + p.name + '.');
+      db.notify.push({ productId: id, email, createdAt: new Date().toISOString() });
+      return ok(201, { message: 'We will email ' + email + ' when ' + p.name + ' is back in stock.' });
     });
     route('GET', '/api/products/:id/reviews', null, c => {
       const id = parseId(c.params.id);
@@ -933,19 +1216,58 @@ var ShopLabCore = (function () {
       return ok(204, null);
     });
 
+    // ---------- addresses ----------
+    const addrList = uid => (db.addresses[uid] = db.addresses[uid] || []);
+    route('GET', '/api/addresses', 'user', c => ok(200, { data: addrList(c.user.id) }));
+    route('POST', '/api/addresses', 'user', c => {
+      const d = validateAddress(c.body, '');
+      if (str(c.body.label).length > 30) d.push({ field: 'label', message: 'Label must be 30 characters or fewer.' });
+      if (d.length) return err(400, 'VALIDATION_ERROR', 'The address has errors.', d);
+      const list = addrList(c.user.id);
+      if (list.length >= 5) return err(409, 'ADDRESS_LIMIT', 'You can save up to 5 addresses. Delete one first.');
+      const a = Object.assign({ id: db.seq.address++, label: str(c.body.label) || 'Address' }, cleanAddress(c.body), { isDefault: !list.length || c.body.isDefault === true });
+      if (a.isDefault) list.forEach(x => { x.isDefault = false; });
+      list.push(a);
+      return ok(201, a, { location: '/api/addresses/' + a.id });
+    });
+    function findAddr(c) { const id = parseId(c.params.id); return addrList(c.user.id).find(a => a.id === id); }
+    route('PUT', '/api/addresses/:id', 'user', c => {
+      const a = findAddr(c);
+      if (!a) return err(404, 'ADDRESS_NOT_FOUND', 'No saved address has id ' + c.params.id + '.');
+      const d = validateAddress(c.body, '');
+      if (str(c.body.label).length > 30) d.push({ field: 'label', message: 'Label must be 30 characters or fewer.' });
+      if (d.length) return err(400, 'VALIDATION_ERROR', 'The address has errors.', d);
+      Object.assign(a, cleanAddress(c.body), { label: str(c.body.label) || a.label });
+      if (c.body.isDefault === true) { addrList(c.user.id).forEach(x => { x.isDefault = false; }); a.isDefault = true; }
+      return ok(200, a);
+    });
+    route('POST', '/api/addresses/:id/default', 'user', c => {
+      const a = findAddr(c);
+      if (!a) return err(404, 'ADDRESS_NOT_FOUND', 'No saved address has id ' + c.params.id + '.');
+      addrList(c.user.id).forEach(x => { x.isDefault = x === a; });
+      return ok(200, { data: addrList(c.user.id) });
+    });
+    route('DELETE', '/api/addresses/:id', 'user', c => {
+      const a = findAddr(c);
+      if (!a) return err(404, 'ADDRESS_NOT_FOUND', 'No saved address has id ' + c.params.id + '.');
+      const list = db.addresses[c.user.id] = addrList(c.user.id).filter(x => x !== a);
+      if (a.isDefault && list.length) list[0].isDefault = true;
+      return ok(204, null);
+    });
+
     // ---------- orders ----------
     route('POST', '/api/orders', 'user', c => {
       const view = cartView(c.user.id);
       if (!view.items.length) return err(400, 'CART_EMPTY', 'Your cart is empty.');
       if (c.user.username === 'error_user') return err(500, 'PAYMENT_SERVICE_UNAVAILABLE', 'The payment service failed. This user always fails at checkout.');
-      const a = c.body.shippingAddress || {}, pay = c.body.payment || {}, d = [];
-      if (str(a.fullName).length < 2) d.push({ field: 'shippingAddress.fullName', message: 'Enter the recipient’s full name.' });
-      if (!/^[+\d][\d\s-]{6,19}$/.test(str(a.phone))) d.push({ field: 'shippingAddress.phone', message: 'Enter a phone number with 7–20 digits.' });
-      if (str(a.line1).length < 3) d.push({ field: 'shippingAddress.line1', message: 'Enter a street address.' });
-      if (!str(a.city)) d.push({ field: 'shippingAddress.city', message: 'Enter a city.' });
-      if (!str(a.state)) d.push({ field: 'shippingAddress.state', message: 'Enter a state or region.' });
-      if (!/^[A-Za-z0-9][A-Za-z0-9 -]{2,9}$/.test(str(a.zip))) d.push({ field: 'shippingAddress.zip', message: 'Enter a postal code of 3–10 characters.' });
-      if (!/^[A-Z]{2}$/.test(str(a.country))) d.push({ field: 'shippingAddress.country', message: 'Use a 2-letter country code like US or IN.' });
+      let a = c.body.shippingAddress || {};
+      const pay = c.body.payment || {};
+      if (c.body.addressId !== undefined) {
+        const saved = addrList(c.user.id).find(x => x.id === c.body.addressId);
+        if (!saved) return err(404, 'ADDRESS_NOT_FOUND', 'No saved address has id ' + c.body.addressId + '.');
+        a = Object.assign({ email: str((c.body.shippingAddress || {}).email) }, saved);
+      }
+      const d = validateAddress(a, 'shippingAddress.');
       if (d.length) return err(400, 'VALIDATION_ERROR', 'The shipping address has errors.', d);
       const num = String(pay.cardNumber || '').replace(/[\s-]/g, '');
       const pd = [];
@@ -963,11 +1285,17 @@ var ShopLabCore = (function () {
       const order = {
         id: db.seq.order++, userId: c.user.id, items: view.items, subtotal: view.subtotal, discount: view.discount, shipping: view.shipping, tax: view.tax, total: view.total,
         coupon: view.coupon ? view.coupon.code : null, shippingMethod: view.shippingMethod,
-        shippingAddress: { fullName: str(a.fullName), phone: str(a.phone), line1: str(a.line1), line2: str(a.line2), city: str(a.city), state: str(a.state), zip: str(a.zip), country: str(a.country) },
-        payment: { brand, last4: num.slice(-4) }, createdAt: new Date().toISOString(), cancelledAt: null
+        shippingAddress: Object.assign(cleanAddress(a), { email: str(a.email) || c.user.email }),
+        payment: { brand, last4: num.slice(-4) }, createdAt: new Date().toISOString(), cancelledAt: null, notified: {}
       };
       db.orders.push(order);
       const cart = getCart(c.user.id); cart.items = []; cart.coupon = null;
+      if (c.body.saveAddress === true && c.body.addressId === undefined) {
+        const list = addrList(c.user.id), clean = cleanAddress(a);
+        if (list.length < 5 && !list.some(x => x.line1 === clean.line1 && x.zip === clean.zip)) list.push(Object.assign({ id: db.seq.address++, label: 'Address ' + (list.length + 1) }, clean, { isDefault: !list.length }));
+      }
+      const lines = order.items.map(i => '  ' + i.name + ' x ' + i.quantity + '  $' + i.lineTotal.toFixed(2)).join('\n');
+      sendEmail(order.shippingAddress.email, 'Order #' + order.id + ' confirmed', 'Hi ' + c.user.firstName + ',\n\nThanks for your order. We received order #' + order.id + '.\n\n' + lines + '\n\nSubtotal  $' + order.subtotal.toFixed(2) + (order.discount ? '\nDiscount  -$' + order.discount.toFixed(2) : '') + '\nShipping  $' + order.shipping.toFixed(2) + '\nTax       $' + order.tax.toFixed(2) + '\nTotal     $' + order.total.toFixed(2) + '\n\nShipping to ' + order.shippingAddress.fullName + ', ' + order.shippingAddress.city + ', ' + order.shippingAddress.country + '.\nPaid with ' + brand + ' ending ' + order.payment.last4 + '.\n\nShopLab', 'order_confirmation', { orderId: order.id });
       return ok(201, orderView(order), { location: '/api/orders/' + order.id });
     });
     route('GET', '/api/orders', 'user', c => {
@@ -993,8 +1321,107 @@ var ShopLabCore = (function () {
       const st = orderStatus(r.order);
       if (st !== 'placed' && st !== 'processing') return err(409, 'ORDER_NOT_CANCELLABLE', 'Orders that are ' + st + ' cannot be cancelled.');
       r.order.cancelledAt = new Date().toISOString();
-      r.order.items.forEach(i => { const p = findProduct(i.productId); if (p) p.stock += i.quantity; });
+      r.order.items.forEach(i => { const p = findProduct(i.productId); if (p) { const before = p.stock; p.stock += i.quantity; stockRaised(p, before); } });
+      sendEmail(r.order.shippingAddress.email || c.user.email, 'Order #' + r.order.id + ' was cancelled', 'Order #' + r.order.id + ' was cancelled. Your refund of $' + r.order.total.toFixed(2) + ' goes back to the ' + r.order.payment.brand + ' card ending ' + r.order.payment.last4 + '.\n\nShopLab', 'order_cancelled', { orderId: r.order.id });
       return ok(200, orderView(r.order));
+    });
+    route('POST', '/api/orders/:id/return', 'user', c => {
+      const r = ownOrder(c); if (r.error) return r.error;
+      const o = r.order;
+      if (o.returnRequest) return err(409, 'RETURN_ALREADY_REQUESTED', 'A return was already requested for order #' + o.id + ' (' + o.returnRequest.rma + ').');
+      const st = orderStatus(o);
+      if (st !== 'delivered') return err(409, 'RETURN_NOT_ALLOWED', 'Only delivered orders can be returned. This order is ' + st.replace('_', ' ') + '.');
+      const reason = str(c.body.reason), comment = str(c.body.comment), d = [];
+      if (!RETURN_REASONS[reason]) d.push({ field: 'reason', message: 'Reason must be one of: ' + Object.keys(RETURN_REASONS).join(', ') + '.' });
+      if (reason === 'other' && comment.length < 5) d.push({ field: 'comment', message: 'Tell us more (at least 5 characters) when the reason is other.' });
+      let ids = Array.isArray(c.body.productIds) ? c.body.productIds : o.items.map(i => i.productId);
+      if (!ids.length || ids.some(id => !o.items.some(i => i.productId === id))) d.push({ field: 'productIds', message: 'Choose at least one item from this order.' });
+      if (d.length) return err(400, 'VALIDATION_ERROR', 'The return request has errors.', d);
+      const items = o.items.filter(i => ids.includes(i.productId));
+      const amount = round(items.reduce((s, i) => s + i.lineTotal, 0) * (1 + TAX_RATE));
+      o.returnRequest = { rma: 'RMA-' + o.id, reason, reasonLabel: RETURN_REASONS[reason], comment, productIds: ids, refundAmount: amount, requestedAt: new Date().toISOString() };
+      sendEmail(o.shippingAddress.email || c.user.email, 'Return ' + o.returnRequest.rma + ' received', 'We received your return request for order #' + o.id + '.\n\nReturn number: ' + o.returnRequest.rma + '\nReason: ' + RETURN_REASONS[reason] + '\nItems: ' + items.map(i => i.name).join(', ') + '\nExpected refund: $' + amount.toFixed(2) + '\n\nPack the items and drop them at any courier point within 14 days.\n\nShopLab', 'return_requested', { orderId: o.id, rma: o.returnRequest.rma });
+      return ok(201, orderView(o));
+    });
+    route('POST', '/api/orders/:id/reorder', 'user', c => {
+      const r = ownOrder(c); if (r.error) return r.error;
+      const cart = getCart(c.user.id), added = [], skipped = [];
+      r.order.items.forEach(i => {
+        const p = findProduct(i.productId);
+        if (!p) return skipped.push({ productId: i.productId, name: i.name, reason: 'No longer sold' });
+        const line = cart.items.find(x => x.productId === p.id), have = line ? line.quantity : 0;
+        const q = Math.min(i.quantity, p.stock - have, 10 - have);
+        if (p.stock === 0) return skipped.push({ productId: p.id, name: p.name, reason: 'Out of stock' });
+        if (q <= 0) return skipped.push({ productId: p.id, name: p.name, reason: 'Cart already holds the maximum available' });
+        if (line) line.quantity += q; else cart.items.push({ productId: p.id, quantity: q });
+        added.push({ productId: p.id, name: p.name, quantity: q });
+      });
+      return ok(200, { added, skipped, cart: cartView(c.user.id) });
+    });
+    route('POST', '/api/orders/track', null, c => {
+      const id = Number(c.body.orderId), email = str(c.body.email).toLowerCase(), d = [];
+      if (!Number.isInteger(id)) d.push({ field: 'orderId', message: 'Enter the order number.' });
+      if (!EMAIL_RE.test(email)) d.push({ field: 'email', message: 'Enter the email used for the order.' });
+      if (d.length) return err(400, 'VALIDATION_ERROR', 'Enter an order number and email.', d);
+      const o = db.orders.find(x => x.id === id);
+      const owner = o && db.users.find(u => u.id === o.userId);
+      if (!o || ![(o.shippingAddress.email || '').toLowerCase(), owner ? owner.email.toLowerCase() : ''].includes(email)) return err(404, 'ORDER_NOT_FOUND', 'No order matches that number and email.');
+      return ok(200, { id: o.id, status: orderStatus(o), createdAt: o.createdAt, itemCount: o.items.reduce((s, i) => s + i.quantity, 0), total: o.total, shippingMethod: o.shippingMethod, shipTo: o.shippingAddress.city + ', ' + o.shippingAddress.country, rma: o.returnRequest ? o.returnRequest.rma : null });
+    });
+    route('PATCH', '/api/orders/:id/status', 'admin', c => {
+      const id = parseId(c.params.id), o = db.orders.find(x => x.id === id);
+      if (!o) return err(404, 'ORDER_NOT_FOUND', 'No order has id ' + c.params.id + '.');
+      const s = str(c.body.status), allowed = ['placed', 'processing', 'shipped', 'delivered', 'refunded'];
+      if (!allowed.includes(s)) return err(400, 'VALIDATION_ERROR', 'Status must be one of: ' + allowed.join(', ') + '.', [{ field: 'status', message: 'Unknown status.' }]);
+      if (o.cancelledAt || o.refundedAt) return err(409, 'ORDER_CLOSED', 'Order #' + o.id + ' is ' + orderStatus(o) + ' and cannot change.');
+      if (s === 'refunded') {
+        if (!o.returnRequest) return err(409, 'NO_RETURN', 'Only orders with a return request can be refunded.');
+        o.refundedAt = new Date().toISOString();
+        sendEmail(o.shippingAddress.email, 'Refund issued for ' + o.returnRequest.rma, 'We refunded $' + o.returnRequest.refundAmount.toFixed(2) + ' to the ' + o.payment.brand + ' card ending ' + o.payment.last4 + '.\n\nShopLab', 'refund_issued', { orderId: o.id });
+      } else {
+        if (o.returnRequest) return err(409, 'ORDER_CLOSED', 'Order #' + o.id + ' has a return in progress. Set it to refunded instead.');
+        o.statusOverride = s;
+      }
+      sweepOrders();
+      return ok(200, orderView(o));
+    });
+
+    // ---------- inbox, newsletter and chaos config ----------
+    route('GET', '/api/inbox', null, c => {
+      const e = str(c.query.email).toLowerCase();
+      if (!EMAIL_RE.test(e)) return err(400, 'VALIDATION_ERROR', 'Pass the mailbox address as ?email=you@example.com.', [{ field: 'email', message: 'Enter a valid email address.' }]);
+      const list = db.emails.filter(m => m.to === e).sort((a, b) => b.id - a.id);
+      return ok(200, { data: list.map(m => ({ id: m.id, from: m.from, to: m.to, subject: m.subject, kind: m.kind, read: m.read, createdAt: m.createdAt, preview: m.body.replace(/\s+/g, ' ').slice(0, 90) })), meta: { total: list.length, unread: list.filter(m => !m.read).length } });
+    });
+    route('GET', '/api/inbox/:id', null, c => {
+      const m = db.emails.find(x => x.id === parseId(c.params.id));
+      if (!m) return err(404, 'EMAIL_NOT_FOUND', 'No email has id ' + c.params.id + '.');
+      m.read = true;
+      return ok(200, m);
+    });
+    route('DELETE', '/api/inbox', null, c => {
+      const e = str(c.query.email).toLowerCase();
+      if (!EMAIL_RE.test(e)) return err(400, 'VALIDATION_ERROR', 'Pass the mailbox address as ?email=you@example.com.');
+      db.emails = db.emails.filter(m => m.to !== e);
+      return ok(204, null);
+    });
+    route('POST', '/api/newsletter', null, c => {
+      const e = str(c.body.email).toLowerCase();
+      if (!EMAIL_RE.test(e)) return err(400, 'VALIDATION_ERROR', 'Enter a valid email address.', [{ field: 'email', message: 'Enter a valid email address.' }]);
+      if (db.newsletter.includes(e)) return ok(200, { message: e + ' is already subscribed.' });
+      db.newsletter.push(e);
+      sendEmail(e, 'Your 10% welcome code', 'Thanks for subscribing to ShopLab deals.\n\nUse code SAVE10 at checkout for 10% off.\n\nShopLab', 'newsletter', { coupon: 'SAVE10' });
+      return ok(201, { message: 'Subscribed. Check the inbox for your welcome code.' });
+    });
+    route('GET', '/api/config', null, () => ok(200, db.config));
+    route('PUT', '/api/config', null, c => {
+      const b = c.body, d = [];
+      const lat = b.latencyMs === undefined ? db.config.latencyMs : b.latencyMs, fr = b.failureRate === undefined ? db.config.failureRate : b.failureRate;
+      if (!isInt(lat) || lat < 0 || lat > 5000) d.push({ field: 'latencyMs', message: 'Use a whole number from 0 to 5000.' });
+      if (!isInt(fr) || fr < 0 || fr > 50) d.push({ field: 'failureRate', message: 'Use a whole number from 0 to 50.' });
+      if (d.length) return err(400, 'VALIDATION_ERROR', 'Some settings are invalid.', d);
+      db.config = { latencyMs: lat, failureRate: fr };
+      return ok(200, db.config);
     });
 
     // ---------- users ----------
@@ -1007,8 +1434,11 @@ var ShopLabCore = (function () {
       const headers = {};
       Object.keys(req.headers || {}).forEach(k => { headers[k.toLowerCase()] = String(req.headers[k]); });
       let res = null;
+      const exempt = ['/api/config', '/api/reset', '/api/health'].includes(path) || !path.startsWith('/api/');
       try {
+        sweepOrders();
         if (method === 'OPTIONS') res = ok(204, null);
+        else if (!exempt && db.config.failureRate > 0 && Math.random() * 100 < db.config.failureRate) res = err(503, 'CHAOS_FAILURE', 'Injected failure: chaos mode is on (' + db.config.failureRate + '% failure rate). Retry the request.');
         else if (req.bodyError) res = err(400, 'MALFORMED_JSON', 'The request body is not valid JSON.');
         else {
           let match = null, pathHit = false;
@@ -1040,16 +1470,105 @@ var ShopLabCore = (function () {
       }
       res.headers = Object.assign({ 'x-request-id': 'req_' + rid(12), 'x-powered-by': 'ShopLab' }, res.headers || {});
       if (res.body !== null && res.body !== undefined && !res.raw) res.headers['content-type'] = 'application/json; charset=utf-8';
-      res.delay = res.delay || 0;
-      if (method !== 'GET' || path === '/api/auth/me') save();
+      res.delay = (res.delay || 0) + (exempt ? 0 : db.config.latencyMs);
+      save();
       return res;
     }
 
     return { handle, reset: () => { db = seed(); save(); } };
   }
 
-  return { createBackend, seed, PASSWORD, TEST_USERS, ENDPOINTS, CATEGORIES, SHIPPING, COUPONS };
+  return { createBackend, seed, PASSWORD, TEST_USERS, ENDPOINTS, GROUPS, CATEGORIES, SHIPPING, COUPONS, RETURN_REASONS };
 })();
+
+</script>
+<script>
+window.ShopLabScenarios = [
+  { id: 'SC-01', area: 'Authentication', type: 'UI', priority: 'High', title: 'Log in with valid credentials',
+    pre: 'Logged out.', steps: ['Open #login.', 'Enter standard_user and Practice@123.', 'Select Log in.'],
+    expected: ['The header shows “Hi, Sam”.', 'The page goes to the shop.', 'A token is stored and GET /api/auth/me returns 200.'] },
+  { id: 'SC-02', area: 'Authentication', type: 'UI + API', priority: 'High', title: 'Locked account is refused',
+    pre: 'Logged out.', steps: ['Log in as locked_user with Practice@123.'],
+    expected: ['An error says the account is locked.', 'POST /api/auth/login returns 423 ACCOUNT_LOCKED.', 'No token is stored.'] },
+  { id: 'SC-03', area: 'Authentication', type: 'UI + API', priority: 'Medium', title: 'Login pauses after 5 failed attempts',
+    pre: 'Reset store data.', steps: ['Log in as standard_user with a wrong password 5 times.', 'Try once more with the correct password.'],
+    expected: ['Attempts 1–5 return 401; the 5th message says login is paused.', 'Attempt 6 returns 429 TOO_MANY_ATTEMPTS with a Retry-After header, even with the right password.', 'After 60 seconds the correct password works.'] },
+  { id: 'SC-04', area: 'Authentication', type: 'UI', priority: 'Medium', title: 'Slow login needs an explicit wait',
+    pre: 'Logged out.', steps: ['Log in as slow_user.'],
+    expected: ['The button shows “Logging in…” and is disabled for about 3 seconds.', 'The user menu appears afterwards. A test with a 2-second fixed wait fails; an explicit wait passes.'] },
+  { id: 'SC-05', area: 'Authentication', type: 'UI', priority: 'High', title: 'Two-step login with an emailed code',
+    pre: 'Logged out.', steps: ['Log in as otp_user.', 'Open the inbox for otp@shoplab.test in a new tab and read the code.', 'Enter a wrong code, then the right one.'],
+    expected: ['The code step shows the masked address o***@shoplab.test.', 'A wrong code shows how many attempts are left.', 'Resend is disabled for 30 seconds with a countdown.', 'The right code logs you in as Olu.'] },
+  { id: 'SC-06', area: 'Authentication', type: 'UI', priority: 'High', title: 'Reset a forgotten password',
+    pre: 'Reset store data.', steps: ['Select “Forgot your password?” and enter standard@shoplab.test.', 'Read the reset code in the inbox.', 'Set the new password NewPass@123.', 'Log in with the old password, then the new one.'],
+    expected: ['The request page never says whether the email exists.', 'A “password was changed” email arrives.', 'The old password fails and the new one works.'] },
+  { id: 'SC-07', area: 'Authentication', type: 'UI', priority: 'Medium', title: 'Register a new account',
+    pre: 'Logged out.', steps: ['Try username standard_user.', 'Try a weak password and mismatched confirmation.', 'Register with valid, unique details.'],
+    expected: ['Each problem shows a message next to its field.', 'A taken username returns 409.', 'Success logs you in and a welcome email arrives.'] },
+  { id: 'SC-08', area: 'Catalog', type: 'UI', priority: 'High', title: 'Filter and sort the catalogue',
+    pre: 'None.', steps: ['Tick Electronics.', 'Set max price to $100.', 'Sort by Price: low to high.'],
+    expected: ['Every card is Electronics and costs $100 or less.', 'Prices are in ascending order.', 'Filter chips appear and removing one updates the results.'] },
+  { id: 'SC-09', area: 'Catalog', type: 'UI', priority: 'Medium', title: 'Search suggestions with the keyboard',
+    pre: 'None.', steps: ['Type “bo” in the header search.', 'Press Arrow Down twice and Enter.'],
+    expected: ['A list of up to 5 suggestions appears.', 'The highlighted suggestion opens its product page.'] },
+  { id: 'SC-10', area: 'Catalog', type: 'UI + API', priority: 'Low', title: 'Pagination covers every product once',
+    pre: 'Reset store data.', steps: ['Collect product names from every page of the shop.'],
+    expected: ['The total matches meta.total from GET /api/products.', 'No product appears twice.'] },
+  { id: 'SC-11', area: 'Product', type: 'UI', priority: 'Medium', title: 'Size must be chosen before adding to cart',
+    pre: 'None.', steps: ['Open #product-5.', 'Select Add to cart without a size.', 'Choose M, set quantity 2, add again.'],
+    expected: ['An error asks you to choose a size, and nothing is added.', 'The cart badge shows 2.'] },
+  { id: 'SC-12', area: 'Product', type: 'UI + API', priority: 'High', title: 'Back-in-stock email',
+    pre: 'Reset store data.', steps: ['Open #product-3 (sold out) and request an alert for your email.', 'As admin, raise its stock above 0.', 'Open the inbox.'],
+    expected: ['A second request for the same email returns 409.', 'A “back in stock” email arrives after the restock.'] },
+  { id: 'SC-13', area: 'Cart', type: 'UI', priority: 'High', title: 'Guest cart merges on login',
+    pre: 'Logged out with an empty cart.', steps: ['Add two products as a guest.', 'Open the cart and choose Log in to check out.', 'Log in as standard_user.'],
+    expected: ['The guest cart shows a subtotal and asks you to log in.', 'After login a message says the items moved, and the account cart holds them.', 'You land on checkout.'] },
+  { id: 'SC-14', area: 'Cart', type: 'UI + API', priority: 'High', title: 'Coupon rules',
+    pre: 'Logged in, cart subtotal under $100.', steps: ['Apply FLAT20, EXPIRED5, NOPE, then SAVE10.', 'Replace with FREESHIP.'],
+    expected: ['FLAT20 fails with the minimum message; EXPIRED5 says expired; NOPE does not exist.', 'SAVE10 takes 10% off the subtotal.', 'FREESHIP makes shipping free.'] },
+  { id: 'SC-15', area: 'Cart', type: 'UI + API', priority: 'High', title: 'Totals add up',
+    pre: 'Logged in with items in the cart.', steps: ['Read every line of the order summary.', 'Call GET /api/cart.'],
+    expected: ['Total = subtotal − discount + shipping + 8% tax on (subtotal − discount).', 'UI values equal the API values.', 'Standard shipping is free from $75.'] },
+  { id: 'SC-16', area: 'Checkout', type: 'UI', priority: 'High', title: 'Checkout with a saved address',
+    pre: 'Logged in as returning_user with items in the cart.', steps: ['Go to checkout; keep the default Home address.', 'Choose Express, pay with 4111 1111 1111 1111.', 'Accept the terms and place the order.'],
+    expected: ['The address form stays hidden while a saved address is selected.', 'The confirmation shows an order number.', 'An “Order # confirmed” email arrives for returning@shoplab.test.'] },
+  { id: 'SC-17', area: 'Checkout', type: 'UI', priority: 'High', title: 'Declined card, then success',
+    pre: 'Logged in with items in the cart.', steps: ['Pay with 4000 0000 0000 0002.', 'Edit payment to 4111 1111 1111 1111 and retry.'],
+    expected: ['The first attempt shows “card was declined” (402) and the cart is unchanged.', 'The second attempt places the order.'] },
+  { id: 'SC-18', area: 'Checkout', type: 'UI + API', priority: 'Medium', title: 'Server error at checkout',
+    pre: 'Logged in as error_user with items in the cart.', steps: ['Complete checkout and place the order.'],
+    expected: ['An error explains the payment service failed (500).', 'The cart still holds every item.'] },
+  { id: 'SC-19', area: 'Orders', type: 'UI', priority: 'High', title: 'Cancel a processing order',
+    pre: 'Reset store data, logged in as returning_user.', steps: ['Open order #1002.', 'Cancel it and confirm.'],
+    expected: ['The status becomes cancelled.', 'Stock for its products goes back up.', 'A cancellation email arrives.'] },
+  { id: 'SC-20', area: 'Orders', type: 'UI + API', priority: 'High', title: 'Return a delivered order',
+    pre: 'Reset store data, logged in as returning_user.', steps: ['Open order #1001 and request a return.', 'Choose “Other” without a comment, then add one.', 'Request again through the API.'],
+    expected: ['The comment is required for “Other”.', 'The status becomes return requested with RMA-1001, and an email arrives.', 'The second request returns 409.'] },
+  { id: 'SC-21', area: 'Orders', type: 'UI', priority: 'Medium', title: 'Buy again skips unavailable items',
+    pre: 'Reset store data, logged in as returning_user. Order #1001 includes APIs Explained, which is out of stock.', steps: ['Open order #1001 and select Buy again.'],
+    expected: ['Available items are added to the cart.', 'A message lists each skipped item and the reason.'] },
+  { id: 'SC-22', area: 'Orders', type: 'UI + API', priority: 'Medium', title: 'Track an order without logging in',
+    pre: 'Logged out.', steps: ['Open #track.', 'Enter 1001 with returning@shoplab.test.', 'Try 1001 with another email.'],
+    expected: ['The status and delivery timeline appear.', 'A wrong email says no order matches, without revealing that the order exists.'] },
+  { id: 'SC-23', area: 'Account', type: 'UI + API', priority: 'Medium', title: 'Manage the address book',
+    pre: 'Logged in as standard_user.', steps: ['Add an address, then a second one.', 'Make the second the default, edit it, delete the first.', 'Try adding a sixth address via the API.'],
+    expected: ['The first address becomes the default automatically.', 'Only one default exists at a time.', 'The sixth address returns 409 ADDRESS_LIMIT.'] },
+  { id: 'SC-24', area: 'Admin', type: 'API', priority: 'High', title: 'Product lifecycle and permissions',
+    pre: 'Tokens for admin and standard_user.', steps: ['POST a product as admin.', 'Search for it in the shop.', 'Try DELETE as standard_user, then as admin.', 'GET it again.'],
+    expected: ['Create returns 201 with a Location header.', 'It appears in shop search.', 'Customer delete returns 403; admin delete returns 204; GET returns 404.'] },
+  { id: 'SC-25', area: 'Interruptions', type: 'UI', priority: 'High', title: 'Cookie banner and newsletter popup',
+    pre: 'Fresh browser profile.', steps: ['Open the shop and wait 10 seconds.', 'Handle the cookie banner and popup.', 'In a second test, set localStorage before load to skip both.'],
+    expected: ['The banner covers the bottom of the page until you choose.', 'The popup appears once per browser.', 'Pre-set storage keys (see Test settings) skip both.'] },
+  { id: 'SC-26', area: 'Resilience', type: 'UI + API', priority: 'Medium', title: 'Chaos mode',
+    pre: 'Test settings open.', steps: ['Set the failure rate to 30% and latency to 1500 ms.', 'Run a shopping test.'],
+    expected: ['Some requests return 503 CHAOS_FAILURE.', 'The product grid shows Try again on failure.', 'Tests with retries and explicit waits still pass.'] },
+  { id: 'SC-27', area: 'Localisation', type: 'UI', priority: 'Low', title: 'Switch currency',
+    pre: 'None.', steps: ['Choose INR in the currency menu.', 'Open a product and the checkout review.'],
+    expected: ['Prices use ₹ at the fixed rate of 84 per USD.', 'Checkout states the charge is made in USD.', 'Orders and the API still store USD.'] },
+  { id: 'SC-28', area: 'API', type: 'API', priority: 'High', title: 'Negative contract tests',
+    pre: 'None.', steps: ['Call GET /api/cart without a token, with “Bearer junk”, and with an expired token (expiresIn 10).', 'Call POST /api/products as a customer.', 'Send malformed JSON, a wrong method and an unknown path.'],
+    expected: ['401 AUTH_REQUIRED, INVALID_TOKEN and TOKEN_EXPIRED respectively.', '403 FORBIDDEN.', '400 MALFORMED_JSON, 405 METHOD_NOT_ALLOWED and 404 ROUTE_NOT_FOUND, all in the standard error format.'] }
+];
 
 </script>
 <script>
@@ -1487,7 +2006,17 @@ var ShopLabCore = (function () {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const money = n => '$' + Number(n || 0).toFixed(2);
+  const CURRENCIES = { USD: { rate: 1, locale: 'en-US' }, INR: { rate: 84, locale: 'en-IN' }, EUR: { rate: 0.92, locale: 'de-DE' }, GBP: { rate: 0.79, locale: 'en-GB' } };
+  let currency = CURRENCIES[store.get('shoplab_currency')] ? store.get('shoplab_currency') : 'USD';
+  const money = n => { const c = CURRENCIES[currency]; return new Intl.NumberFormat(c.locale, { style: 'currency', currency }).format(Number(n || 0) * c.rate); };
+  const usd = n => '$' + Number(n || 0).toFixed(2);
+  const readJSON = (k, d) => { try { const v = store.get(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  const writeJSON = (k, v) => store.set(k, JSON.stringify(v));
+  const prefs = () => Object.assign({ cookieBanner: true, newsletter: true, newsletterDelay: 10 }, readJSON('shoplab_prefs', {}));
+  const onSale = p => !!(p.compareAtPrice && p.compareAtPrice > p.price);
+  const pctOff = p => Math.round((1 - p.price / p.compareAtPrice) * 100);
+  const statusText = s => String(s).replace('_', ' ');
+  const EMAIL_OK = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const stars = r => { const f = Math.round(r); return '★'.repeat(f) + '☆'.repeat(5 - f); };
   const app = $('#app');
@@ -1495,8 +2024,10 @@ var ShopLabCore = (function () {
   const S = {
     token: store.get(TOKEN_KEY), user: null, session: null, categories: [], cart: null, wishlistIds: new Set(), redirect: null,
     filters: { search: '', categories: [], maxPrice: 200, inStock: false, minRating: 0, sort: 'featured', page: 1, limit: 8 },
-    checkout: { step: 1, address: null }
+    checkout: { step: 1, address: null }, nav: 0, timers: [], compare: readJSON('shoplab_compare', []), resetEmail: null
   };
+  function later(fn, ms) { const t = setTimeout(fn, ms); S.timers.push(t); return t; }
+  function every(fn, ms) { const t = setInterval(fn, ms); S.timers.push(t); return t; }
 
   // ---------------- API client ----------------
   async function request(method, url, opt = {}) {
@@ -1551,7 +2082,9 @@ var ShopLabCore = (function () {
     el.setAttribute('data-testid', 'toast-' + type);
     el.innerHTML = `<span class="toast-msg">${esc(msg)}</span><button type="button" aria-label="Dismiss notification">✕</button>`;
     el.querySelector('button').onclick = () => el.remove();
-    $('#toasts').appendChild(el);
+    const box = $('#toasts');
+    box.appendChild(el);
+    while (box.children.length > 4) box.firstElementChild.remove();
     if (ms) setTimeout(() => el.remove(), ms);
     return el;
   }
@@ -1650,8 +2183,11 @@ var ShopLabCore = (function () {
     el.className = 'mode-strip ' + MODE;
     el.innerHTML = `<div class="inner" data-testid="mode-strip"><span id="mode-label">${MODE === 'server'
       ? `<strong>Server mode.</strong> The REST API is live at <code>${esc(location.origin)}/api</code>. Point Postman or REST Assured at it.`
-      : `<strong>Demo mode.</strong> The API runs inside this browser and saves to this browser only. Run the server kit to call it from Postman or REST Assured.`}</span>
-      <button type="button" class="link-btn" id="reset-data" data-testid="reset-data">Reset store data</button></div>`;
+      : `<strong>Demo mode.</strong> The API runs inside this browser. Use the server kit for Postman or REST Assured.`}</span>
+      <span class="strip-tools"><label for="currency-select">Currency</label><select id="currency-select" data-testid="currency-select">${Object.keys(CURRENCIES).map(c => `<option ${c === currency ? 'selected' : ''}>${c}</option>`).join('')}</select>
+      <a href="#test-settings" id="test-settings-link" data-testid="test-settings-link">Test settings</a>
+      <button type="button" class="link-btn" id="reset-data" data-testid="reset-data">Reset store data</button></span></div>`;
+    $('#currency-select').onchange = e => { currency = e.target.value; store.set('shoplab_currency', currency); toast(`Prices now show in ${currency}. You are always charged in USD.`, 'info'); router(); };
     $('#reset-data').onclick = async () => {
       if (!(await confirmDialog('Reset store data?', 'Products, carts, orders and new accounts go back to the original seed. You stay logged in.', 'Reset data'))) return;
       const r = await request('POST', '/api/reset');
@@ -1666,6 +2202,7 @@ var ShopLabCore = (function () {
         <a role="menuitem" href="#account" id="menu-account">My account</a>
         <a role="menuitem" href="#orders" id="menu-orders">My orders</a>
         <a role="menuitem" href="#wishlist" id="menu-wishlist">Wishlist</a>
+        <a role="menuitem" href="#inbox" id="menu-inbox">Inbox</a>
         ${S.user.role === 'admin' ? '<a role="menuitem" href="#admin" id="menu-admin">Admin panel</a>' : ''}
         <button role="menuitem" type="button" id="logout-button" data-testid="logout-button">Log out</button>
       </div>`;
@@ -1680,8 +2217,10 @@ var ShopLabCore = (function () {
     setToken(null); S.user = null; S.cart = null; S.wishlistIds = new Set();
     renderUserMenu(); updateBadges(); toast('You are logged out.', 'success'); go('login');
   }
+  function guestCart() { return readJSON('shoplab_guest_cart', []); }
+  function setGuestCart(items) { writeJSON('shoplab_guest_cart', items); }
   function updateBadges() {
-    $('#cart-count').textContent = S.cart ? S.cart.itemCount : 0;
+    $('#cart-count').textContent = S.token ? (S.cart ? S.cart.itemCount : 0) : guestCart().reduce((n, i) => n + i.quantity, 0);
     $('#wishlist-count').textContent = S.wishlistIds.size;
   }
   async function refreshCounts() {
@@ -1745,12 +2284,25 @@ var ShopLabCore = (function () {
     if (a.dataset.action === 'wish') { e.preventDefault(); toggleWish(id, a); }
   });
   async function addToCart(productId, quantity, btn) {
-    if (!S.token) { S.redirect = location.hash.slice(1) || 'shop'; toast('Log in to add items to your cart.', 'info'); go('login'); return false; }
+    if (!S.token) return addToGuestCart(productId, quantity, btn);
     setBusy(btn, true, 'Adding…');
     const r = await request('POST', '/api/cart/items', { body: { productId, quantity } });
     setBusy(btn, false);
     if (r.ok) { S.cart = r.body; updateBadges(); toast('Added to cart.', 'success'); return true; }
     toast(errMsg(r), 'error'); return false;
+  }
+  async function addToGuestCart(productId, quantity, btn) {
+    setBusy(btn, true, 'Adding…');
+    const r = await request('GET', '/api/products/' + productId, { auth: false });
+    setBusy(btn, false);
+    if (!r.ok) { toast(errMsg(r), 'error'); return false; }
+    const p = r.body, items = guestCart(), line = items.find(i => i.productId === productId), next = (line ? line.quantity : 0) + quantity;
+    if (p.stock === 0) { toast(p.name + ' is out of stock.', 'error'); return false; }
+    if (next > 10) { toast('You can buy at most 10 of one item.', 'error'); return false; }
+    if (next > p.stock) { toast('Only ' + p.stock + ' of ' + p.name + ' left.', 'error'); return false; }
+    if (line) line.quantity = next; else items.push({ productId, quantity });
+    setGuestCart(items); updateBadges(); toast('Added to cart.', 'success');
+    return true;
   }
   async function toggleWish(productId, btn) {
     if (!S.token) { S.redirect = location.hash.slice(1) || 'shop'; toast('Log in to save items to your wishlist.', 'info'); go('login'); return; }
@@ -1777,30 +2329,36 @@ var ShopLabCore = (function () {
     return `<article class="product-card" data-testid="product-card" data-product-id="${p.id}" id="product-card-${p.id}">
       <a href="#product-${p.id}" tabindex="-1" aria-hidden="true" style="text-decoration:none">${thumb(p)}</a>
       <button type="button" class="wish ${inWish ? 'on' : ''}" data-action="wish" data-id="${p.id}" aria-pressed="${inWish}" aria-label="${inWish ? 'Remove from' : 'Add to'} wishlist" data-testid="wishlist-toggle">${inWish ? '♥' : '♡'}</button>
+      ${onSale(p) ? `<span class="sale-badge" data-testid="sale-badge">${pctOff(p)}% off</span>` : ''}
       <div class="pc-body">
         <p class="pc-cat" data-testid="product-category">${esc(catName(p.category))}</p>
         <h3 class="pc-name"><a href="#product-${p.id}" data-testid="product-name">${esc(p.name)}</a></h3>
         <p class="rating" aria-label="Rated ${p.rating} out of 5"><span class="stars" aria-hidden="true">${stars(p.rating)}</span> ${Number(p.rating).toFixed(1)} <span class="muted">(${p.ratingsCount})</span></p>
         ${stock}
-        <div class="pc-foot"><span class="price-tag" data-testid="product-price" data-price="${p.price}">${money(p.price)}</span>
+        <label class="check compare-check"><input type="checkbox" data-compare="${p.id}" id="compare-${p.id}" data-testid="compare-toggle" ${S.compare.includes(p.id) ? 'checked' : ''}> Compare</label>
+        <div class="pc-foot"><span class="price-wrap"><span class="price-tag" data-testid="product-price" data-price="${p.price}">${money(p.price)}</span>${onSale(p) ? `<s class="was" data-testid="product-was-price">${money(p.compareAtPrice)}</s>` : ''}</span>
           <button type="button" class="btn small" data-action="add" data-id="${p.id}" id="add-to-cart-${p.id}" data-testid="add-to-cart" ${p.stock === 0 ? 'disabled' : ''}>${p.stock === 0 ? 'Sold out' : 'Add to cart'}</button></div>
       </div></article>`;
   }
 
   // ---------------- router ----------------
-  const views = { shop: viewShop, cart: viewCart, checkout: viewCheckout, orders: viewOrders, login: viewLogin, register: viewRegister, account: viewAccount, wishlist: viewWishlist, lab: () => window.ShopLabLab.render(app, { request, toast, openModal, closeModal, esc, MODE }), api: viewApi, admin: viewAdmin };
+  const views = { inbox: viewInbox, track: viewTrack, compare: viewCompare, scenarios: viewScenarios, 'test-settings': viewTestSettings, 'forgot-password': viewForgot, 'reset-password': viewReset, shop: viewShop, cart: viewCart, checkout: viewCheckout, orders: viewOrders, login: viewLogin, register: viewRegister, account: viewAccount, wishlist: viewWishlist, lab: () => window.ShopLabLab.render(app, { request, toast, openModal, closeModal, esc, MODE }), api: viewApi, admin: viewAdmin };
   async function router() {
     const h = location.hash.slice(1) || 'shop';
     const top = h.split('-')[0];
     $$('[data-nav]').forEach(a => { if (a.dataset.nav === top || (top === 'product' && a.dataset.nav === 'shop')) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    S.nav++;
     closeModal();
+    S.timers.splice(0).forEach(t => { clearTimeout(t); clearInterval(t); });
+    renderCompareTray(h);
     let m;
     window.scrollTo(0, 0);
+    if ((m = /^invoice-(\d+)$/.exec(h))) return viewInvoice(+m[1]);
     if ((m = /^product-(\d+)$/.exec(h))) return viewProduct(+m[1]);
     if ((m = /^order-(\d+)$/.exec(h))) return viewOrder(+m[1]);
     const v = views[h];
     if (!v) return viewNotFound(h);
-    const titles = { shop: 'Shop', cart: 'Cart', checkout: 'Checkout', orders: 'My orders', login: 'Log in', register: 'Create account', account: 'My account', wishlist: 'Wishlist', lab: 'Practice lab', api: 'API console', admin: 'Admin panel' };
+    const titles = { inbox: 'Inbox', track: 'Track an order', compare: 'Compare products', scenarios: 'Test scenarios', 'test-settings': 'Test settings', 'forgot-password': 'Forgot password', 'reset-password': 'Reset password', shop: 'Shop', cart: 'Cart', checkout: 'Checkout', orders: 'My orders', login: 'Log in', register: 'Create account', account: 'My account', wishlist: 'Wishlist', lab: 'Practice lab', api: 'API console', admin: 'Admin panel' };
     document.title = (titles[h] || 'ShopLab') + ' | ShopLab';
     return v();
   }
@@ -1826,6 +2384,7 @@ var ShopLabCore = (function () {
       </aside></section>`;
   }
   async function viewShop() {
+    const nav = S.nav;
     const f = S.filters;
     app.innerHTML = `${heroHtml()}
       <div class="shop">
@@ -1834,11 +2393,11 @@ var ShopLabCore = (function () {
           <fieldset><legend>Category</legend><div id="category-list" data-testid="category-list"></div></fieldset>
           <fieldset><legend><label for="price-max">Max price</label></legend>
             <input type="range" id="price-max" data-testid="price-max" min="10" max="200" step="5" value="${f.maxPrice}" aria-describedby="price-max-value">
-            <div class="range-row"><span>$10</span><output id="price-max-value" for="price-max" data-testid="price-max-value">$${f.maxPrice}</output></div></fieldset>
+            <div class="range-row"><span>${money(10)}</span><output id="price-max-value" for="price-max" data-testid="price-max-value">${money(f.maxPrice)}</output></div></fieldset>
           <fieldset><legend>Rating</legend>
             ${[[0, 'Any rating'], [4.5, '4.5 and up'], [4, '4 and up'], [3, '3 and up']].map(([v, l]) => `<label class="check"><input type="radio" name="rating" value="${v}" id="rating-${String(v).replace('.', '')}" data-testid="rating-${String(v).replace('.', '')}" ${f.minRating === v ? 'checked' : ''}> ${l}</label>`).join('')}
           </fieldset>
-          <fieldset><legend>Availability</legend><label class="check"><input type="checkbox" id="in-stock" data-testid="in-stock" ${f.inStock ? 'checked' : ''}> In stock only</label></fieldset>
+          <fieldset><legend>Availability</legend><label class="check"><input type="checkbox" id="in-stock" data-testid="in-stock" ${f.inStock ? 'checked' : ''}> In stock only</label><label class="check"><input type="checkbox" id="on-sale" data-testid="on-sale" ${f.onSale ? 'checked' : ''}> On sale only</label></fieldset>
         </details>
         <section class="results" aria-labelledby="results-title">
           <div class="results-head"><h2 id="results-title">All products</h2><p id="results-count" data-testid="results-count" aria-live="polite"></p>
@@ -1853,16 +2412,19 @@ var ShopLabCore = (function () {
     if (matchMedia('(max-width: 960px)').matches) $('#filters').open = false;
     $('#search-input').value = f.search;
     if (!S.categories.length) { const r = await request('GET', '/api/categories', { auth: false }); if (r.ok) S.categories = r.body.data; }
+    if (nav !== S.nav) return;
     $('#category-list').innerHTML = S.categories.map(c => `<label class="check"><input type="checkbox" value="${c.id}" id="cat-${c.id}" data-testid="cat-${c.id}" ${f.categories.includes(c.id) ? 'checked' : ''}> ${esc(c.name)} <span class="count">${c.productCount}</span></label>`).join('');
     $('#category-list').addEventListener('change', () => { f.categories = $$('#category-list input:checked').map(i => i.value); f.page = 1; loadProducts(); });
     const range = $('#price-max');
-    range.addEventListener('input', () => { $('#price-max-value').textContent = '$' + range.value; });
+    range.addEventListener('input', () => { $('#price-max-value').textContent = money(+range.value); });
+    $('#on-sale').addEventListener('change', e => { f.onSale = e.target.checked; f.page = 1; loadProducts(); });
     range.addEventListener('change', () => { f.maxPrice = +range.value; f.page = 1; loadProducts(); });
     $$('input[name="rating"]').forEach(r => r.addEventListener('change', () => { f.minRating = +r.value; f.page = 1; loadProducts(); }));
     $('#in-stock').addEventListener('change', e => { f.inStock = e.target.checked; f.page = 1; loadProducts(); });
     $('#sort-select').addEventListener('change', e => { f.sort = e.target.value; f.page = 1; loadProducts(); });
-    $('#clear-filters').addEventListener('click', e => { e.preventDefault(); Object.assign(f, { search: '', categories: [], maxPrice: 200, inStock: false, minRating: 0, sort: 'featured', page: 1 }); $('#search-input').value = ''; viewShop(); });
+    $('#clear-filters').addEventListener('click', e => { e.preventDefault(); Object.assign(f, { search: '', categories: [], maxPrice: 200, inStock: false, onSale: false, minRating: 0, sort: 'featured', page: 1 }); $('#search-input').value = ''; viewShop(); });
     loadProducts();
+    scheduleNewsletter();
   }
   let loadSeq = 0;
   async function loadProducts() {
@@ -1877,26 +2439,29 @@ var ShopLabCore = (function () {
     if (f.maxPrice < 200) q.set('maxPrice', f.maxPrice);
     if (f.minRating) q.set('minRating', f.minRating);
     if (f.inStock) q.set('inStock', 'true');
+    if (f.onSale) q.set('onSale', 'true');
     const r = await request('GET', '/api/products?' + q, { auth: false });
     if (seq !== loadSeq || !$('#product-grid')) return;
     grid.removeAttribute('aria-busy');
     const chips = [];
     if (f.search) chips.push(['search', `Search: ${f.search}`]);
     f.categories.forEach(c => chips.push(['cat:' + c, catName(c)]));
-    if (f.maxPrice < 200) chips.push(['price', `Up to $${f.maxPrice}`]);
+    if (f.maxPrice < 200) chips.push(['price', `Up to ${money(f.maxPrice)}`]);
     if (f.minRating) chips.push(['rating', `${f.minRating}★ and up`]);
     if (f.inStock) chips.push(['stock', 'In stock']);
+    if (f.onSale) chips.push(['sale', 'On sale']);
     $('#active-filters').innerHTML = chips.map(c => `<button type="button" class="chip" data-chip="${esc(c[0])}" data-testid="filter-chip" aria-label="Remove filter ${esc(c[1])}">${esc(c[1])}<span aria-hidden="true">✕</span></button>`).join('');
     $$('#active-filters .chip').forEach(b => b.onclick = () => {
       const k = b.dataset.chip;
       if (k === 'search') { f.search = ''; $('#search-input').value = ''; }
       else if (k.startsWith('cat:')) { f.categories = f.categories.filter(c => c !== k.slice(4)); const cb = $('#cat-' + k.slice(4)); if (cb) cb.checked = false; }
-      else if (k === 'price') { f.maxPrice = 200; $('#price-max').value = 200; $('#price-max-value').textContent = '$200'; }
+      else if (k === 'price') { f.maxPrice = 200; $('#price-max').value = 200; $('#price-max-value').textContent = money(200); }
+      else if (k === 'sale') { f.onSale = false; $('#on-sale').checked = false; }
       else if (k === 'rating') { f.minRating = 0; $('#rating-0').checked = true; }
       else if (k === 'stock') { f.inStock = false; $('#in-stock').checked = false; }
       f.page = 1; loadProducts();
     });
-    if (!r.ok) { grid.innerHTML = `<div class="alert error" role="alert">${esc(errMsg(r))}</div>`; return; }
+    if (!r.ok) { grid.innerHTML = `<div class="alert error" role="alert" style="grid-column:1/-1" data-testid="products-error">${esc(errMsg(r))} <button type="button" class="btn small ghost" id="retry-products" data-testid="retry-products">Try again</button></div>`; $('#retry-products').onclick = loadProducts; return; }
     const { data, meta } = r.body;
     $('#results-title').textContent = f.search ? `Results for “${f.search}”` : 'All products';
     $('#results-count').textContent = meta.total ? `Showing ${(meta.page - 1) * meta.limit + 1}–${(meta.page - 1) * meta.limit + data.length} of ${meta.total} products` : '0 products';
@@ -1916,10 +2481,13 @@ var ShopLabCore = (function () {
 
   // ---------------- product detail ----------------
   async function viewProduct(id) {
+    const nav = S.nav;
     app.innerHTML = '<div class="skeleton" style="height:420px"></div>';
     const [r, rv] = await Promise.all([request('GET', '/api/products/' + id, { auth: false }), request('GET', `/api/products/${id}/reviews`, { auth: false })]);
+    if (nav !== S.nav) return;
     if (!r.ok) { if (r.status === 404) return viewNotFound('product-' + id); app.innerHTML = `<div class="alert error">${esc(errMsg(r))}</div>`; return; }
     const p = r.body, reviews = rv.ok ? rv.body.data : [];
+    pushRecent(p.id);
     document.title = p.name + ' | ShopLab';
     const inWish = S.wishlistIds.has(p.id);
     const stockText = p.stock === 0 ? '<span class="stock out" id="pdp-stock" data-testid="pdp-stock">Out of stock</span>' : p.stock <= 5 ? `<span class="stock low" id="pdp-stock" data-testid="pdp-stock">Only ${p.stock} left</span>` : `<span class="stock in" id="pdp-stock" data-testid="pdp-stock">In stock (${p.stock} available)</span>`;
@@ -1930,9 +2498,10 @@ var ShopLabCore = (function () {
           <p class="pc-cat">${esc(catName(p.category))} <span class="muted">SKU <span id="pdp-sku" data-testid="pdp-sku">${esc(p.sku)}</span></span></p>
           <h1 id="pdp-name" data-testid="pdp-name">${esc(p.name)}</h1>
           <p class="rating"><span class="stars" aria-hidden="true">${stars(p.rating)}</span> <span id="pdp-rating" data-testid="pdp-rating">${Number(p.rating).toFixed(1)}</span> out of 5 <span class="muted">(${p.ratingsCount} ratings)</span></p>
-          <p style="margin:1rem 0"><span class="price-tag big" id="pdp-price" data-testid="pdp-price">${money(p.price)}</span></p>
+          <p style="margin:1rem 0"><span class="price-tag big" id="pdp-price" data-testid="pdp-price">${money(p.price)}</span>${onSale(p) ? ` <s class="was big" id="pdp-was-price" data-testid="pdp-was-price">${money(p.compareAtPrice)}</s> <span class="savings" id="pdp-savings" data-testid="pdp-savings">You save ${money(p.compareAtPrice - p.price)} (${pctOff(p)}%)</span>` : ''}</p>
           <p>${esc(p.description)}</p>
           ${stockText}
+          ${p.stock === 0 ? `<form id="notify-form" class="notify-box" novalidate data-testid="notify-form"><p style="margin:0 0 .4rem"><strong>Get an email when it is back</strong></p><div class="coupon-row"><div style="flex:1"><label for="notify-email">Email</label><input id="notify-email" name="email" type="email" data-testid="notify-email" value="${esc(S.user ? S.user.email : '')}" required data-label="your email"></div><button class="btn ghost" type="submit" id="notify-button" data-testid="notify-button">Notify me</button></div><div class="field-error" id="notify-email-error" data-error-for="email" role="alert"></div><p class="alert success" id="notify-result" data-testid="notify-result" hidden role="status"></p></form>` : ''}
           ${p.colors && p.colors.length ? `<fieldset class="opt-group"><legend>Colour: <span id="selected-color" data-testid="selected-color">${esc(p.colors[0])}</span></legend><div class="swatches">${p.colors.map((c, i) => `<label><input type="radio" name="color" value="${esc(c)}" id="color-${i}" data-testid="color-option" ${i === 0 ? 'checked' : ''}><span>${esc(c)}</span></label>`).join('')}</div></fieldset>` : ''}
           ${p.sizes && p.sizes.length ? `<div class="field" style="max-width:220px;margin-top:1rem"><label for="size-select">Size or format</label><select id="size-select" data-testid="size-select"><option value="">Choose an option</option>${p.sizes.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('')}</select><div class="field-error" id="size-error" role="alert"></div></div>` : ''}
           <div class="buy-row">
@@ -1964,7 +2533,21 @@ var ShopLabCore = (function () {
               <button class="btn" type="submit" id="review-submit" data-testid="review-submit">Post review</button></form>`
             : `<p>Log in to write a review. <a href="#login" id="review-login">Log in</a></p>`}</div>
         </div>
-      </div>`;
+      </div>
+      <section class="recent" id="recently-viewed" data-testid="recently-viewed" aria-labelledby="recent-title" hidden></section>`;
+    renderRecent(p.id);
+    const nf = $('#notify-form');
+    if (nf) nf.onsubmit = async e => {
+      e.preventDefault();
+      if (!validateForm(nf)) return;
+      const btn = $('#notify-button'); setBusy(btn, true, 'Saving…');
+      const res = await request('POST', `/api/products/${p.id}/notify`, { body: { email: $('#notify-email').value.trim() }, auth: false });
+      if (nav !== S.nav) return;
+      setBusy(btn, false);
+      if (!res.ok) return applyServerErrors(nf, res, null) || showError(nf, 'email', errMsg(res));
+      store.set('shoplab_inbox_email', $('#notify-email').value.trim());
+      const out = $('#notify-result'); out.hidden = false; out.textContent = res.body.message;
+    };
     // tabs with arrow keys
     const tabs = $$('[role="tab"]');
     const select = t => { tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; $('#' + x.getAttribute('aria-controls')).hidden = !on; }); t.focus(); };
@@ -1991,6 +2574,7 @@ var ShopLabCore = (function () {
       if (!validateForm(rf) || !okForm) { if (!rating) showError(rf, 'rating', 'Choose a star rating.'); return; }
       const btn = $('#review-submit'); setBusy(btn, true, 'Posting…');
       const res = await request('POST', `/api/products/${p.id}/reviews`, { body: { rating: +rating.value, comment: $('#review-comment').value } });
+      if (nav !== S.nav) return;
       setBusy(btn, false);
       if (!res.ok) return applyServerErrors(rf, res, $('#review-alert'));
       toast('Review posted.', 'success');
@@ -2014,8 +2598,10 @@ var ShopLabCore = (function () {
       <dt class="total">Total</dt><dd class="total" id="summary-total" data-testid="summary-total">${money(c.total)}</dd></dl>${extra}</aside>`;
   }
   async function viewCart() {
-    if (!requireLogin('cart')) return;
+    const nav = S.nav;
+    if (!S.token) return viewGuestCart();
     const r = await request('GET', '/api/cart');
+    if (nav !== S.nav) return;
     if (!r.ok) { app.innerHTML = `<div class="alert error">${esc(errMsg(r))}</div>`; return; }
     const c = S.cart = r.body; updateBadges();
     if (!c.items.length) {
@@ -2052,6 +2638,7 @@ var ShopLabCore = (function () {
       if (!code) { errEl.textContent = 'Enter a coupon code.'; $('#coupon-input').focus(); return; }
       const btn = $('#apply-coupon'); setBusy(btn, true, 'Applying…');
       const res = await request('POST', '/api/cart/coupon', { body: { code } });
+      if (nav !== S.nav) return;
       setBusy(btn, false);
       if (res.ok) { S.cart = res.body; toast(`Coupon ${code.toUpperCase()} applied.`, 'success'); viewCart(); }
       else { errEl.textContent = errMsg(res); $('#coupon-input').setAttribute('aria-invalid', 'true'); }
@@ -2061,10 +2648,12 @@ var ShopLabCore = (function () {
   // ---------------- checkout ----------------
   const COUNTRIES = [['US', 'United States'], ['IN', 'India'], ['GB', 'United Kingdom'], ['CA', 'Canada'], ['DE', 'Germany'], ['AU', 'Australia']];
   async function viewCheckout() {
+    const nav = S.nav;
     if (!requireLogin('checkout')) return;
     const ck = S.checkout;
     if (ck.placed) return renderOrderPlaced();
     const r = await request('GET', '/api/cart');
+    if (nav !== S.nav) return;
     if (!r.ok) return;
     S.cart = r.body; updateBadges();
     if (!S.cart.items.length) { app.innerHTML = `<div class="empty" data-testid="checkout-empty"><h1>Nothing to check out</h1><p class="muted">Your cart is empty.</p><a class="btn" href="#shop">Go to the shop</a></div>`; return; }
@@ -2075,7 +2664,16 @@ var ShopLabCore = (function () {
     const panel = $('#checkout-panel');
     const a = ck.address || { fullName: S.user ? S.user.firstName + ' ' + S.user.lastName : '', email: S.user ? S.user.email : '', phone: S.user ? S.user.phone : '', country: 'US' };
     if (ck.step === 1) {
-      panel.innerHTML = `<h2>Shipping address</h2><form id="address-form" novalidate data-testid="address-form"><div class="form-grid">
+      const ar = await request('GET', '/api/addresses');
+      if (nav !== S.nav) return;
+      const saved = ar.ok ? ar.body.data : [];
+      const def = saved.find(x => x.isDefault) || saved[0];
+      let choice = saved.length ? (ck.addressChoice && (ck.addressChoice === 'new' || saved.some(x => String(x.id) === String(ck.addressChoice))) ? String(ck.addressChoice) : String(def.id)) : 'new';
+      panel.innerHTML = `<h2>Shipping address</h2><form id="address-form" novalidate data-testid="address-form">
+        ${saved.length ? `<fieldset class="saved-addresses" id="saved-addresses" data-testid="saved-addresses"><legend>Ship to a saved address</legend>
+          ${saved.map(x => `<label class="ship-option" for="saved-address-${x.id}"><input type="radio" name="addressChoice" value="${x.id}" id="saved-address-${x.id}" data-testid="saved-address" ${choice === String(x.id) ? 'checked' : ''}><span><strong>${esc(x.label)}</strong>${x.isDefault ? ' <span class="muted">(default)</span>' : ''}<br><span class="muted" style="font-size:.88rem">${esc(x.fullName)}, ${esc(x.line1)}, ${esc(x.city)} ${esc(x.zip)}, ${esc(x.country)}</span></span></label>`).join('')}
+          <label class="ship-option" for="address-new"><input type="radio" name="addressChoice" value="new" id="address-new" data-testid="address-new" ${choice === 'new' ? 'checked' : ''}><span><strong>Use a new address</strong></span></label></fieldset>` : ''}
+        <div id="new-address-fields" data-testid="new-address-fields"><div class="form-grid">
         ${field('fullName', 'Full name', { id: 'co-fullname', value: a.fullName, cls: 'full', attrs: { required: true, autocomplete: 'name', 'data-label': 'the recipient’s full name' } })}
         ${field('email', 'Email', { id: 'co-email', type: 'email', value: a.email, attrs: { required: true, autocomplete: 'email', 'data-label': 'an email address' } })}
         ${field('phone', 'Phone', { id: 'co-phone', type: 'tel', value: a.phone, attrs: { required: true, pattern: '[+\\d][\\d\\s-]{6,19}', 'data-msg': 'Enter a phone number with 7–20 digits.', 'data-label': 'a phone number' } })}
@@ -2085,12 +2683,28 @@ var ShopLabCore = (function () {
         ${field('state', 'State or region', { id: 'co-state', value: a.state, attrs: { required: true, 'data-label': 'a state or region' } })}
         ${field('zip', 'Postal code', { id: 'co-zip', value: a.zip, attrs: { required: true, pattern: '[A-Za-z0-9][A-Za-z0-9 -]{2,9}', 'data-msg': 'Enter a postal code of 3–10 characters.', 'data-label': 'a postal code' } })}
         ${field('country', 'Country', { id: 'co-country', value: a.country, select: [['', 'Choose a country']].concat(COUNTRIES), attrs: { required: true, 'data-label': 'a country' } })}
-        </div><div class="form-actions"><a class="btn ghost" href="#cart" id="back-to-cart">Back to cart</a><button class="btn" type="submit" id="continue-to-delivery" data-testid="continue-button">Continue to delivery</button></div></form>`;
+        </div><label class="check"><input type="checkbox" name="saveAddress" id="save-address" data-testid="save-address" ${ck.saveAddress ? 'checked' : ''}> Save this address to my address book</label></div>
+        <div class="form-actions"><a class="btn ghost" href="#cart" id="back-to-cart">Back to cart</a><button class="btn" type="submit" id="continue-to-delivery" data-testid="continue-button">Continue to delivery</button></div></form>`;
+      const toggleNew = () => {
+        const on = choice === 'new', box = $('#new-address-fields');
+        box.hidden = !on;
+        $$('input, select', box).forEach(i => { i.disabled = !on; });
+      };
+      toggleNew();
+      $$('input[name="addressChoice"]').forEach(r => r.onchange = () => { choice = r.value; ck.addressChoice = choice; toggleNew(); });
       $('#address-form').onsubmit = e => {
         e.preventDefault();
         const f = e.target;
-        if (!validateForm(f)) return;
-        ck.address = Object.fromEntries(new FormData(f).entries());
+        if (choice !== 'new') {
+          const x = saved.find(y => String(y.id) === choice);
+          ck.address = { fullName: x.fullName, email: S.user.email, phone: x.phone, line1: x.line1, line2: x.line2, city: x.city, state: x.state, zip: x.zip, country: x.country };
+          ck.addressId = x.id; ck.saveAddress = false; ck.addressChoice = choice;
+        } else {
+          if (!validateForm(f)) return;
+          const d = Object.fromEntries(new FormData(f).entries());
+          ck.saveAddress = !!d.saveAddress; delete d.saveAddress; delete d.addressChoice;
+          ck.address = d; ck.addressId = undefined; ck.addressChoice = 'new';
+        }
         ck.step = 2; viewCheckout();
       };
     } else if (ck.step === 2) {
@@ -2127,13 +2741,15 @@ var ShopLabCore = (function () {
         <h3>Payment</h3><p id="review-payment">Card ending ${esc(String(pm.cardNumber || '').replace(/\D/g, '').slice(-4))}</p>
         <h3>Items</h3><ul id="review-items" data-testid="review-items">${S.cart.items.map(i => `<li>${esc(i.name)} × ${i.quantity}: ${money(i.lineTotal)}</li>`).join('')}</ul>
         <div class="alert error" id="order-error" data-testid="order-error" role="alert" hidden></div>
+        ${currency !== 'USD' ? `<p class="alert info" id="currency-note" data-testid="currency-note">Prices are shown in ${currency}. Your card will be charged ${usd(S.cart.total)} (USD).</p>` : ''}
         <label class="check"><input type="checkbox" id="accept-terms" data-testid="accept-terms"> I agree to the practice store terms.</label>
         <div class="form-actions"><button type="button" class="btn ghost" id="back-to-payment">Edit payment</button><button type="button" class="btn" id="place-order" data-testid="place-order" disabled>Place order (${money(S.cart.total)})</button></div>`;
       $('#accept-terms').onchange = e => { $('#place-order').disabled = !e.target.checked; };
       $('#back-to-payment').onclick = () => { ck.step = 3; viewCheckout(); };
       $('#place-order').onclick = async () => {
         const btn = $('#place-order'); setBusy(btn, true, 'Placing order…');
-        const res = await request('POST', '/api/orders', { body: { shippingAddress: ad, payment: pm } });
+        const res = await request('POST', '/api/orders', { body: Object.assign({ shippingAddress: ad, payment: pm, saveAddress: !!ck.saveAddress }, ck.addressId ? { addressId: ck.addressId } : {}) });
+        if (nav !== S.nav) return;
         setBusy(btn, false);
         if (!res.ok) {
           const box = $('#order-error'); box.hidden = false;
@@ -2150,8 +2766,10 @@ var ShopLabCore = (function () {
   function renderOrderPlaced() {
     const o = S.checkout.placed;
     S.checkout = { step: 1, address: S.checkout.address };
+    store.set('shoplab_inbox_email', o.shippingAddress.email);
     app.innerHTML = `<div class="panel success-box" data-testid="order-confirmation"><p class="big" aria-hidden="true">🎉</p><h1>Thank you, your order is placed</h1>
       <p>Order number <strong id="order-number" data-testid="order-number">${o.id}</strong>. Total charged <strong id="order-total" data-testid="order-total">${money(o.total)}</strong>.</p>
+      <p>We emailed a confirmation to <strong id="confirmation-email" data-testid="confirmation-email">${esc(o.shippingAddress.email)}</strong>. <a href="#inbox" id="confirmation-inbox">Open the inbox</a></p>
       <p class="muted">The status moves from placed to delivered over about ten minutes, so you can practise polling.</p>
       <div class="hero-actions" style="justify-content:center"><a class="btn" href="#order-${o.id}" id="view-order">View order</a><a class="btn ghost" href="#shop" id="keep-shopping">Keep shopping</a></div></div>`;
   }
@@ -2159,9 +2777,10 @@ var ShopLabCore = (function () {
   // ---------------- orders ----------------
   let orderFilter = { status: '', sort: 'newest' };
   async function viewOrders() {
+    const nav = S.nav;
     if (!requireLogin('orders')) return;
     app.innerHTML = `<div class="page-head"><h1>My orders</h1><p>Statuses update over time. Cancel an order while it is placed or processing.</p></div>
-      <div class="table-tools"><label>Status <select id="order-status-filter" data-testid="order-status-filter">${['', 'placed', 'processing', 'shipped', 'delivered', 'cancelled'].map(s => `<option value="${s}" ${orderFilter.status === s ? 'selected' : ''}>${s ? s[0].toUpperCase() + s.slice(1) : 'All statuses'}</option>`).join('')}</select></label>
+      <div class="table-tools"><label>Status <select id="order-status-filter" data-testid="order-status-filter">${['', 'placed', 'processing', 'shipped', 'delivered', 'return_requested', 'refunded', 'cancelled'].map(s => `<option value="${s}" ${orderFilter.status === s ? 'selected' : ''}>${s ? s[0].toUpperCase() + statusText(s).slice(1) : 'All statuses'}</option>`).join('')}</select></label>
       <label>Sort <select id="order-sort" data-testid="order-sort">${[['newest', 'Newest first'], ['oldest', 'Oldest first'], ['total_desc', 'Highest total']].map(o => `<option value="${o[0]}" ${orderFilter.sort === o[0] ? 'selected' : ''}>${o[1]}</option>`).join('')}</select></label></div>
       <div id="orders-table"></div>`;
     $('#order-status-filter').onchange = e => { orderFilter.status = e.target.value; loadOrders(); };
@@ -2177,7 +2796,7 @@ var ShopLabCore = (function () {
     const list = r.body.data;
     if (!list.length) { box.innerHTML = `<div class="empty" data-testid="no-orders"><p class="big" aria-hidden="true">📦</p><h2>No orders ${orderFilter.status ? 'with this status' : 'yet'}</h2><p class="muted">Orders you place show up here.</p><a href="#shop" class="btn">Start shopping</a></div>`; return; }
     box.innerHTML = `<div class="table-wrap"><table class="data" id="orders" data-testid="orders-table"><caption class="sr-only">Your orders</caption><thead><tr><th scope="col">Order</th><th scope="col">Placed</th><th scope="col">Items</th><th scope="col" class="num">Total</th><th scope="col">Status</th><th scope="col">Actions</th></tr></thead><tbody>
-      ${list.map(o => `<tr data-testid="order-row" data-order-id="${o.id}" id="order-row-${o.id}"><td><a href="#order-${o.id}" data-testid="order-link">#${o.id}</a></td><td>${new Date(o.createdAt).toLocaleString()}</td><td>${o.items.reduce((s, i) => s + i.quantity, 0)}</td><td class="num">${money(o.total)}</td><td><span class="status ${o.status}" data-testid="order-status">${o.status}</span></td>
+      ${list.map(o => `<tr data-testid="order-row" data-order-id="${o.id}" id="order-row-${o.id}"><td><a href="#order-${o.id}" data-testid="order-link">#${o.id}</a></td><td>${new Date(o.createdAt).toLocaleString()}</td><td>${o.items.reduce((s, i) => s + i.quantity, 0)}</td><td class="num">${money(o.total)}</td><td><span class="status ${o.status}" data-testid="order-status">${statusText(o.status)}</span></td>
       <td>${o.status === 'placed' || o.status === 'processing' ? `<button type="button" class="btn danger small" data-cancel="${o.id}" id="cancel-order-${o.id}" data-testid="cancel-order">Cancel</button>` : '<span class="muted">None</span>'}</td></tr>`).join('')}
       </tbody></table></div>`;
     $$('[data-cancel]').forEach(b => b.onclick = () => cancelOrder(+b.dataset.cancel, loadOrders));
@@ -2188,21 +2807,37 @@ var ShopLabCore = (function () {
     if (r.ok) { toast(`Order #${id} cancelled.`, 'success'); after(); } else toast(errMsg(r), 'error');
   }
   async function viewOrder(id) {
+    const nav = S.nav;
     if (!requireLogin('order-' + id)) return;
     const r = await request('GET', '/api/orders/' + id);
+    if (nav !== S.nav) return;
     if (!r.ok) { app.innerHTML = `<div class="empty" data-testid="order-error"><h1>Order unavailable</h1><p>${esc(errMsg(r))}</p><a class="btn" href="#orders">Back to orders</a></div>`; return; }
-    const o = r.body, flow = ['placed', 'processing', 'shipped', 'delivered'], at = flow.indexOf(o.status);
+    const o = r.body, flow = ['placed', 'processing', 'shipped', 'delivered'], at = ['return_requested', 'refunded'].includes(o.status) ? 3 : flow.indexOf(o.status);
+    const rr = o.returnRequest;
     document.title = `Order #${o.id} | ShopLab`;
     app.innerHTML = `<nav class="crumbs"><a href="#orders">My orders</a> / Order #${o.id}</nav>
-      <div class="page-head"><h1 id="order-heading">Order #${o.id}</h1><p>Placed ${new Date(o.createdAt).toLocaleString()}. Status: <span class="status ${o.status}" id="order-detail-status" data-testid="order-detail-status">${o.status}</span></p></div>
+      <div class="page-head"><h1 id="order-heading">Order #${o.id}</h1><p>Placed ${new Date(o.createdAt).toLocaleString()}. Status: <span class="status ${o.status}" id="order-detail-status" data-testid="order-detail-status">${statusText(o.status)}</span></p></div>
+      ${rr ? `<p class="alert info" id="return-info" data-testid="return-info">Return <strong id="return-rma">${esc(rr.rma)}</strong> requested ${new Date(rr.requestedAt).toLocaleDateString()}. Reason: ${esc(rr.reasonLabel)}. ${o.status === 'refunded' ? `Refunded ${money(rr.refundAmount)}.` : `Expected refund ${money(rr.refundAmount)}.`}</p>` : ''}
       ${o.status === 'cancelled' ? '<p class="alert error">This order was cancelled.</p>' : `<ol class="timeline" aria-label="Delivery progress" data-testid="order-timeline">${flow.map((s, i) => `<li class="${i <= at ? 'reached' : ''}">${s[0].toUpperCase() + s.slice(1)}</li>`).join('')}</ol>`}
       <div class="two-col"><div class="panel"><h2>Items</h2>${o.items.map(i => `<div class="cart-line" data-testid="order-item">${thumb(i)}<div><h3>${esc(i.name)}</h3><p class="muted" style="margin:0">${money(i.price)} × ${i.quantity}</p></div><span></span><strong class="num">${money(i.lineTotal)}</strong></div>`).join('')}
         <h2 style="margin-top:1rem">Ship to</h2><p>${esc(o.shippingAddress.fullName)}<br>${esc(o.shippingAddress.line1)}<br>${esc(o.shippingAddress.city)}, ${esc(o.shippingAddress.state)} ${esc(o.shippingAddress.zip)}, ${esc(o.shippingAddress.country)}</p>
         <p class="muted">Paid with ${esc(o.payment.brand)} ending ${esc(o.payment.last4)}</p>
-        <div class="form-actions"><button type="button" class="btn ghost" id="refresh-order" data-testid="refresh-order">Refresh status</button>${o.status === 'placed' || o.status === 'processing' ? `<button type="button" class="btn danger" id="cancel-this-order" data-testid="cancel-order">Cancel order</button>` : ''}</div></div>
+        <div class="form-actions"><div class="row-btns" style="margin:0"><button type="button" class="btn ghost" id="refresh-order" data-testid="refresh-order">Refresh status</button><button type="button" class="btn ghost" id="reorder-button" data-testid="reorder-button">Buy again</button><a class="btn ghost" href="#invoice-${o.id}" id="view-invoice" data-testid="view-invoice">View invoice</a></div>
+          <div class="row-btns" style="margin:0">${o.status === 'placed' || o.status === 'processing' ? `<button type="button" class="btn danger" id="cancel-this-order" data-testid="cancel-order">Cancel order</button>` : ''}${o.status === 'delivered' ? `<button type="button" class="btn danger" id="request-return" data-testid="request-return">Request a return</button>` : ''}</div></div></div>
         ${summaryHtml({ itemCount: o.items.reduce((s, i) => s + i.quantity, 0), subtotal: o.subtotal, discount: o.discount, coupon: { code: o.coupon }, shippingMethod: o.shippingMethod, shipping: o.shipping, tax: o.tax, total: o.total })}</div>`;
     $('#refresh-order').onclick = () => viewOrder(id);
     const c = $('#cancel-this-order'); if (c) c.onclick = () => cancelOrder(id, () => viewOrder(id));
+    const rb = $('#request-return'); if (rb) rb.onclick = () => returnModal(o);
+    $('#reorder-button').onclick = async () => {
+      const btn = $('#reorder-button'); setBusy(btn, true, 'Adding…');
+      const res = await request('POST', `/api/orders/${id}/reorder`);
+      if (nav !== S.nav) return;
+      setBusy(btn, false);
+      if (!res.ok) { toast(errMsg(res), 'error'); return; }
+      S.cart = res.body.cart; updateBadges();
+      if (res.body.skipped.length) toast('Skipped: ' + res.body.skipped.map(x => `${x.name} (${x.reason.toLowerCase()})`).join(', ') + '.', 'error', 8000);
+      if (res.body.added.length) { toast(`Added ${res.body.added.reduce((n, x) => n + x.quantity, 0)} item(s) to your cart.`, 'success'); go('cart'); }
+    };
   }
 
   // ---------------- auth ----------------
@@ -2213,6 +2848,7 @@ var ShopLabCore = (function () {
       <form id="login-form" novalidate data-testid="login-form">
         ${field('username', 'Username or email', { id: 'username', attrs: { required: true, autocomplete: 'username', 'data-label': 'your username or email' } })}
         <div class="field"><label for="password">Password</label><div class="pw-wrap"><input id="password" name="password" type="password" data-testid="password" required autocomplete="current-password" data-label="your password"><button type="button" id="toggle-password" data-testid="toggle-password" aria-pressed="false">Show</button></div><div class="field-error" id="password-error" data-error-for="password" role="alert"></div></div>
+        <p style="margin:-.4rem 0 .6rem;font-size:.9rem"><a href="#forgot-password" id="forgot-password-link" data-testid="forgot-password-link">Forgot your password?</a></p>
         <label class="check"><input type="checkbox" id="remember-me" name="remember" data-testid="remember-me"> Keep me logged in for 24 hours</label>
         <button class="btn" type="submit" id="login-button" data-testid="login-button" style="width:100%;margin-top:.8rem">Log in</button>
       </form><p style="margin-top:1rem">New here? <a href="#register" id="go-register">Create an account</a></p></div>
@@ -2230,12 +2866,22 @@ var ShopLabCore = (function () {
       const r = await request('POST', '/api/auth/login', { body, auth: false });
       setBusy(btn, false);
       if (!r.ok) return applyServerErrors(f, r, box);
+      if (r.body.mfaRequired) return renderOtpStep(r.body, body.username);
       await loggedIn(r.body, `Welcome back, ${r.body.user.firstName}.`);
     };
   }
   async function loggedIn(body, msg) {
     setToken(body.token); S.user = body.user; S.session = { expiresAt: body.expiresAt };
-    renderUserMenu(); await refreshCounts(); toast(msg, 'success');
+    renderUserMenu();
+    const guest = guestCart();
+    if (guest.length) {
+      let moved = 0; const failed = [];
+      for (const i of guest) { const r = await request('POST', '/api/cart/items', { body: i }); if (r.ok) moved += i.quantity; else failed.push(errMsg(r)); }
+      setGuestCart([]);
+      if (moved) toast(`Moved ${moved} item${moved === 1 ? '' : 's'} from your guest cart into your account.`, 'success', 6000);
+      failed.forEach(m => toast('One item could not be moved: ' + m, 'error', 8000));
+    }
+    await refreshCounts(); toast(msg, 'success');
     const to = S.redirect || 'shop'; S.redirect = null; go(to);
   }
   function viewRegister() {
@@ -2280,8 +2926,10 @@ var ShopLabCore = (function () {
 
   // ---------------- account, wishlist, admin ----------------
   async function viewAccount() {
+    const nav = S.nav;
     if (!requireLogin('account')) return;
     const r = await request('GET', '/api/auth/me');
+    if (nav !== S.nav) return;
     if (!r.ok) return;
     const u = S.user = r.body.user; S.session = r.body.session;
     app.innerHTML = `<div class="page-head"><h1>My account</h1><p>Signed in as <strong id="account-username" data-testid="account-username">${esc(u.username)}</strong> (${esc(u.role)}).</p></div>
@@ -2297,33 +2945,40 @@ var ShopLabCore = (function () {
           <div class="field"><label for="token-value">Current token</label><input id="token-value" data-testid="token-value" type="password" readonly value="${esc(S.token)}"></div>
           <div class="row-btns"><button type="button" class="btn ghost small" id="show-token">Show token</button><button type="button" class="btn ghost small" id="copy-token" data-testid="copy-token">Copy token</button></div>
           <p class="muted" id="token-expiry">Expires ${new Date(r.body.session.expiresAt).toLocaleString()}.</p>
-          <button type="button" class="btn danger" id="account-logout">Log out</button></div></div>`;
+          <button type="button" class="btn danger" id="account-logout">Log out</button></div></div>${accountExtrasHtml()}`;
     $('#show-token').onclick = e => { const t = $('#token-value'), s = t.type === 'password'; t.type = s ? 'text' : 'password'; e.target.textContent = s ? 'Hide token' : 'Show token'; };
     $('#copy-token').onclick = async () => { try { await navigator.clipboard.writeText(S.token); toast('Token copied.', 'success'); } catch (e) { const t = $('#token-value'); t.type = 'text'; t.select(); toast('Copying is blocked here. The token is selected, so copy it manually.', 'info'); } };
     $('#account-logout').onclick = logout;
+    bindAccountExtras();
     $('#profile-form').onsubmit = async e => {
       e.preventDefault();
       const f = e.target, box = $('#profile-error'); box.hidden = true;
       if (!validateForm(f)) return;
       const btn = $('#save-profile'); setBusy(btn, true, 'Saving…');
       const res = await request('PATCH', '/api/auth/me', { body: Object.fromEntries(new FormData(f).entries()) });
+      if (nav !== S.nav) return;
       setBusy(btn, false);
       if (!res.ok) return applyServerErrors(f, res, box);
       S.user = res.body.user; renderUserMenu(); toast('Profile saved.', 'success');
     };
   }
   async function viewWishlist() {
+    const nav = S.nav;
     if (!requireLogin('wishlist')) return;
     const r = await request('GET', '/api/wishlist');
+    if (nav !== S.nav) return;
     if (!r.ok) return;
     S.wishlistIds = new Set(r.body.data.map(p => p.id)); updateBadges();
     app.innerHTML = `<div class="page-head"><h1>Wishlist</h1><p>${r.body.data.length} saved item${r.body.data.length === 1 ? '' : 's'}.</p></div>
       ${r.body.data.length ? `<div class="grid" id="wishlist-grid" data-testid="wishlist-grid">${r.body.data.map(productCard).join('')}</div>` : `<div class="empty" data-testid="empty-wishlist"><p class="big" aria-hidden="true">♡</p><h2>No saved items</h2><p class="muted">Select the heart on any product to save it here.</p><a class="btn" href="#shop">Browse products</a></div>`}`;
   }
   async function viewAdmin() {
+    const nav = S.nav;
     if (!requireLogin('admin')) return;
     if (S.user.role !== 'admin') { app.innerHTML = `<div class="empty" data-testid="admin-forbidden"><p class="big" aria-hidden="true">🔒</p><h1>Admins only</h1><p class="muted">Log in as <code>admin</code> to manage products. The API returns 403 for other users.</p></div>`; return; }
-    const [pr, ur] = await Promise.all([request('GET', '/api/products?limit=50'), request('GET', '/api/users')]);
+    const [pr, ur, orr] = await Promise.all([request('GET', '/api/products?limit=50'), request('GET', '/api/users'), request('GET', '/api/orders')]);
+    if (nav !== S.nav) return;
+    const uname = id => { const u = ur.ok && ur.body.data.find(x => x.id === id); return u ? u.username : 'user ' + id; };
     app.innerHTML = `<div class="page-head"><h1>Admin panel</h1><p>Edit stock and prices, add products, or delete them. Changes show up in the shop right away.</p></div>
       <div class="panel" style="margin-bottom:1.25rem"><h2>Add a product</h2><div class="alert error" id="add-product-error" role="alert" hidden></div>
         <form id="add-product-form" novalidate data-testid="add-product-form"><div class="form-grid">
@@ -2339,19 +2994,33 @@ var ShopLabCore = (function () {
           <td><label class="sr-only" for="stock-${p.id}">Stock for ${esc(p.name)}</label><input type="number" step="1" min="0" id="stock-${p.id}" value="${p.stock}" data-testid="admin-stock"></td>
           <td style="white-space:nowrap"><button type="button" class="btn small" data-save="${p.id}" id="save-${p.id}" data-testid="admin-save">Save</button> <button type="button" class="btn danger small" data-del="${p.id}" id="delete-${p.id}" data-testid="admin-delete">Delete</button></td></tr>`).join('')}
       </tbody></table></div>
+      <h2>Orders</h2><p class="muted">Move an order forward to test shipping emails, returns and refunds without waiting.</p><div class="table-wrap" style="margin-bottom:1.5rem"><table class="data" id="admin-orders" data-testid="admin-orders"><thead><tr><th>Order</th><th>Customer</th><th>Placed</th><th class="num">Total</th><th>Status</th><th>Change status</th></tr></thead><tbody>
+        ${orr.ok && orr.body.data.length ? orr.body.data.map(o => `<tr data-testid="admin-order-row" data-order-id="${o.id}"><td><a href="#order-${o.id}">#${o.id}</a></td><td>${esc(uname(o.userId))}</td><td>${new Date(o.createdAt).toLocaleDateString()}</td><td class="num">${usd(o.total)}</td><td><span class="status ${o.status}">${statusText(o.status)}</span></td>
+          <td style="white-space:nowrap">${o.status === 'cancelled' || o.status === 'refunded' ? '<span class="muted">Closed</span>' : `<label class="sr-only" for="order-status-${o.id}">New status for order ${o.id}</label><select id="order-status-${o.id}" data-testid="admin-order-status" style="width:auto;margin:0">${(o.status === 'return_requested' ? ['refunded'] : ['placed', 'processing', 'shipped', 'delivered']).map(st => `<option ${st === o.status ? 'selected' : ''}>${st}</option>`).join('')}</select> <button type="button" class="btn small" data-order-update="${o.id}" id="update-order-${o.id}" data-testid="admin-order-update">Update</button>`}</td></tr>`).join('') : '<tr><td colspan="6">No orders yet.</td></tr>'}
+      </tbody></table></div>
       <h2>Users</h2><div class="table-wrap"><table class="data" id="admin-users" data-testid="admin-users"><thead><tr><th>ID</th><th>Username</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead><tbody>
         ${ur.ok ? ur.body.data.map(u => `<tr><td>${u.id}</td><td>${esc(u.username)}</td><td>${esc(u.firstName + ' ' + u.lastName)}</td><td>${esc(u.email)}</td><td>${esc(u.role)}</td><td>${esc(u.status)}</td></tr>`).join('') : ''}
       </tbody></table></div>`;
+    $$('[data-order-update]').forEach(b => b.onclick = async () => {
+      const id = b.dataset.orderUpdate;
+      setBusy(b, true, 'Saving…');
+      const r = await request('PATCH', `/api/orders/${id}/status`, { body: { status: $('#order-status-' + id).value } });
+      if (nav !== S.nav) return;
+      setBusy(b, false);
+      if (r.ok) { toast(`Order #${id} is now ${statusText(r.body.status)}.`, 'success'); viewAdmin(); } else toast(errMsg(r), 'error');
+    });
     $$('[data-save]').forEach(b => b.onclick = async () => {
       const id = b.dataset.save;
       setBusy(b, true, 'Saving…');
       const r = await request('PATCH', '/api/products/' + id, { body: { price: parseFloat($('#price-' + id).value), stock: parseInt($('#stock-' + id).value, 10) } });
+      if (nav !== S.nav) return;
       setBusy(b, false);
       toast(r.ok ? `Saved ${r.body.name}.` : errMsg(r), r.ok ? 'success' : 'error');
     });
     $$('[data-del]').forEach(b => b.onclick = async () => {
       if (!(await confirmDialog('Delete this product?', 'It disappears from the shop, carts and wishlists.', 'Delete product'))) return;
       const r = await request('DELETE', '/api/products/' + b.dataset.del);
+      if (nav !== S.nav) return;
       if (r.ok) { toast('Product deleted.', 'success'); $('#admin-row-' + b.dataset.del).remove(); } else toast(errMsg(r), 'error');
     });
     $('#add-product-form').onsubmit = async e => {
@@ -2360,6 +3029,7 @@ var ShopLabCore = (function () {
       if (!validateForm(f)) return;
       const d = Object.fromEntries(new FormData(f).entries());
       const r = await request('POST', '/api/products', { body: { name: d.name, category: d.category, price: parseFloat(d.price), stock: parseInt(d.stock, 10), description: d.description } });
+      if (nav !== S.nav) return;
       if (!r.ok) return applyServerErrors(f, r, box);
       toast(`Added ${r.body.name} (id ${r.body.id}).`, 'success'); S.categories = []; viewAdmin();
     };
@@ -2368,7 +3038,7 @@ var ShopLabCore = (function () {
   // ---------------- API console ----------------
   function viewApi() {
     const groups = {};
-    ['Auth', 'Products', 'Cart', 'Wishlist', 'Orders', 'Users', 'Utilities'].forEach(g => { groups[g] = []; });
+    ShopLabCore.GROUPS.forEach(g => { groups[g] = []; });
     ShopLabCore.ENDPOINTS.forEach((e, i) => { groups[e.group].push([e, i]); });
     const base = MODE === 'server' ? location.origin : 'http://localhost:3000';
     app.innerHTML = `<div class="page-head"><h1>API console</h1><p>${MODE === 'server' ? `Requests go over HTTP to <code>${esc(base)}/api</code>, the same URL your API tests use.` : 'In demo mode requests are answered by the in-browser API, with the same rules and status codes as the server kit. Copy the cURL to run against the kit later.'} Pick an endpoint to load an example request.</p></div>
@@ -2423,6 +3093,537 @@ var ShopLabCore = (function () {
     };
   }
 
+  // ---------------- guest cart ----------------
+  async function viewGuestCart() {
+    const nav = S.nav;
+    const items = guestCart();
+    if (!items.length) {
+      app.innerHTML = `<div class="page-head"><h1>Your cart</h1></div><div class="empty" data-testid="empty-cart"><p class="big" aria-hidden="true">🛒</p><h2>Your cart is empty</h2><p class="muted">Add something from the shop and it will show up here.</p><a class="btn" href="#shop" id="continue-shopping">Continue shopping</a></div>`;
+      return;
+    }
+    const r = await request('GET', '/api/products?limit=50', { auth: false });
+    if (nav !== S.nav) return;
+    const byId = {}; (r.ok ? r.body.data : []).forEach(p => { byId[p.id] = p; });
+    const lines = items.filter(i => byId[i.productId]).map(i => Object.assign({}, byId[i.productId], { quantity: i.quantity, lineTotal: Math.round(byId[i.productId].price * i.quantity * 100) / 100 }));
+    const subtotal = lines.reduce((n, l) => n + l.lineTotal, 0), count = lines.reduce((n, l) => n + l.quantity, 0);
+    app.innerHTML = `<div class="page-head"><h1>Your cart</h1><p>You are shopping as a guest. Log in to check out and your items come with you.</p></div>
+      <div class="two-col"><div>
+        <div class="panel" id="cart-items" data-testid="cart-items" data-cart-type="guest">${lines.map(l => `<div class="cart-line" data-testid="cart-item" data-product-id="${l.id}" id="cart-item-${l.id}">
+          ${thumb(l)}
+          <div><h3><a href="#product-${l.id}" data-testid="cart-item-name" style="color:inherit">${esc(l.name)}</a></h3><p class="muted" style="margin:0;font-size:.88rem"><span data-testid="cart-item-price">${money(l.price)}</span> each</p></div>
+          <div class="line-actions"><label class="sr-only" for="qty-${l.id}">Quantity for ${esc(l.name)}</label>
+            <select id="qty-${l.id}" data-testid="cart-item-qty" data-guest-qty="${l.id}">${Array.from({ length: Math.max(1, Math.min(10, Math.max(l.quantity, l.stock))) }, (_, n) => `<option ${n + 1 === l.quantity ? 'selected' : ''}>${n + 1}</option>`).join('')}</select>
+            <button type="button" class="link-btn" data-guest-remove="${l.id}" id="remove-${l.id}" data-testid="remove-item" style="margin-left:.6rem">Remove</button></div>
+          <strong class="num" data-testid="cart-item-total">${money(l.lineTotal)}</strong></div>`).join('')}</div>
+        <div class="form-actions"><a href="#shop" class="btn ghost" id="continue-shopping">Continue shopping</a><button type="button" class="btn danger" id="clear-cart" data-testid="clear-cart">Empty cart</button></div>
+      </div>
+      <aside class="panel summary" data-testid="order-summary" aria-labelledby="summary-title"><h2 id="summary-title">Order summary</h2>
+        <dl><dt>Items (${count})</dt><dd id="summary-subtotal" data-testid="summary-subtotal">${money(subtotal)}</dd></dl>
+        <p class="muted" style="font-size:.9rem">Shipping, tax and coupons are worked out after you log in.</p>
+        <button type="button" class="btn" id="guest-checkout" data-testid="guest-checkout" style="width:100%">Log in to check out</button>
+        <p class="muted" style="font-size:.9rem;margin-top:.8rem">No account? <a href="#register" id="guest-register">Create one</a> and your cart comes with you.</p></aside></div>`;
+    const save = fn => { const list = guestCart(); fn(list); setGuestCart(list.filter(i => i.quantity > 0)); updateBadges(); viewGuestCart(); };
+    $$('[data-guest-qty]').forEach(sel => sel.onchange = () => save(list => { const i = list.find(x => x.productId === +sel.dataset.guestQty); if (i) i.quantity = +sel.value; }));
+    $$('[data-guest-remove]').forEach(b => b.onclick = () => { save(list => { const i = list.find(x => x.productId === +b.dataset.guestRemove); if (i) i.quantity = 0; }); toast('Item removed.', 'success'); });
+    $('#clear-cart').onclick = async () => { if (await confirmDialog('Empty your cart?', 'This removes every item.', 'Empty cart')) { setGuestCart([]); updateBadges(); viewGuestCart(); } };
+    $('#guest-checkout').onclick = () => { S.redirect = 'checkout'; go('login'); };
+    $('#guest-register').onclick = () => { S.redirect = 'checkout'; };
+  }
+
+  // ---------------- one-time code and password reset ----------------
+  function renderOtpStep(data, username) {
+    const tu = ShopLabCore.TEST_USERS.find(u => u.username === username);
+    const mailbox = username.includes('@') ? username : (tu ? tu.email : '');
+    if (mailbox) store.set('shoplab_inbox_email', mailbox);
+    const panel = $('#login-form').closest('.panel');
+    panel.innerHTML = `<h1>Enter your sign-in code</h1>
+      <p>We emailed a 6-digit code to <strong id="otp-destination" data-testid="otp-destination">${esc(data.deliveredTo)}</strong>. It expires in 5 minutes.</p>
+      <p><a href="#inbox" target="_blank" rel="noopener" id="open-inbox-link" data-testid="open-inbox-link">Open the ShopLab inbox in a new tab</a></p>
+      <div class="alert error" id="otp-error" data-testid="otp-error" role="alert" hidden></div>
+      <form id="otp-form" novalidate data-testid="otp-form">
+        <div class="field"><label for="otp-input">6-digit code</label><input id="otp-input" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="\\d{6}" required data-label="the 6-digit code" data-msg="The code is 6 digits." data-testid="otp-input"><div class="field-error" id="otp-input-error" data-error-for="code" role="alert"></div></div>
+        <button class="btn" type="submit" id="verify-otp" data-testid="verify-otp" style="width:100%">Verify and log in</button></form>
+      <p style="margin-top:1rem"><button type="button" class="link-btn" id="resend-otp" data-testid="resend-otp" disabled>Resend code</button> <span id="resend-status" data-testid="resend-status" role="status" class="muted"></span></p>
+      <p><button type="button" class="link-btn" id="otp-back">Use a different account</button></p>`;
+    const token = data.mfaToken;
+    const cooldown = n => {
+      const b = $('#resend-otp'); b.disabled = true; b.textContent = `Resend code in ${n}s`;
+      const iv = every(() => { n--; if (!$('#resend-otp')) return clearInterval(iv); if (n <= 0) { clearInterval(iv); b.disabled = false; b.textContent = 'Resend code'; } else b.textContent = `Resend code in ${n}s`; }, 1000);
+    };
+    cooldown(30);
+    $('#otp-back').onclick = () => viewLogin();
+    $('#otp-input').oninput = e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6); };
+    $('#otp-input').focus();
+    $('#otp-form').onsubmit = async e => {
+      e.preventDefault();
+      const f = e.target, box = $('#otp-error'); box.hidden = true;
+      if (!validateForm(f)) return;
+      const btn = $('#verify-otp'); setBusy(btn, true, 'Verifying…');
+      const r = await request('POST', '/api/auth/verify-otp', { body: { mfaToken: token, code: $('#otp-input').value }, auth: false });
+      setBusy(btn, false);
+      if (!r.ok) {
+        applyServerErrors(f, r, box);
+        const code = r.body && r.body.error && r.body.error.code;
+        if (code === 'TOO_MANY_ATTEMPTS' || code === 'INVALID_MFA_TOKEN') { btn.disabled = true; box.innerHTML = `${esc(errMsg(r))} <button type="button" class="link-btn" id="otp-restart">Log in again</button>`; $('#otp-restart').onclick = () => viewLogin(); }
+        return;
+      }
+      await loggedIn(r.body, `Welcome back, ${r.body.user.firstName}.`);
+    };
+    $('#resend-otp').onclick = async () => {
+      const st = $('#resend-status');
+      const r = await request('POST', '/api/auth/resend-otp', { body: { mfaToken: token }, auth: false });
+      if (r.ok) { st.textContent = 'A new code is on its way. Earlier codes no longer work.'; cooldown(30); } else st.textContent = errMsg(r);
+    };
+  }
+  function viewForgot() {
+    app.innerHTML = `<div class="auth"><div class="panel"><h1>Forgot your password?</h1><p class="muted">Enter your account email and we’ll send a 6-digit reset code.</p>
+      <div class="alert success" id="forgot-success" data-testid="forgot-success" role="status" hidden></div><div class="alert error" id="forgot-error" role="alert" hidden></div>
+      <form id="forgot-form" novalidate data-testid="forgot-form">${field('email', 'Email', { id: 'forgot-email', type: 'email', value: S.resetEmail || '', attrs: { required: true, 'data-label': 'your email', autocomplete: 'email' } })}
+        <button class="btn" type="submit" id="send-reset-code" data-testid="send-reset-code" style="width:100%">Send reset code</button></form>
+      <p style="margin-top:1rem"><a href="#reset-password" id="have-code">I already have a code</a> &nbsp; <a href="#login" id="back-to-login">Back to log in</a></p></div>
+      <div class="panel"><h2>How this works</h2><p>The code goes to the ShopLab inbox, not a real mailbox. The reply is the same whether or not the email has an account, so this page can’t be used to discover accounts.</p><p class="muted">Practise extracting the code from the email body with a regular expression such as <code>\\b\\d{6}\\b</code>.</p></div></div>`;
+    $('#forgot-form').onsubmit = async e => {
+      e.preventDefault();
+      const f = e.target; $('#forgot-error').hidden = true;
+      if (!validateForm(f)) return;
+      const email = $('#forgot-email').value.trim();
+      const btn = $('#send-reset-code'); setBusy(btn, true, 'Sending…');
+      const r = await request('POST', '/api/auth/forgot-password', { body: { email }, auth: false });
+      setBusy(btn, false);
+      if (!r.ok) return applyServerErrors(f, r, $('#forgot-error'));
+      S.resetEmail = email; store.set('shoplab_inbox_email', email);
+      const ok = $('#forgot-success'); ok.hidden = false;
+      ok.innerHTML = `${esc(r.body.message)} <a href="#inbox" id="forgot-open-inbox">Open the inbox</a>, then <a href="#reset-password" id="enter-reset-code" data-testid="enter-reset-code">enter the code</a>.`;
+    };
+  }
+  function viewReset() {
+    app.innerHTML = `<div class="auth"><div class="panel"><h1>Choose a new password</h1><p class="muted">Use the 6-digit code from the reset email. Codes expire after 15 minutes and 5 wrong tries.</p>
+      <div class="alert error" id="reset-error" data-testid="reset-error" role="alert" hidden></div>
+      <form id="reset-form" novalidate data-testid="reset-form">
+        ${field('email', 'Email', { id: 'reset-email', type: 'email', value: S.resetEmail || store.get('shoplab_inbox_email') || '', attrs: { required: true, 'data-label': 'your email' } })}
+        ${field('code', 'Reset code', { id: 'reset-code', attrs: { required: true, inputmode: 'numeric', maxlength: 6, pattern: '\\d{6}', 'data-msg': 'The code is 6 digits.', 'data-label': 'the code', autocomplete: 'one-time-code' } })}
+        ${field('newPassword', 'New password', { id: 'reset-new', type: 'password', attrs: { required: true, 'data-label': 'a new password', autocomplete: 'new-password' } })}
+        ${field('confirm', 'Confirm new password', { id: 'reset-confirm', type: 'password', attrs: { required: true, 'data-label': 'the password again', autocomplete: 'new-password' } })}
+        <button class="btn" type="submit" id="reset-submit" data-testid="reset-submit" style="width:100%">Update password</button></form>
+      <p style="margin-top:1rem"><a href="#forgot-password" id="need-code">Send me a new code</a></p></div>
+      <div class="panel"><h2>Password rules</h2><p>At least 8 characters with upper and lower case letters, a number and a symbol. Every session for the account is logged out after a reset.</p></div></div>`;
+    $('#reset-form').onsubmit = async e => {
+      e.preventDefault();
+      const f = e.target; $('#reset-error').hidden = true;
+      if (!validateForm(f)) return;
+      if ($('#reset-confirm').value !== $('#reset-new').value) { showError(f, 'confirm', 'Passwords do not match.'); $('#reset-confirm').focus(); return; }
+      const btn = $('#reset-submit'); setBusy(btn, true, 'Updating…');
+      const email = $('#reset-email').value.trim();
+      const r = await request('POST', '/api/auth/reset-password', { body: { email, code: $('#reset-code').value.trim(), newPassword: $('#reset-new').value }, auth: false });
+      setBusy(btn, false);
+      if (!r.ok) return applyServerErrors(f, r, $('#reset-error'));
+      if (S.user && S.user.email.toLowerCase() === email.toLowerCase()) { setToken(null); S.user = null; S.cart = null; renderUserMenu(); updateBadges(); }
+      S.resetEmail = null;
+      toast('Password updated. Log in with your new password.', 'success', 6000);
+      go('login');
+    };
+  }
+
+  // ---------------- account: addresses and password ----------------
+  function accountExtrasHtml() {
+    return `<div class="two-col even" style="margin-top:1.75rem">
+      <section class="panel" aria-labelledby="ab-title"><div class="panel-head"><h2 id="ab-title">Address book</h2><button type="button" class="btn small" id="add-address" data-testid="add-address">Add address</button></div><div id="address-list" data-testid="address-list"></div></section>
+      <section class="panel" aria-labelledby="cp-title"><h2 id="cp-title">Change password</h2><div class="alert error" id="password-change-error" role="alert" hidden></div>
+        <form id="change-password-form" novalidate data-testid="change-password-form">
+          ${field('currentPassword', 'Current password', { id: 'cp-current', type: 'password', attrs: { required: true, 'data-label': 'your current password', autocomplete: 'current-password' } })}
+          ${field('newPassword', 'New password', { id: 'cp-new', type: 'password', attrs: { required: true, 'data-label': 'a new password', autocomplete: 'new-password' } })}
+          ${field('confirm', 'Confirm new password', { id: 'cp-confirm', type: 'password', attrs: { required: true, 'data-label': 'the new password again', autocomplete: 'new-password' } })}
+          <button class="btn" type="submit" id="change-password" data-testid="change-password">Change password</button></form></section></div>`;
+  }
+  function bindAccountExtras() {
+    renderAddressBook();
+    $('#add-address').onclick = () => addressModal(null);
+    $('#change-password-form').onsubmit = async e => {
+      e.preventDefault();
+      const f = e.target, box = $('#password-change-error'); box.hidden = true;
+      if (!validateForm(f)) return;
+      if ($('#cp-confirm').value !== $('#cp-new').value) { showError(f, 'confirm', 'Passwords do not match.'); return; }
+      const btn = $('#change-password'); setBusy(btn, true, 'Saving…');
+      const r = await request('POST', '/api/auth/change-password', { body: { currentPassword: $('#cp-current').value, newPassword: $('#cp-new').value } });
+      setBusy(btn, false);
+      if (!r.ok) return applyServerErrors(f, r, box);
+      f.reset(); toast(r.body.message, 'success');
+    };
+  }
+  async function renderAddressBook() {
+    const box = $('#address-list'); if (!box) return;
+    const r = await request('GET', '/api/addresses');
+    if (!r.ok) { box.innerHTML = `<p class="alert error">${esc(errMsg(r))}</p>`; return; }
+    const list = r.body.data;
+    box.innerHTML = list.length ? list.map(a => `<article class="address-card" data-testid="address-card" data-address-id="${a.id}" id="address-${a.id}">
+      <div><strong data-testid="address-label">${esc(a.label)}</strong> ${a.isDefault ? '<span class="status delivered" data-testid="default-badge">Default</span>' : ''}
+      <p>${esc(a.fullName)}<br>${esc(a.line1)}${a.line2 ? ', ' + esc(a.line2) : ''}<br>${esc(a.city)}, ${esc(a.state)} ${esc(a.zip)}, ${esc(a.country)}<br>${esc(a.phone)}</p></div>
+      <div class="row-btns" style="margin:0"><button type="button" class="btn small ghost" data-addr-edit="${a.id}" id="edit-address-${a.id}" data-testid="edit-address">Edit</button>${a.isDefault ? '' : `<button type="button" class="btn small ghost" data-addr-default="${a.id}" id="default-address-${a.id}" data-testid="make-default">Make default</button>`}<button type="button" class="btn small danger" data-addr-del="${a.id}" id="delete-address-${a.id}" data-testid="delete-address">Delete</button></div></article>`).join('')
+      : '<p class="muted" id="no-addresses" data-testid="no-addresses">No saved addresses yet. Add one to check out faster.</p>';
+    $$('[data-addr-edit]', box).forEach(b => b.onclick = () => addressModal(list.find(a => a.id === +b.dataset.addrEdit)));
+    $$('[data-addr-default]', box).forEach(b => b.onclick = async () => { const res = await request('POST', `/api/addresses/${b.dataset.addrDefault}/default`); if (res.ok) { toast('Default address updated.', 'success'); renderAddressBook(); } else toast(errMsg(res), 'error'); });
+    $$('[data-addr-del]', box).forEach(b => b.onclick = async () => {
+      if (!(await confirmDialog('Delete this address?', 'It is removed from your address book. Past orders keep their address.', 'Delete address'))) return;
+      const res = await request('DELETE', '/api/addresses/' + b.dataset.addrDel);
+      if (res.ok) { toast('Address deleted.', 'success'); renderAddressBook(); } else toast(errMsg(res), 'error');
+    });
+  }
+  function addressModal(a) {
+    const v = a || { label: '', fullName: S.user ? S.user.firstName + ' ' + S.user.lastName : '', phone: S.user ? S.user.phone : '', country: 'US' };
+    openModal({
+      title: a ? 'Edit address' : 'Add an address', id: 'address-modal',
+      body: `<form id="address-modal-form" novalidate><div class="alert error" id="address-modal-error" role="alert" hidden></div><div class="form-grid">
+        ${field('label', 'Label (for example Home)', { id: 'addr-label', value: v.label, cls: 'full', attrs: { maxlength: 30 } })}
+        ${field('fullName', 'Full name', { id: 'addr-fullname', value: v.fullName, cls: 'full', attrs: { required: true, 'data-label': 'a full name' } })}
+        ${field('phone', 'Phone', { id: 'addr-phone', type: 'tel', value: v.phone, cls: 'full', attrs: { required: true, pattern: '[+\\d][\\d\\s-]{6,19}', 'data-msg': 'Enter a phone number with 7–20 digits.', 'data-label': 'a phone number' } })}
+        ${field('line1', 'Street address', { id: 'addr-line1', value: v.line1, cls: 'full', attrs: { required: true, 'data-label': 'a street address' } })}
+        ${field('line2', 'Apartment, suite (optional)', { id: 'addr-line2', value: v.line2, cls: 'full' })}
+        ${field('city', 'City', { id: 'addr-city', value: v.city, attrs: { required: true, 'data-label': 'a city' } })}
+        ${field('state', 'State or region', { id: 'addr-state', value: v.state, attrs: { required: true, 'data-label': 'a state or region' } })}
+        ${field('zip', 'Postal code', { id: 'addr-zip', value: v.zip, attrs: { required: true, pattern: '[A-Za-z0-9][A-Za-z0-9 -]{2,9}', 'data-msg': 'Enter a postal code of 3–10 characters.', 'data-label': 'a postal code' } })}
+        ${field('country', 'Country', { id: 'addr-country', value: v.country, select: [['', 'Choose a country']].concat(COUNTRIES), attrs: { required: true, 'data-label': 'a country' } })}
+        </div><label class="check"><input type="checkbox" name="isDefault" id="addr-default" data-testid="addr-default" ${v.isDefault ? 'checked disabled' : ''}> Make this my default address</label></form>`,
+      actions: [{ label: 'Cancel', kind: 'ghost', id: 'addr-cancel' }, {
+        label: a ? 'Save address' : 'Add address', id: 'addr-save', onClick: () => {
+          const f = $('#address-modal-form');
+          if (!validateForm(f)) return false;
+          const d = Object.fromEntries(new FormData(f).entries());
+          const body = { label: d.label, fullName: d.fullName, phone: d.phone, line1: d.line1, line2: d.line2, city: d.city, state: d.state, zip: d.zip, country: d.country, isDefault: $('#addr-default').checked };
+          (async () => {
+            const btn = $('#addr-save'); setBusy(btn, true, 'Saving…');
+            const r = a ? await request('PUT', '/api/addresses/' + a.id, { body }) : await request('POST', '/api/addresses', { body });
+            setBusy(btn, false);
+            if (!r.ok) return applyServerErrors(f, r, $('#address-modal-error'));
+            closeModal(); toast(a ? 'Address saved.' : 'Address added.', 'success'); renderAddressBook();
+          })();
+          return false;
+        }
+      }]
+    });
+  }
+
+  // ---------------- returns, invoices, tracking ----------------
+  function returnModal(o) {
+    openModal({
+      title: `Return items from order #${o.id}`, id: 'return-modal',
+      body: `<form id="return-form" novalidate><div class="alert error" id="return-error" data-testid="return-error" role="alert" hidden></div>
+        <fieldset style="border:0;padding:0;margin:0 0 1rem"><legend style="font-weight:700;font-size:.9rem">Items to return</legend>
+        ${o.items.map(i => `<label class="check"><input type="checkbox" name="productIds" value="${i.productId}" id="return-item-${i.productId}" data-testid="return-item" checked> ${esc(i.name)} × ${i.quantity}</label>`).join('')}
+        <div class="field-error" data-error-for="productIds" id="return-items-error" role="alert"></div></fieldset>
+        ${field('reason', 'Reason', { id: 'return-reason', select: [['', 'Choose a reason']].concat(Object.entries(ShopLabCore.RETURN_REASONS)), attrs: { required: true, 'data-label': 'a reason' } })}
+        ${field('comment', 'Comments (required for Other)', { id: 'return-comment', textarea: true, attrs: { maxlength: 500 } })}
+        <p class="muted" style="font-size:.88rem">Refunds go back to the original card once the items arrive.</p></form>`,
+      actions: [{ label: 'Cancel', kind: 'ghost', id: 'return-cancel' }, {
+        label: 'Submit return', id: 'return-submit', onClick: () => {
+          const f = $('#return-form');
+          if (!validateForm(f)) return false;
+          const ids = $$('input[name="productIds"]:checked', f).map(x => +x.value);
+          if (!ids.length) { showError(f, 'productIds', 'Choose at least one item.'); return false; }
+          if ($('#return-reason').value === 'other' && $('#return-comment').value.trim().length < 5) { showError(f, 'comment', 'Tell us more (at least 5 characters) when the reason is Other.'); return false; }
+          (async () => {
+            const btn = $('#return-submit'); setBusy(btn, true, 'Submitting…');
+            const r = await request('POST', `/api/orders/${o.id}/return`, { body: { reason: $('#return-reason').value, comment: $('#return-comment').value, productIds: ids } });
+            setBusy(btn, false);
+            if (!r.ok) return applyServerErrors(f, r, $('#return-error'));
+            closeModal(); toast(`Return ${r.body.returnRequest.rma} requested. Check your inbox for the label.`, 'success', 6000); viewOrder(o.id);
+          })();
+          return false;
+        }
+      }]
+    });
+  }
+  async function viewInvoice(id) {
+    const nav = S.nav;
+    if (!requireLogin('invoice-' + id)) return;
+    const r = await request('GET', '/api/orders/' + id);
+    if (nav !== S.nav) return;
+    if (!r.ok) { app.innerHTML = `<div class="empty" data-testid="invoice-error"><h1>Invoice unavailable</h1><p>${esc(errMsg(r))}</p><a class="btn" href="#orders">Back to orders</a></div>`; return; }
+    const o = r.body, a = o.shippingAddress, m = ShopLabCore.SHIPPING[o.shippingMethod];
+    document.title = `Invoice INV-${o.id} | ShopLab`;
+    app.innerHTML = `<div class="invoice-actions no-print"><a href="#order-${o.id}" id="back-to-order">Back to order #${o.id}</a><button type="button" class="btn" id="print-invoice" data-testid="print-invoice">Print invoice</button></div>
+      <article class="panel invoice" data-testid="invoice" aria-labelledby="invoice-title">
+        <header class="inv-head"><div><p class="logo" style="margin-bottom:.6rem"><span class="logo-mark" aria-hidden="true">🛒</span>ShopLab</p><p class="muted">ShopLab Practice Store<br>1 Test Lane, Austin, TX 73301, US<br>billing@shoplab.test</p></div>
+          <div><h1 id="invoice-title">Invoice</h1><dl class="inv-meta"><dt>Invoice number</dt><dd id="invoice-number" data-testid="invoice-number">INV-${o.id}</dd><dt>Order</dt><dd>#${o.id}</dd><dt>Date</dt><dd id="invoice-date">${new Date(o.createdAt).toLocaleDateString()}</dd><dt>Status</dt><dd>${statusText(o.status)}</dd></dl></div></header>
+        <div class="inv-parties"><div><h2>Ship to</h2><p>${esc(a.fullName)}<br>${esc(a.line1)}${a.line2 ? ', ' + esc(a.line2) : ''}<br>${esc(a.city)}, ${esc(a.state)} ${esc(a.zip)}, ${esc(a.country)}<br>${esc(a.email || '')}</p></div>
+          <div><h2>Payment and delivery</h2><p>${esc(o.payment.brand)} ending ${esc(o.payment.last4)}<br>${esc(m ? m.label : o.shippingMethod)} shipping${o.coupon ? `<br>Coupon ${esc(o.coupon)}` : ''}</p></div></div>
+        <div class="table-wrap"><table class="data" id="invoice-items" data-testid="invoice-items"><thead><tr><th>Item</th><th>SKU</th><th class="num">Qty</th><th class="num">Unit price</th><th class="num">Amount</th></tr></thead>
+          <tbody>${o.items.map(i => `<tr data-testid="invoice-line"><td>${esc(i.name)}</td><td>${esc(i.sku)}</td><td class="num">${i.quantity}</td><td class="num">${usd(i.price)}</td><td class="num">${usd(i.lineTotal)}</td></tr>`).join('')}</tbody>
+          <tfoot><tr><td colspan="4">Subtotal</td><td class="num" id="invoice-subtotal">${usd(o.subtotal)}</td></tr>${o.discount ? `<tr><td colspan="4">Discount</td><td class="num">−${usd(o.discount)}</td></tr>` : ''}<tr><td colspan="4">Shipping</td><td class="num">${usd(o.shipping)}</td></tr><tr><td colspan="4">Tax (8%)</td><td class="num">${usd(o.tax)}</td></tr><tr class="grand"><td colspan="4">Total (USD)</td><td class="num" id="invoice-total" data-testid="invoice-total">${usd(o.total)}</td></tr></tfoot></table></div>
+        <p class="muted" style="margin-top:1rem;font-size:.88rem">All amounts are in US dollars. This is a practice invoice and no payment was taken.</p></article>`;
+    $('#print-invoice').onclick = () => window.print();
+  }
+  function viewTrack() {
+    app.innerHTML = `<div class="page-head"><h1>Track an order</h1><p>No account needed. Use the order number and the email from your confirmation.</p></div>
+      <div class="two-col even"><div class="panel"><div class="alert error" id="track-error" data-testid="track-error" role="alert" hidden></div>
+        <form id="track-form" novalidate data-testid="track-form">
+          ${field('orderId', 'Order number', { id: 'track-order', attrs: { required: true, inputmode: 'numeric', pattern: '#?\\d{3,6}', 'data-msg': 'Order numbers look like 1001.', 'data-label': 'the order number', placeholder: '1001' } })}
+          ${field('email', 'Email', { id: 'track-email', type: 'email', value: S.user ? S.user.email : '', attrs: { required: true, 'data-label': 'the order email' } })}
+          <button class="btn" type="submit" id="track-button" data-testid="track-button">Track order</button></form></div>
+        <div class="panel" id="track-result" data-testid="track-result" aria-live="polite"><p class="muted">Results appear here.</p></div></div>`;
+    $('#track-form').onsubmit = async e => {
+      e.preventDefault();
+      const f = e.target, box = $('#track-error'); box.hidden = true;
+      if (!validateForm(f)) return;
+      const btn = $('#track-button'); setBusy(btn, true, 'Looking up…');
+      const r = await request('POST', '/api/orders/track', { body: { orderId: parseInt($('#track-order').value.replace('#', ''), 10), email: $('#track-email').value.trim() }, auth: false });
+      setBusy(btn, false);
+      const out = $('#track-result');
+      if (!r.ok) { applyServerErrors(f, r, box); out.innerHTML = '<p class="muted">Results appear here.</p>'; return; }
+      const t = r.body, flow = ['placed', 'processing', 'shipped', 'delivered'], at = ['return_requested', 'refunded'].includes(t.status) ? 3 : flow.indexOf(t.status);
+      out.innerHTML = `<h2>Order #${t.id}</h2><p>Status: <span class="status ${t.status}" id="track-status" data-testid="track-status">${statusText(t.status)}</span></p>
+        ${t.status === 'cancelled' ? '<p class="alert error">This order was cancelled.</p>' : `<ol class="timeline" aria-label="Delivery progress">${flow.map((s, i) => `<li class="${i <= at ? 'reached' : ''}">${s[0].toUpperCase() + s.slice(1)}</li>`).join('')}</ol>`}
+        <dl class="inv-meta"><dt>Placed</dt><dd>${new Date(t.createdAt).toLocaleDateString()}</dd><dt>Items</dt><dd>${t.itemCount}</dd><dt>Total</dt><dd>${money(t.total)}</dd><dt>Shipping to</dt><dd>${esc(t.shipTo)}</dd>${t.rma ? `<dt>Return</dt><dd>${esc(t.rma)}</dd>` : ''}</dl>`;
+    };
+  }
+
+  // ---------------- recently viewed and compare ----------------
+  function pushRecent(id) { const list = readJSON('shoplab_recent', []).filter(x => x !== id); list.unshift(id); writeJSON('shoplab_recent', list.slice(0, 8)); }
+  async function renderRecent(currentId) {
+    const ids = readJSON('shoplab_recent', []).filter(x => x !== currentId).slice(0, 4);
+    const sec = $('#recently-viewed');
+    if (!ids.length || !sec) return;
+    const r = await request('GET', '/api/products?limit=50', { auth: false });
+    if (!r.ok || !$('#recently-viewed')) return;
+    const items = ids.map(id => r.body.data.find(p => p.id === id)).filter(Boolean);
+    if (!items.length) return;
+    sec.innerHTML = `<h2 id="recent-title">Recently viewed</h2><div class="grid">${items.map(productCard).join('')}</div>`;
+    sec.hidden = false;
+  }
+  document.addEventListener('change', e => {
+    const cb = e.target.closest && e.target.closest('[data-compare]');
+    if (!cb) return;
+    const id = +cb.dataset.compare;
+    if (cb.checked) {
+      if (S.compare.length >= 3) { cb.checked = false; toast('You can compare up to 3 products. Remove one first.', 'error'); return; }
+      if (!S.compare.includes(id)) S.compare.push(id);
+    } else S.compare = S.compare.filter(x => x !== id);
+    writeJSON('shoplab_compare', S.compare);
+    $$(`[data-compare="${id}"]`).forEach(x => { x.checked = S.compare.includes(id); });
+    renderCompareTray();
+  });
+  function renderCompareTray(route) {
+    route = route || location.hash.slice(1) || 'shop';
+    let tray = $('#compare-tray');
+    if (!tray) { tray = document.createElement('div'); tray.id = 'compare-tray'; tray.className = 'compare-tray'; tray.setAttribute('data-testid', 'compare-tray'); tray.setAttribute('role', 'region'); tray.setAttribute('aria-label', 'Product comparison'); document.body.appendChild(tray); }
+    if (!S.compare.length || route === 'compare') { tray.hidden = true; return; }
+    tray.hidden = false;
+    tray.innerHTML = `<span><strong id="compare-count" data-testid="compare-count">${S.compare.length}</strong> of 3 products selected</span><a class="btn small" href="#compare" id="compare-now" data-testid="compare-now">Compare</a><button type="button" class="link-btn" id="compare-clear" data-testid="compare-clear">Clear</button>`;
+    $('#compare-clear').onclick = () => { S.compare = []; writeJSON('shoplab_compare', []); $$('[data-compare]').forEach(x => { x.checked = false; }); renderCompareTray(); };
+  }
+  async function viewCompare() {
+    const nav = S.nav;
+    if (!S.compare.length) { app.innerHTML = `<div class="empty" data-testid="compare-empty"><p class="big" aria-hidden="true">⚖️</p><h1>Nothing to compare yet</h1><p class="muted">Tick Compare on up to 3 products in the shop.</p><a class="btn" href="#shop">Browse products</a></div>`; return; }
+    const r = await request('GET', '/api/products?limit=50', { auth: false });
+    if (nav !== S.nav) return;
+    const ps = S.compare.map(id => (r.ok ? r.body.data : []).find(p => p.id === id)).filter(Boolean);
+    const row = (label, fn) => `<tr><th scope="row">${label}</th>${ps.map(p => `<td>${fn(p)}</td>`).join('')}</tr>`;
+    const best = ps.length ? Math.min(...ps.map(p => p.price)) : 0;
+    app.innerHTML = `<div class="page-head"><h1>Compare products</h1><p>${ps.length} product${ps.length === 1 ? '' : 's'} side by side. The lowest price is marked.</p></div>
+      <div class="table-wrap"><table class="data compare-table" id="compare-table" data-testid="compare-table"><thead><tr><th scope="col"><span class="sr-only">Attribute</span></th>${ps.map(p => `<th scope="col" data-testid="compare-column" data-product-id="${p.id}"><div class="cmp-head">${thumb(p)}<a href="#product-${p.id}">${esc(p.name)}</a></div></th>`).join('')}</tr></thead><tbody>
+        ${row('Price', p => `<strong data-testid="compare-price">${money(p.price)}</strong>${p.price === best && ps.length > 1 ? ' <span class="status delivered" data-testid="lowest-price">Lowest</span>' : ''}`)}
+        ${row('Was', p => onSale(p) ? `<s>${money(p.compareAtPrice)}</s> (${pctOff(p)}% off)` : '<span class="muted">Not on sale</span>')}
+        ${row('Rating', p => `${Number(p.rating).toFixed(1)} of 5 (${p.ratingsCount})`)}
+        ${row('Category', p => esc(catName(p.category)))}
+        ${row('Availability', p => p.stock === 0 ? '<span class="stock out">Out of stock</span>' : `<span class="stock in">${p.stock} in stock</span>`)}
+        ${row('Colours', p => esc((p.colors || []).join(', ') || 'One colour'))}
+        ${row('Sizes', p => esc((p.sizes || []).join(', ') || 'One size'))}
+        ${row('', p => `<div class="row-btns" style="margin:0"><button type="button" class="btn small" data-action="add" data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>Add to cart</button><button type="button" class="btn small ghost" data-compare-remove="${p.id}" data-testid="compare-remove">Remove</button></div>`)}
+      </tbody></table></div>`;
+    $$('[data-compare-remove]').forEach(b => b.onclick = () => { S.compare = S.compare.filter(x => x !== +b.dataset.compareRemove); writeJSON('shoplab_compare', S.compare); viewCompare(); });
+  }
+
+  // ---------------- interruptions ----------------
+  function showCookieBanner() {
+    if (!prefs().cookieBanner || store.get('shoplab_cookie_consent') || $('#cookie-banner')) return;
+    const el = document.createElement('section');
+    el.id = 'cookie-banner'; el.className = 'cookie-banner'; el.setAttribute('aria-label', 'Cookie consent'); el.setAttribute('data-testid', 'cookie-banner');
+    el.innerHTML = `<div class="cb-inner"><p><strong>We use cookies.</strong> Necessary cookies keep the store working. With your permission we also use analytics and marketing cookies. This is a practice banner and nothing is tracked.</p>
+      <div class="row-btns" style="margin:0"><button type="button" class="btn ghost small" id="cookie-manage" data-testid="cookie-manage">Manage preferences</button><button type="button" class="btn ghost small" id="cookie-reject" data-testid="cookie-reject">Reject non-essential</button><button type="button" class="btn small" id="cookie-accept" data-testid="cookie-accept">Accept all</button></div></div>`;
+    document.body.appendChild(el); document.body.classList.add('has-cookie-banner');
+    const decide = (analytics, marketing, msg) => { writeJSON('shoplab_cookie_consent', { necessary: true, analytics, marketing, decidedAt: new Date().toISOString() }); el.remove(); document.body.classList.remove('has-cookie-banner'); toast(msg, 'success'); };
+    $('#cookie-accept').onclick = () => decide(true, true, 'Cookie preferences saved: all cookies allowed.');
+    $('#cookie-reject').onclick = () => decide(false, false, 'Cookie preferences saved: necessary cookies only.');
+    $('#cookie-manage').onclick = () => openModal({
+      title: 'Cookie preferences', id: 'cookie-modal',
+      body: `<div style="display:grid;gap:1rem"><label class="switch" for="ck-necessary"><input type="checkbox" id="ck-necessary" role="switch" checked disabled><span class="track" aria-hidden="true"></span>Necessary (always on)</label>
+        <label class="switch" for="ck-analytics"><input type="checkbox" id="ck-analytics" data-testid="ck-analytics" role="switch"><span class="track" aria-hidden="true"></span>Analytics</label>
+        <label class="switch" for="ck-marketing"><input type="checkbox" id="ck-marketing" data-testid="ck-marketing" role="switch"><span class="track" aria-hidden="true"></span>Marketing</label></div>`,
+      actions: [{ label: 'Save preferences', id: 'cookie-save', onClick: () => decide($('#ck-analytics').checked, $('#ck-marketing').checked, 'Cookie preferences saved.') }]
+    });
+  }
+  function scheduleNewsletter() {
+    const pr = prefs();
+    if (!pr.newsletter || store.get('shoplab_newsletter_seen')) return;
+    later(() => {
+      if ((location.hash.slice(1) || 'shop') !== 'shop' || $('#modal-root').children.length) return;
+      store.set('shoplab_newsletter_seen', '1');
+      openModal({
+        title: 'Get 10% off your first order', id: 'newsletter-popup',
+        body: `<p>Join the ShopLab newsletter and we’ll email you a welcome code.</p><div class="field"><label for="newsletter-email">Email</label><input id="newsletter-email" type="email" data-testid="newsletter-email" value="${esc(S.user ? S.user.email : '')}"><div class="field-error" id="newsletter-email-error" data-testid="newsletter-email-error" role="alert"></div></div>`,
+        actions: [{ label: 'No thanks', kind: 'ghost', id: 'newsletter-dismiss' }, {
+          label: 'Subscribe', id: 'newsletter-subscribe', onClick: () => {
+            const v = $('#newsletter-email').value.trim();
+            if (!EMAIL_OK(v)) { $('#newsletter-email-error').textContent = 'Enter a valid email address.'; return false; }
+            (async () => { const r = await request('POST', '/api/newsletter', { body: { email: v }, auth: false }); if (r.ok) { closeModal(); store.set('shoplab_inbox_email', v); toast(r.body.message, 'success'); } else $('#newsletter-email-error').textContent = errMsg(r); })();
+            return false;
+          }
+        }]
+      });
+    }, (pr.newsletterDelay || 0) * 1000);
+  }
+
+  // ---------------- test settings ----------------
+  async function viewTestSettings() {
+    const nav = S.nav;
+    const pr = prefs(), consent = readJSON('shoplab_cookie_consent', null);
+    const r = await request('GET', '/api/config', { auth: false });
+    if (nav !== S.nav) return;
+    const cfg = r.ok ? r.body : { latencyMs: 0, failureRate: 0 };
+    app.innerHTML = `<div class="page-head"><h1>Test settings</h1><p>Turn on the things real sites throw at your tests. Browser settings apply to this browser only. Chaos settings apply to ${MODE === 'server' ? 'everyone using this server' : 'this browser'}.</p></div>
+      <div class="two-col even">
+        <section class="panel" aria-labelledby="int-title"><h2 id="int-title">Interruptions</h2>
+          <label class="switch" for="pref-cookie"><input type="checkbox" id="pref-cookie" data-testid="pref-cookie" role="switch" ${pr.cookieBanner ? 'checked' : ''}><span class="track" aria-hidden="true"></span>Show the cookie banner until a choice is made</label>
+          <p class="muted" id="cookie-state" data-testid="cookie-state" style="margin-top:.6rem">Saved choice: ${consent ? `analytics ${consent.analytics ? 'on' : 'off'}, marketing ${consent.marketing ? 'on' : 'off'}` : 'none yet'}</p>
+          <button type="button" class="btn small ghost" id="reset-cookie" data-testid="reset-cookie">Forget my cookie choice</button>
+          <hr class="rule">
+          <label class="switch" for="pref-newsletter"><input type="checkbox" id="pref-newsletter" data-testid="pref-newsletter" role="switch" ${pr.newsletter ? 'checked' : ''}><span class="track" aria-hidden="true"></span>Show the newsletter popup once on the shop page</label>
+          <div class="field" style="margin-top:.8rem;max-width:220px"><label for="pref-newsletter-delay">Popup delay in seconds</label><input type="number" id="pref-newsletter-delay" data-testid="pref-newsletter-delay" min="0" max="120" value="${pr.newsletterDelay}"></div>
+          <button type="button" class="btn small ghost" id="reset-newsletter" data-testid="reset-newsletter">Show the popup again</button>
+        </section>
+        <section class="panel" aria-labelledby="chaos-title"><h2 id="chaos-title">Chaos mode</h2>
+          <div class="field"><label for="cfg-latency">Added API latency: <output id="cfg-latency-value" for="cfg-latency">${cfg.latencyMs} ms</output></label><input type="range" id="cfg-latency" data-testid="cfg-latency" min="0" max="5000" step="100" value="${cfg.latencyMs}" style="width:100%"></div>
+          <div class="field"><label for="cfg-failure">Random failure rate: <output id="cfg-failure-value" for="cfg-failure">${cfg.failureRate}%</output></label><input type="range" id="cfg-failure" data-testid="cfg-failure" min="0" max="50" step="5" value="${cfg.failureRate}" style="width:100%"></div>
+          <div class="row-btns"><button type="button" class="btn" id="save-chaos" data-testid="save-chaos">Save chaos settings</button><button type="button" class="btn ghost" id="reset-chaos" data-testid="reset-chaos">Turn chaos off</button></div>
+          <p class="muted" style="font-size:.88rem">Failed requests return HTTP 503 <code>CHAOS_FAILURE</code>. The health, config and reset endpoints are never slowed or failed, so you can always recover.</p>
+        </section></div>
+      <section class="panel" style="margin-top:1.75rem" aria-labelledby="skip-title"><h2 id="skip-title">Skip interruptions in automated tests</h2>
+        <p>Real teams pre-set consent state rather than clicking banners in every test. Set these browser storage keys before the page loads:</p>
+        <pre class="out" data-testid="skip-snippet">// Playwright
+await page.addInitScript(() => {
+  localStorage.setItem('shoplab_cookie_consent', '{"necessary":true,"analytics":false,"marketing":false}');
+  localStorage.setItem('shoplab_newsletter_seen', '1');
+});
+
+// Cypress
+cy.visit(url, { onBeforeLoad(win) {
+  win.localStorage.setItem('shoplab_cookie_consent', '{"necessary":true}');
+  win.localStorage.setItem('shoplab_newsletter_seen', '1');
+} });
+
+// Selenium: open the site once, run these, then refresh
+driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"necessary\\":true}'); localStorage.setItem('shoplab_newsletter_seen', '1');")</pre>
+        <h3 style="margin-top:1.2rem">Start from a clean browser</h3><p class="muted">Removes every ShopLab key: login, guest cart, settings, comparison and, in demo mode, the store data.</p>
+        <button type="button" class="btn danger" id="clear-browser" data-testid="clear-browser">Clear all ShopLab browser data</button></section>`;
+    const savePrefs = () => { writeJSON('shoplab_prefs', { cookieBanner: $('#pref-cookie').checked, newsletter: $('#pref-newsletter').checked, newsletterDelay: Math.max(0, Math.min(120, parseInt($('#pref-newsletter-delay').value, 10) || 0)) }); toast('Browser settings saved.', 'success'); };
+    ['#pref-cookie', '#pref-newsletter', '#pref-newsletter-delay'].forEach(sel => { $(sel).onchange = savePrefs; });
+    $('#reset-cookie').onclick = () => { store.set('shoplab_cookie_consent', null); $('#cookie-state').textContent = 'Saved choice: none yet'; showCookieBanner(); toast('Cookie choice forgotten.', 'success'); };
+    $('#reset-newsletter').onclick = () => { store.set('shoplab_newsletter_seen', null); toast('The popup will show next time you open the shop.', 'success'); };
+    const lat = $('#cfg-latency'), fail = $('#cfg-failure');
+    lat.oninput = () => { $('#cfg-latency-value').textContent = lat.value + ' ms'; };
+    fail.oninput = () => { $('#cfg-failure-value').textContent = fail.value + '%'; };
+    const saveChaos = async (l, f) => {
+      const res = await request('PUT', '/api/config', { body: { latencyMs: l, failureRate: f }, auth: false });
+      if (nav !== S.nav) return;
+      if (res.ok) { toast(res.body.latencyMs || res.body.failureRate ? `Chaos on: ${res.body.latencyMs} ms latency, ${res.body.failureRate}% failures.` : 'Chaos mode is off.', 'success'); lat.value = res.body.latencyMs; fail.value = res.body.failureRate; lat.oninput(); fail.oninput(); }
+      else toast(errMsg(res), 'error');
+    };
+    $('#save-chaos').onclick = () => saveChaos(+lat.value, +fail.value);
+    $('#reset-chaos').onclick = () => saveChaos(0, 0);
+    $('#clear-browser').onclick = async () => {
+      if (!(await confirmDialog('Clear all ShopLab browser data?', 'You will be logged out and every saved setting is removed.', 'Clear data'))) return;
+      try { Object.keys(localStorage).filter(k => k.startsWith('shoplab_')).forEach(k => localStorage.removeItem(k)); } catch (e) { /* blocked */ }
+      location.hash = 'shop'; location.reload();
+    };
+  }
+
+  // ---------------- inbox ----------------
+  function viewInbox() {
+    const addr = store.get('shoplab_inbox_email') || (S.user ? S.user.email : '');
+    app.innerHTML = `<div class="page-head"><h1>ShopLab inbox</h1><p>A test mailbox for any address. Store emails land here: sign-in and reset codes, order updates, returns and stock alerts. It checks for new mail every 5 seconds.</p></div>
+      <form class="inbox-bar" id="inbox-form" novalidate data-testid="inbox-form"><div style="flex:1;min-width:220px"><label for="inbox-email">Mailbox address</label><input type="email" id="inbox-email" name="email" data-testid="inbox-email" value="${esc(addr)}" placeholder="standard@shoplab.test"></div>
+        <button class="btn" type="submit" id="open-inbox" data-testid="open-inbox">Open mailbox</button><button type="button" class="btn ghost" id="refresh-inbox" data-testid="refresh-inbox">Refresh</button><button type="button" class="btn danger" id="clear-inbox" data-testid="clear-inbox">Delete all</button></form>
+      <div class="field-error" id="inbox-email-error" role="alert"></div>
+      <div class="inbox"><div class="panel inbox-list"><p class="muted" id="inbox-count" data-testid="inbox-count" aria-live="polite"></p><div id="inbox-list" data-testid="inbox-list"></div></div>
+        <article class="panel inbox-reader" id="inbox-reader" data-testid="inbox-reader" aria-live="polite"><p class="muted">Select an email to read it.</p></article></div>`;
+    let current = EMAIL_OK(addr) ? addr : '', openId = null, lastIds = '';
+    const load = async quiet => {
+      if (!current) { $('#inbox-list').innerHTML = '<p class="muted">Enter an address to open its mailbox.</p>'; return; }
+      if (!quiet) $('#inbox-list').innerHTML = '<div class="skeleton" style="height:120px"></div>';
+      const r = await request('GET', '/api/inbox?email=' + encodeURIComponent(current), { auth: false });
+      if (!$('#inbox-list')) return;
+      if (!r.ok) { $('#inbox-list').innerHTML = `<p class="alert error">${esc(errMsg(r))}</p>`; return; }
+      const ids = r.body.data.map(m => m.id + (m.read ? 'r' : 'u')).join(',');
+      if (quiet && ids === lastIds) return;
+      lastIds = ids;
+      $('#inbox-count').textContent = `${r.body.meta.total} email${r.body.meta.total === 1 ? '' : 's'}, ${r.body.meta.unread} unread`;
+      $('#inbox-list').innerHTML = r.body.data.length ? r.body.data.map(m => `<button type="button" class="mail ${m.read ? '' : 'unread'} ${m.id === openId ? 'open' : ''}" data-mail="${m.id}" data-testid="inbox-message" id="mail-${m.id}" data-kind="${m.kind}"><span class="mail-subject">${esc(m.subject)}</span><span class="mail-time">${new Date(m.createdAt).toLocaleString()}</span><span class="mail-preview">${esc(m.preview)}</span></button>`).join('')
+        : '<p class="muted" id="inbox-empty" data-testid="inbox-empty">No emails for this address yet.</p>';
+      $$('[data-mail]').forEach(b => b.onclick = () => openMail(+b.dataset.mail));
+    };
+    const openMail = async id => {
+      openId = id;
+      const r = await request('GET', '/api/inbox/' + id, { auth: false });
+      if (!r.ok) { $('#inbox-reader').innerHTML = `<p class="alert error">${esc(errMsg(r))}</p>`; return; }
+      const m = r.body;
+      const body = esc(m.body).replace(/\b\d{6}\b/g, '<mark>$&</mark>').replace(/#(product-\d+|order-\d+|track)\b/g, '<a href="#$1">#$1</a>');
+      $('#inbox-reader').innerHTML = `<h2 id="mail-subject" data-testid="mail-subject">${esc(m.subject)}</h2><p class="muted" style="font-size:.88rem">From ${esc(m.from)}<br>To ${esc(m.to)}<br>${new Date(m.createdAt).toLocaleString()}</p><div class="mail-body" id="mail-body" data-testid="mail-body">${body}</div>`;
+      load(true);
+    };
+    $('#inbox-form').onsubmit = e => {
+      e.preventDefault();
+      const v = $('#inbox-email').value.trim();
+      if (!EMAIL_OK(v)) { $('#inbox-email-error').textContent = 'Enter a valid email address.'; $('#inbox-email').setAttribute('aria-invalid', 'true'); return; }
+      $('#inbox-email-error').textContent = ''; $('#inbox-email').removeAttribute('aria-invalid');
+      store.set('shoplab_inbox_email', v); current = v; openId = null; lastIds = '';
+      $('#inbox-reader').innerHTML = '<p class="muted">Select an email to read it.</p>';
+      load();
+    };
+    $('#refresh-inbox').onclick = () => { lastIds = ''; load(); };
+    $('#clear-inbox').onclick = async () => {
+      if (!current) return;
+      if (!(await confirmDialog('Delete every email?', `All emails for ${current} are removed.`, 'Delete all'))) return;
+      const r = await request('DELETE', '/api/inbox?email=' + encodeURIComponent(current), { auth: false });
+      if (r.ok) { toast('Mailbox emptied.', 'success'); openId = null; lastIds = ''; $('#inbox-reader').innerHTML = '<p class="muted">Select an email to read it.</p>'; load(); } else toast(errMsg(r), 'error');
+    };
+    load();
+    every(() => load(true), 5000);
+  }
+
+  // ---------------- scenarios ----------------
+  function viewScenarios() {
+    const list = window.ShopLabScenarios || [];
+    const done = new Set(readJSON('shoplab_scenarios_done', []));
+    const areas = Array.from(new Set(list.map(x => x.area)));
+    const F = { q: '', area: '', type: '', status: '' };
+    app.innerHTML = `<div class="page-head"><h1>Test scenarios</h1><p>${list.length} end-to-end scenarios written as test cases. Automate them in any framework and tick them off as you go. Reset store data before each run so the preconditions hold.</p></div>
+      <div class="scen-progress"><p><strong id="scenario-progress-text" data-testid="scenario-progress-text"></strong></p><div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${list.length}" aria-labelledby="scenario-progress-text" id="scenario-progress"><div class="progress-bar" id="scenario-progress-bar"></div></div></div>
+      <div class="table-tools" style="margin-top:1.2rem"><div><label for="scen-search">Search</label><input type="search" id="scen-search" data-testid="scen-search" placeholder="coupon, return, otp…"></div>
+        <div><label for="scen-area">Area</label><select id="scen-area" data-testid="scen-area"><option value="">All areas</option>${areas.map(a => `<option>${esc(a)}</option>`).join('')}</select></div>
+        <div><label for="scen-type">Type</label><select id="scen-type" data-testid="scen-type"><option value="">All types</option><option>UI</option><option>API</option><option>UI + API</option></select></div>
+        <div><label for="scen-status">Progress</label><select id="scen-status" data-testid="scen-status"><option value="">All</option><option value="todo">Not automated</option><option value="done">Automated</option></select></div></div>
+      <p class="muted" id="scen-count" data-testid="scen-count"></p><div class="scenario-list" id="scenario-list" data-testid="scenario-list"></div>`;
+    const progress = () => {
+      const n = list.filter(x => done.has(x.id)).length;
+      $('#scenario-progress-text').textContent = `${n} of ${list.length} scenarios automated`;
+      $('#scenario-progress-bar').style.width = (list.length ? n / list.length * 100 : 0) + '%';
+      $('#scenario-progress').setAttribute('aria-valuenow', n);
+    };
+    const paint = () => {
+      const q = F.q.toLowerCase();
+      const shown = list.filter(x => (!F.area || x.area === F.area) && (!F.type || x.type === F.type) && (!F.status || (F.status === 'done') === done.has(x.id)) && (!q || (x.id + ' ' + x.title + ' ' + x.pre + ' ' + x.steps.join(' ') + ' ' + x.expected.join(' ')).toLowerCase().includes(q)));
+      $('#scen-count').textContent = `Showing ${shown.length} of ${list.length}`;
+      $('#scenario-list').innerHTML = shown.map(x => `<details class="scenario ${done.has(x.id) ? 'done' : ''}" data-testid="scenario" id="scenario-${x.id}"><summary><span class="scen-id">${x.id}</span><span class="scen-title">${esc(x.title)}</span><span class="scen-tags"><span class="tag">${esc(x.area)}</span><span class="tag">${esc(x.type)}</span><span class="tag pri-${x.priority.toLowerCase()}">${x.priority}</span>${done.has(x.id) ? '<span class="tag done-tag">Automated</span>' : ''}</span></summary>
+        <div class="scen-body"><p><strong>Before you start:</strong> ${esc(x.pre)}</p><div class="scen-cols"><div><h3>Steps</h3><ol>${x.steps.map(t => `<li>${esc(t)}</li>`).join('')}</ol></div><div><h3>Expected results</h3><ul>${x.expected.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div></div>
+        <label class="check"><input type="checkbox" data-done="${x.id}" data-testid="scenario-done" ${done.has(x.id) ? 'checked' : ''}> I have automated this scenario</label></div></details>`).join('') || '<p class="empty">No scenarios match these filters.</p>';
+      $$('[data-done]').forEach(cb => cb.onchange = () => { if (cb.checked) done.add(cb.dataset.done); else done.delete(cb.dataset.done); writeJSON('shoplab_scenarios_done', Array.from(done)); progress(); const d = cb.closest('details'); d.classList.toggle('done', cb.checked); });
+    };
+    $('#scen-search').oninput = e => { F.q = e.target.value; paint(); };
+    $('#scen-area').onchange = e => { F.area = e.target.value; paint(); };
+    $('#scen-type').onchange = e => { F.type = e.target.value; paint(); };
+    $('#scen-status').onchange = e => { F.status = e.target.value; paint(); };
+    progress(); paint();
+  }
+
   // ---------------- boot ----------------
   async function init() {
     applyTheme(); renderModeStrip();
@@ -2431,6 +3632,7 @@ var ShopLabCore = (function () {
       if (r.ok) { S.user = r.body.user; S.session = r.body.session; } else setToken(null);
     }
     renderUserMenu(); await refreshCounts(); router();
+    showCookieBanner();
   }
   init();
 })();
