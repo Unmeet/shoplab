@@ -770,6 +770,29 @@ body.has-sticky .toasts, body.has-sticky .compare-tray { bottom: calc(5.2rem + e
 @media (max-width: 600px) { .lab-grid { grid-template-columns: minmax(0, 1fr); } .lab-grid > .box { grid-column: auto !important; } .otp-boxes { gap: .3rem; } .otp-boxes input { width: 38px; height: 46px; } }
 .lab-body { grid-template-columns: minmax(0, 1fr); } .lab-card { min-width: 0; }
 
+/* ---------- API activity panel ---------- */
+.api-activity { position: fixed; left: 0; right: 0; bottom: 0; height: min(44vh, 420px); z-index: 72; background: var(--surface); border-top: 2px solid var(--accent); box-shadow: 0 -12px 30px rgba(0, 0, 0, .15); display: flex; flex-direction: column; padding-bottom: env(safe-area-inset-bottom, 0px); }
+body.aa-open { padding-bottom: min(44vh, 420px); }
+body.aa-open .toasts, body.aa-open .compare-tray, body.aa-open .sticky-buy, body.aa-open .cookie-banner { bottom: min(44vh, 420px); }
+.aa-head { display: flex; align-items: center; gap: .8rem; padding: .45rem 1rem; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.aa-tools { margin-left: auto; display: flex; gap: .5rem; align-items: center; }
+.aa-tools .icon-btn { width: 32px; height: 32px; }
+.aa-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+.aa-list { list-style: none; margin: 0; padding: .3rem; overflow-y: auto; border-right: 1px solid var(--line); }
+.aa-row { width: 100%; display: grid; grid-template-columns: 58px minmax(0, 1fr) auto auto; grid-template-areas: "m p s t" "m l l l"; gap: .05rem .5rem; align-items: center; text-align: left; padding: .4rem .5rem; border: 0; border-radius: 6px; background: none; color: var(--ink); cursor: pointer; font: inherit; }
+.aa-row:hover { background: var(--surface-2); }
+.aa-row.sel { background: var(--accent-soft); }
+.aa-row .method { grid-area: m; }
+.aa-path { grid-area: p; font: .8rem ui-monospace, Menlo, monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.aa-row .code-pill { grid-area: s; font-size: .72rem; padding: .1em .5em; }
+.aa-ms { grid-area: t; font-size: .74rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.aa-label { grid-area: l; font-size: .76rem; color: var(--muted); }
+.aa-detail { overflow-y: auto; padding: .6rem 1rem; }
+.aa-detail h3 { font-size: .82rem; margin: .8rem 0 .3rem; color: var(--muted); }
+.aa-detail pre.out { max-height: 180px; font-size: .76rem; padding: .6rem; }
+.aa-detail p { margin: 0 0 .3rem; }
+@media (max-width: 760px) { .aa-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: 45% 55%; } .aa-list { border-right: 0; border-bottom: 1px solid var(--line); } }
+
 </style>
 </head>
 <body>
@@ -871,7 +894,7 @@ var ShopLabCore = (function () {
     { id: 7, username: 'returning_user', email: 'returning@shoplab.test', firstName: 'Rae', lastName: 'Returning', role: 'customer', status: 'active', phone: '+91 98765 43210', behaviour: 'Has saved addresses, a wishlist and past orders, including one you can return.' }
   ];
 
-  const GROUPS = ['Auth', 'Products', 'Cart', 'Wishlist', 'Addresses', 'Orders', 'Inbox', 'Users', 'Utilities'];
+  const GROUPS = ['Auth', 'Products', 'Cart', 'Wishlist', 'Addresses', 'Checkout', 'Orders', 'Inbox', 'Users', 'Utilities'];
   const SALE = { 1: 149.99, 6: 99.0, 9: 45.0, 12: 52.0, 17: 55.0, 19: 30.0, 21: 40.0 };
   const GIFT_WRAP = 2.99, COD_FEE = 1.99, COD_LIMIT = 200;
   const BANKS = ['Axis Bank', 'HDFC Bank', 'ICICI Bank', 'Kotak Mahindra Bank', 'State Bank of India', 'Yes Bank'];
@@ -893,8 +916,8 @@ var ShopLabCore = (function () {
     { group: 'Auth', method: 'POST', path: '/api/auth/forgot-password', auth: 'none', desc: 'Emails a 6-digit reset code. Always 200, so it never reveals which emails exist.', body: { email: 'standard@shoplab.test' } },
     { group: 'Auth', method: 'POST', path: '/api/auth/reset-password', auth: 'none', desc: 'Set a new password with the emailed code. Logs out every session.', body: { email: 'standard@shoplab.test', code: '123456', newPassword: 'NewPass@123' } },
     { group: 'Auth', method: 'POST', path: '/api/auth/change-password', auth: 'user', desc: 'Change password while logged in.', body: { currentPassword: 'Practice@123', newPassword: 'NewPass@123' } },
-    { group: 'Products', method: 'GET', path: '/api/products', sample: '/api/products?category=electronics&sort=price_asc&page=1&limit=5', auth: 'none', desc: 'List with search, category, minPrice, maxPrice, minRating, inStock, onSale, sort, page, limit.' },
-    { group: 'Products', method: 'GET', path: '/api/products/:id', sample: '/api/products/1', auth: 'none', desc: 'One product.' },
+    { group: 'Products', method: 'GET', path: '/api/products', sample: '/api/products?category=electronics&sort=price_asc&page=1&limit=5', auth: 'none', desc: 'List with search, category, minPrice, maxPrice, minRating, inStock, onSale, sort, page, limit. Sends X-Total-Count, Link and ETag headers.' },
+    { group: 'Products', method: 'GET', path: '/api/products/:id', sample: '/api/products/1', auth: 'none', desc: 'Product details. Send If-None-Match with the ETag to get 304 Not Modified.' },
     { group: 'Products', method: 'POST', path: '/api/products', auth: 'admin', desc: 'Create a product.', body: { name: 'Test Product', category: 'electronics', price: 9.99, stock: 10, description: 'Created by an API test.' } },
     { group: 'Products', method: 'PUT', path: '/api/products/:id', sample: '/api/products/1', auth: 'admin', desc: 'Replace a product (all fields).', body: { name: 'Aurora Wireless Headphones', category: 'electronics', price: 119.99, stock: 30, description: 'Updated by PUT.' } },
     { group: 'Products', method: 'PATCH', path: '/api/products/:id', sample: '/api/products/1', auth: 'admin', desc: 'Update some fields.', body: { price: 99.99 } },
@@ -922,7 +945,8 @@ var ShopLabCore = (function () {
     { group: 'Addresses', method: 'PUT', path: '/api/addresses/:id', sample: '/api/addresses/1', auth: 'user', desc: 'Replace a saved address.', body: { label: 'Home', fullName: 'Rae Returning', phone: '+91 98765 43210', line1: '221 Lake View Road', city: 'Bengaluru', state: 'KA', zip: '560001', country: 'IN' } },
     { group: 'Addresses', method: 'POST', path: '/api/addresses/:id/default', sample: '/api/addresses/2/default', auth: 'user', desc: 'Make an address the default.' },
     { group: 'Addresses', method: 'DELETE', path: '/api/addresses/:id', sample: '/api/addresses/2', auth: 'user', desc: 'Delete an address. Returns 204.' },
-    { group: 'Orders', method: 'POST', path: '/api/orders', auth: 'user', desc: 'Place an order. payment.method: card (4111… passes, 4000…0002 declines, 4000…3220 needs threeDSCode 123456), upi (fail@upi declines), netbanking, or cod (orders up to $200, +$1.99). Optional billingAddress, scheduledDelivery, deliveryInstructions, orderNotes.', body: { shippingAddress: { fullName: 'Sam Standard', phone: '+1 555 010 1001', line1: '12 Test Street', city: 'Austin', state: 'TX', zip: '73301', country: 'US' }, payment: { cardName: 'Sam Standard', cardNumber: '4111 1111 1111 1111', expiry: '12/30', cvv: '123' } } },
+    { group: 'Checkout', method: 'GET', path: '/api/checkout/summary', sample: '/api/checkout/summary?paymentMethod=cod&zip=560001', auth: 'user', desc: 'Order summary for checkout: items, discount, shipping, tax, payment fee, total, cash-on-delivery availability and estimated delivery.' },
+    { group: 'Checkout', method: 'POST', path: '/api/orders', auth: 'user', desc: 'Place an order. payment.method: card (4111… passes, 4000…0002 declines, 4000…3220 needs threeDSCode 123456), upi (fail@upi declines), netbanking, or cod (orders up to $200, +$1.99). Optional billingAddress, scheduledDelivery, deliveryInstructions, orderNotes.', body: { shippingAddress: { fullName: 'Sam Standard', phone: '+1 555 010 1001', line1: '12 Test Street', city: 'Austin', state: 'TX', zip: '73301', country: 'US' }, payment: { cardName: 'Sam Standard', cardNumber: '4111 1111 1111 1111', expiry: '12/30', cvv: '123' } } },
     { group: 'Orders', method: 'GET', path: '/api/orders', sample: '/api/orders?status=placed&sort=newest', auth: 'user', desc: 'Your orders. Filter by status, sort by newest, oldest or total_desc.' },
     { group: 'Orders', method: 'GET', path: '/api/orders/:id', sample: '/api/orders/1001', auth: 'user', desc: 'One order. Status moves from placed to delivered over 10 minutes.' },
     { group: 'Orders', method: 'POST', path: '/api/orders/:id/cancel', sample: '/api/orders/1002/cancel', auth: 'user', desc: 'Cancel an order before it ships.' },
@@ -1042,6 +1066,12 @@ var ShopLabCore = (function () {
       return d.length ? { details: d } : { value: Object.keys(v).length ? v : null };
     }
     function extrasFor(options, p) { const o = options || {}; let e = 0; if (o.giftWrap) e += GIFT_WRAP; if (o.protection) e += round(p.price * (o.protection === '1y' ? 0.08 : 0.12)); return round(e); }
+    function codCheck(view, zip) {
+      if (view.total > COD_LIMIT) return 'Cash on delivery is available for orders up to $' + COD_LIMIT + '.';
+      if (zip && /9$/.test(String(zip))) return 'Cash on delivery is not available for remote postal codes.';
+      return null;
+    }
+    function hashText(t) { let h = 5381; for (let i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) >>> 0; return h.toString(36); }
     function addBusinessDays(n) { const d = new Date(); d.setHours(12, 0, 0, 0); let left = n; while (left > 0) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0 && d.getDay() !== 6) left--; } return d.toISOString().slice(0, 10); }
     function validateAddress(a, prefix) {
       const d = [], p = prefix || '';
@@ -1182,7 +1212,7 @@ var ShopLabCore = (function () {
     route('GET', '/api/status/:code', null, c => {
       const code = parseId(c.params.code);
       if (!(code >= 200 && code <= 599)) return err(400, 'INVALID_STATUS', 'Status code must be between 200 and 599.');
-      if (code === 204 || code === 304) return ok(code, null);
+      if (code === 204 || code === 205 || code === 304) return ok(code, null);
       return ok(code, { status: code, message: 'You asked for HTTP ' + code + '.' });
     });
     route('GET', '/api/flaky', null, () => {
@@ -1398,7 +1428,12 @@ var ShopLabCore = (function () {
       if (q.onSale === 'true') list = list.filter(p => p.compareAtPrice && p.compareAtPrice > p.price);
       list.sort(sorts[sort]);
       const total = list.length;
-      return ok(200, { data: list.slice((page - 1) * limit, page * limit), meta: { page, limit, total, totalPages: Math.max(1, Math.ceil(total / limit)), sort } });
+      const totalPages = Math.max(1, Math.ceil(total / limit));
+      const link = p => '</api/products?' + Object.keys(q).filter(k => k !== 'page').map(k => encodeURIComponent(k) + '=' + encodeURIComponent(q[k])).concat(['page=' + p]).join('&') + '>';
+      const links = [link(1) + '; rel="first"', link(totalPages) + '; rel="last"'];
+      if (page > 1) links.push(link(page - 1) + '; rel="prev"');
+      if (page < totalPages) links.push(link(page + 1) + '; rel="next"');
+      return ok(200, { data: list.slice((page - 1) * limit, page * limit), meta: { page, limit, total, totalPages, sort } }, { 'x-total-count': String(total), link: links.join(', ') });
     });
     route('GET', '/api/products/:id', null, c => {
       const id = parseId(c.params.id);
@@ -1488,6 +1523,14 @@ var ShopLabCore = (function () {
       return ok(200, { zip, deliverable: true, remote, cashOnDelivery: !remote, options: Object.values(SHIPPING).map(m => ({ method: m.id, label: m.label, estimatedDate: addBusinessDays({ standard: 5, express: 2, overnight: 1 }[m.id] + extra) })), message: remote ? 'Remote area: deliveries take 2 extra business days and cash on delivery is unavailable.' : 'Delivery available.' });
     });
     route('GET', '/api/cart', 'user', c => ok(200, cartView(c.user.id)));
+    route('GET', '/api/checkout/summary', 'user', c => {
+      const pm = str(c.query.paymentMethod) || 'card';
+      if (!['card', 'upi', 'netbanking', 'cod'].includes(pm)) return err(400, 'INVALID_QUERY', 'paymentMethod must be card, upi, netbanking or cod.', [{ field: 'paymentMethod', message: 'Unknown payment method.' }]);
+      const view = cartView(c.user.id);
+      if (!view.items.length) return err(400, 'CART_EMPTY', 'Your cart is empty.');
+      const zip = str(c.query.zip).toUpperCase(), why = codCheck(view, zip), fee = pm === 'cod' && !why ? COD_FEE : 0, m = SHIPPING[view.shippingMethod];
+      return ok(200, Object.assign({}, view, { shippingLabel: m.label, paymentMethod: pm, paymentFee: fee, total: round(view.total + fee), codAvailable: !why, codReason: why, estimatedDelivery: addBusinessDays({ standard: 5, express: 2, overnight: 1 }[m.id] + (/9$/.test(zip) ? 2 : 0)) }));
+    });
     route('POST', '/api/cart/items', 'user', c => {
       const b = c.body;
       const qty = b.quantity === undefined ? 1 : b.quantity;
@@ -1640,8 +1683,8 @@ var ShopLabCore = (function () {
         if (!BANKS.includes(pay.bank)) return err(422, 'PAYMENT_INVALID', 'The payment details are not valid.', [{ field: 'payment.bank', message: 'Choose one of: ' + BANKS.join(', ') + '.' }]);
         paymentRecord = { method, brand: 'Net banking', last4: '', label: 'Net banking (' + pay.bank + ')' };
       } else if (method === 'cod') {
-        if (view.total > COD_LIMIT) return err(409, 'COD_NOT_AVAILABLE', 'Cash on delivery is available for orders up to $' + COD_LIMIT + '.');
-        if (/9$/.test(str(a.zip))) return err(409, 'COD_NOT_AVAILABLE', 'Cash on delivery is not available for remote postal codes.');
+        const why = codCheck(view, str(a.zip));
+        if (why) return err(409, 'COD_NOT_AVAILABLE', why);
         fee = COD_FEE;
         paymentRecord = { method, brand: 'Cash on delivery', last4: '', label: 'Cash on delivery' };
       }
@@ -1852,6 +1895,13 @@ var ShopLabCore = (function () {
       } catch (e) {
         res = err(500, 'INTERNAL_ERROR', 'Unexpected server error: ' + e.message);
       }
+      if (method === 'GET' && res.status === 200 && !res.raw && res.body) {
+        if (/^\/api\/(products(\/\d+)?|categories)$/.test(path)) {
+          const tag = 'W/"' + hashText(JSON.stringify(res.body)) + '"';
+          if (headers['if-none-match'] === tag) res = { status: 304, body: null, headers: {}, delay: res.delay };
+          res.headers = Object.assign(res.headers || {}, { etag: tag, 'cache-control': 'no-cache' });
+        } else if (headers.authorization) res.headers = Object.assign(res.headers || {}, { 'cache-control': 'no-store' });
+      }
       res.headers = Object.assign({ 'x-request-id': 'req_' + rid(12), 'x-powered-by': 'ShopLab' }, res.headers || {});
       if (res.body !== null && res.body !== undefined && !res.raw) res.headers['content-type'] = 'application/json; charset=utf-8';
       res.delay = (res.delay || 0) + (exempt ? 0 : db.config.latencyMs);
@@ -2000,7 +2050,22 @@ window.ShopLabScenarios = [
     expected: ['The item leaves the cart totals and appears under “Saved for later”.', 'Moving it back keeps its options.', 'Removing it leaves both lists without it.'] },
   { id: 'SC-44', area: 'Product', type: 'UI', priority: 'Low', title: 'Gallery, lightbox and sticky add-to-cart',
     pre: 'Open #product-1.', steps: ['Hover each gallery thumbnail, then open the main image.', 'Use the arrow keys in the lightbox.', 'Scroll past the Add to cart button and use the sticky bar.'],
-    expected: ['The main image follows the thumbnails.', 'The lightbox counter reads “3 / 4” and wraps around.', 'The sticky bar appears only after the main button scrolls out of view and adds the item with the chosen options.'] }
+    expected: ['The main image follows the thumbnails.', 'The lightbox counter reads “3 / 4” and wraps around.', 'The sticky bar appears only after the main button scrolls out of view and adds the item with the chosen options.'] },
+  { id: 'SC-45', area: 'API', type: 'UI + API', priority: 'High', title: 'Wait on real API responses during login',
+    pre: 'Site opened over https (GitHub Pages) or a hosted API connected.', steps: ['Start waiting for the response to POST …/api/auth/login.', 'Log in through the form.', 'Read the response JSON.'],
+    expected: ['The response status is 200 and the JSON has a token and the user.', 'DevTools → Network lists the call; in service-worker mode it is marked as served by the service worker.', 'The header shows “Hi, Sam” only after the response arrives.'] },
+  { id: 'SC-46', area: 'API', type: 'UI + API', priority: 'High', title: 'UI order summary matches the API',
+    pre: 'Logged in with items in the cart.', steps: ['Go to the checkout review step and capture GET /api/checkout/summary.', 'Switch payment to cash on delivery (if allowed) and capture the next summary call.'],
+    expected: ['Every summary line on the page equals the matching field in the response.', 'The cash-on-delivery fee and new total come from the API response, not a page calculation.'] },
+  { id: 'SC-47', area: 'API', type: 'UI + API', priority: 'Medium', title: 'Mock the product details API',
+    pre: 'Hosted API connected (or the server kit). Use page.route or cy.intercept.', steps: ['Stub GET /api/products/2 to return a product named “Mocked product”.', 'Open #product-2.', 'Stub it to return 500 instead.'],
+    expected: ['The page shows “Mocked product”.', 'With a 500 the page shows the error message instead of crashing.'] },
+  { id: 'SC-48', area: 'API', type: 'API', priority: 'Medium', title: 'Caching and paging headers',
+    pre: 'None.', steps: ['GET /api/products/1 and keep the ETag.', 'Repeat with If-None-Match set to that ETag.', 'GET /api/products?limit=5&page=2.'],
+    expected: ['The repeat returns 304 with no body.', 'The list sends X-Total-Count: 24 and a Link header with first, last, prev and next.', 'Authenticated responses send Cache-Control: no-store.'] },
+  { id: 'SC-49', area: 'Orders', type: 'UI + API', priority: 'Medium', title: 'Confirmation page survives a refresh',
+    pre: 'Logged in.', steps: ['Place an order.', 'Check the URL is #order-confirmation-<id> and refresh the page.'],
+    expected: ['POST /api/orders returns 201 with a Location header.', 'After the refresh the page calls GET /api/orders/<id> and shows the same order number and total.'] }
 ];
 
 </script>
@@ -2645,7 +2710,7 @@ window.ShopLabScenarios = [
       ${card('lab-files', 'Upload and download', 'Set files on a file input, drop files on a zone, send a file to the API, and download a CSV.', `
         <div class="lab-grid">
           <div class="box"><label for="file-input">Choose files</label><input type="file" id="file-input" data-testid="file-input" multiple style="margin-top:.4rem;max-width:100%"><div class="upload-zone" id="upload-zone" data-testid="upload-zone" style="margin-top:.8rem">Or drop files here</div><ul id="file-list" data-testid="file-list"></ul><button type="button" class="btn small" id="upload-btn" data-testid="upload-btn" disabled>Upload first file to the API</button><p class="result" id="upload-result" data-testid="upload-result">No upload yet.</p></div>
-          <div class="box"><h3>Download</h3>${MODE === 'server' ? '<a class="btn small" href="/api/files/sample.csv" download id="download-csv" data-testid="download-csv">Download products CSV</a><p class="muted" style="font-size:.85rem;margin-top:.6rem">The file arrives as <code>shoplab-products.csv</code>.</p>' : '<p class="muted">Downloads work in the server kit, where this button links to <code>/api/files/sample.csv</code>. Hosted demo pages cannot save files.</p><button type="button" class="btn small" disabled id="download-csv" data-testid="download-csv">Download products CSV</button>'}</div>
+          <div class="box"><h3>Download</h3>${MODE !== 'mock' ? '<a class="btn small" href="' + ctx.apiUrl('/api/files/sample.csv') + '" download="shoplab-products.csv" id="download-csv" data-testid="download-csv">Download products CSV</a><p class="muted" style="font-size:.85rem;margin-top:.6rem">The file arrives as <code>shoplab-products.csv</code>.</p>' : '<p class="muted">Downloads work in the server kit, where this button links to <code>/api/files/sample.csv</code>. Hosted demo pages cannot save files.</p><button type="button" class="btn small" disabled id="download-csv" data-testid="download-csv">Download products CSV</button>'}</div>
         </div>`)}
       ${card('lab-table', 'Web table', 'Search, sort by any column, change page size, paginate, and add, edit or delete rows.', `
         <div class="table-tools"><div><label for="table-search">Search</label><input type="search" id="table-search" data-testid="table-search" placeholder="Name, email or department"></div>
@@ -2665,7 +2730,7 @@ window.ShopLabScenarios = [
         <div class="row-btns" style="align-items:center"><img id="img-ok" data-testid="img-ok" alt="Working image" width="80" height="80" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='12' fill='%23F3B52F'/%3E%3Ctext x='40' y='52' font-size='34' text-anchor='middle'%3E%E2%9C%93%3C/text%3E%3C/svg%3E">
         <img id="img-broken-1" data-testid="img-broken" alt="Broken image one" width="80" height="80" src="data:image/png;base64,broken">
         <img id="img-broken-2" data-testid="img-broken" alt="Broken image two" width="80" height="80" src="missing-image.png"></div>
-        <ul><li><a href="#shop" id="link-ok" data-testid="link-ok">Working link to the shop</a></li><li><a href="#no-such-page" id="link-missing-route" data-testid="link-missing-route">Link to a missing page</a></li>${MODE === 'server' ? '<li><a href="/api/status/500" id="link-500" data-testid="link-500">Link that returns HTTP 500</a></li><li><a href="/does-not-exist" id="link-404" data-testid="link-404">Link that returns HTTP 404</a></li>' : '<li class="muted">In the server kit, two more links here return HTTP 500 and HTTP 404.</li>'}</ul>
+        <ul><li><a href="#shop" id="link-ok" data-testid="link-ok">Working link to the shop</a></li><li><a href="#no-such-page" id="link-missing-route" data-testid="link-missing-route">Link to a missing page</a></li>${MODE !== 'mock' ? '<li><a href="' + ctx.apiUrl('/api/status/500') + '" id="link-500" data-testid="link-500">Link that returns HTTP 500</a></li><li><a href="' + (MODE === 'server' ? '/does-not-exist' : 'does-not-exist') + '" id="link-404" data-testid="link-404">Link that returns HTTP 404</a></li>' : '<li class="muted">In the server kit, two more links here return HTTP 500 and HTTP 404.</li>'}</ul>
         <button type="button" class="btn small" id="check-images" data-testid="check-images">Count broken images</button><p class="result" id="images-result" data-testid="images-result"></p>`)}
       ${card('lab-modals', 'Modals and toasts', 'A modal with a form, a confirmation dialog, and toasts that dismiss themselves after 4 seconds.', `
         <div class="row-btns"><button type="button" class="btn" id="open-modal" data-testid="open-modal">Open newsletter modal</button><button type="button" class="btn ghost" id="open-confirm" data-testid="open-confirm">Delete with confirmation</button><button type="button" class="btn ghost" id="toast-success" data-testid="toast-success-btn">Success toast</button><button type="button" class="btn ghost" id="toast-error" data-testid="toast-error-btn">Error toast</button><button type="button" class="btn ghost" id="toast-sticky" data-testid="toast-sticky-btn">Toast that stays</button></div>
@@ -2939,17 +3004,22 @@ window.ShopLabScenarios = [
 <script>
 (function () {
   'use strict';
-  const MODE = window.__SHOPLAB_MODE__ === 'server' ? 'server' : 'mock';
+  // server: the Node kit serves this page and the API. sw: a service worker serves the API at ./api/* (real HTTP requests).
+  // remote: the page calls a hosted ShopLab API on another domain. mock: the API runs inside the page (file:// and sandboxed previews).
+  let MODE = window.__SHOPLAB_MODE__ === 'server' ? 'server' : 'mock';
   const DB_KEY = 'shoplab_db_v1', TOKEN_KEY = 'shoplab_token', THEME_KEY = 'shoplab_theme';
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { /* blocked */ } }
   };
-  const core = MODE === 'mock' ? ShopLabCore.createBackend({
+  let core = null;
+  const makeLocalCore = () => ShopLabCore.createBackend({
     mode: 'mock',
     load() { const raw = store.get(DB_KEY); return raw ? JSON.parse(raw) : null; },
     save(db) { store.set(DB_KEY, JSON.stringify(db)); }
-  }) : null;
+  });
+  const API_BASE_KEY = 'shoplab_api_base';
+  const normBase = v => String(v || '').trim().replace(/\/+$/, '').replace(/\/api$/, '');
 
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -2985,15 +3055,17 @@ window.ShopLabScenarios = [
     let payload = opt.rawBody != null ? opt.rawBody : (opt.body !== undefined ? JSON.stringify(opt.body) : undefined);
     if (payload !== undefined && !h['content-type']) h['content-type'] = 'application/json';
     const t0 = performance.now();
+    const absolute = /^https?:/i.test(url);
+    const target = absolute ? url : MODE === 'remote' ? S.apiBase + url : MODE === 'sw' ? '.' + url : url;
     let out;
     try {
-      if (MODE === 'server') {
-        const r = await fetch(url, { method, headers: h, body: method === 'GET' || method === 'HEAD' ? undefined : payload });
+      if (MODE !== 'mock' || absolute) {
+        const r = await fetch(target, { method, headers: h, body: method === 'GET' || method === 'HEAD' ? undefined : payload, cache: 'no-store' });
         const text = await r.text();
         let data = text;
         if ((r.headers.get('content-type') || '').includes('json')) { try { data = text ? JSON.parse(text) : null; } catch (e) { data = text; } }
         const rh = {}; r.headers.forEach((v, k) => { rh[k] = v; });
-        out = { status: r.status, headers: rh, body: data === '' ? null : data };
+        out = { status: r.status, headers: rh, body: data === '' ? null : data, url: r.url || target };
       } else {
         const u = new URL(url, 'http://localhost:3000');
         const query = {}; u.searchParams.forEach((v, k) => { query[k] = v; });
@@ -3004,18 +3076,19 @@ window.ShopLabScenarios = [
         core.reload();
         const res = core.handle({ method, path: u.pathname, query, headers: h, body: parsed, bodyError, rawLength: payload && method !== 'GET' ? new Blob([payload]).size : 0 });
         await sleep((res.delay || 0) + 60 + Math.random() * 140);
-        out = { status: res.status, headers: res.headers, body: res.body };
+        out = { status: res.status, headers: res.headers, body: res.body, url: 'in-page' + u.pathname + u.search };
       }
     } catch (e) {
       out = { status: 0, headers: {}, body: { error: { code: 'NETWORK_ERROR', message: 'Could not reach the API: ' + e.message } } };
     }
     out.ok = out.status >= 200 && out.status < 300;
     out.time = Math.round(performance.now() - t0);
+    logCall(method, url, out.url || target, h, payload, out);
     if (out.status === 401 && opt.auth !== false && S.token && !opt.silent401 && !/\/auth\/login$/.test(url)) sessionEnded();
     return out;
   }
   const errMsg = r => (r.body && r.body.error && r.body.error.message) || ('Request failed with status ' + r.status + '.');
-  window.ShopLabApi = { request, mode: MODE };
+  window.ShopLabApi = { request, get mode() { return MODE; }, get calls() { return ACT.list.slice(); } };
 
   function setToken(t) { S.token = t; store.set(TOKEN_KEY, t); }
   function sessionEnded() {
@@ -3130,12 +3203,12 @@ window.ShopLabScenarios = [
   function renderModeStrip() {
     const el = $('#mode-strip');
     el.className = 'mode-strip ' + MODE;
-    el.innerHTML = `<div class="inner" data-testid="mode-strip"><span id="mode-label">${MODE === 'server'
-      ? `<strong>Server mode.</strong> The REST API is live at <code>${esc(location.origin)}/api</code>. Point Postman or REST Assured at it.`
-      : `<strong>Demo mode.</strong> The API runs inside this browser. Use the server kit for Postman or REST Assured.`}</span>
+    el.innerHTML = `<div class="inner" data-testid="mode-strip"><span id="mode-label" data-mode="${MODE}">${modeHtml()}</span>
       <span class="strip-tools"><label for="currency-select">Currency</label><select id="currency-select" data-testid="currency-select">${Object.keys(CURRENCIES).map(c => `<option ${c === currency ? 'selected' : ''}>${c}</option>`).join('')}</select>
+      <button type="button" class="link-btn" id="api-activity-toggle" data-testid="api-activity-toggle" aria-expanded="${ACT.open}" aria-controls="api-activity">API activity (<span id="aa-count">${ACT.list.length}</span>)</button>
       <a href="#test-settings" id="test-settings-link" data-testid="test-settings-link">Test settings</a>
       <button type="button" class="link-btn" id="reset-data" data-testid="reset-data">Reset store data</button></span></div>`;
+    $('#api-activity-toggle').onclick = () => { ACT.open = !ACT.open; store.set('shoplab_api_panel', ACT.open ? '1' : null); renderActivity(); };
     $('#currency-select').onchange = e => { currency = e.target.value; store.set('shoplab_currency', currency); toast(`Prices now show in ${currency}. You are always charged in USD.`, 'info'); router(); };
     $('#reset-data').onclick = async () => {
       if (!(await confirmDialog('Reset store data?', 'Products, carts, orders and new accounts go back to the original seed. You stay logged in.', 'Reset data'))) return;
@@ -3271,7 +3344,7 @@ window.ShopLabScenarios = [
   }
 
   // ---------------- router ----------------
-  const views = { oauth: viewOAuth, elements: () => window.ShopLabElements.render(app, { request, toast, esc, MODE }), inbox: viewInbox, track: viewTrack, compare: viewCompare, scenarios: viewScenarios, 'test-settings': viewTestSettings, 'forgot-password': viewForgot, 'reset-password': viewReset, shop: viewShop, cart: viewCart, checkout: viewCheckout, orders: viewOrders, login: viewLogin, register: viewRegister, account: viewAccount, wishlist: viewWishlist, lab: () => window.ShopLabLab.render(app, { request, toast, openModal, closeModal, esc, MODE }), api: viewApi, admin: viewAdmin };
+  const views = { oauth: viewOAuth, elements: () => window.ShopLabElements.render(app, { request, toast, esc, MODE }), inbox: viewInbox, track: viewTrack, compare: viewCompare, scenarios: viewScenarios, 'test-settings': viewTestSettings, 'forgot-password': viewForgot, 'reset-password': viewReset, shop: viewShop, cart: viewCart, checkout: viewCheckout, orders: viewOrders, login: viewLogin, register: viewRegister, account: viewAccount, wishlist: viewWishlist, lab: () => window.ShopLabLab.render(app, { request, toast, openModal, closeModal, esc, MODE, apiUrl }), api: viewApi, admin: viewAdmin };
   async function router() {
     const h = location.hash.slice(1) || 'shop';
     const top = h.split('-')[0];
@@ -3286,6 +3359,7 @@ window.ShopLabScenarios = [
     let m;
     window.scrollTo(0, 0);
     if ((m = /^invoice-(\d+)$/.exec(h))) return viewInvoice(+m[1]);
+    if ((m = /^order-confirmation-(\d+)$/.exec(h))) return viewOrderConfirmation(+m[1]);
     if ((m = /^product-(\d+)$/.exec(h))) return viewProduct(+m[1]);
     if ((m = /^order-(\d+)$/.exec(h))) return viewOrder(+m[1]);
     const v = views[h];
@@ -3426,6 +3500,7 @@ window.ShopLabScenarios = [
       ${c.discount ? `<dt>Discount (${esc(c.coupon.code)})</dt><dd id="summary-discount" data-testid="summary-discount">−${money(c.discount)}</dd>` : ''}
       <dt>Shipping (${esc(ShopLabCore.SHIPPING[c.shippingMethod].label)})</dt><dd id="summary-shipping" data-testid="summary-shipping">${c.shipping ? money(c.shipping) : 'Free'}</dd>
       <dt>Tax (8%)</dt><dd id="summary-tax" data-testid="summary-tax">${money(c.tax)}</dd>
+      ${c.paymentFee ? `<dt>Cash on delivery fee</dt><dd id="summary-cod-fee" data-testid="summary-cod-fee">${money(c.paymentFee)}</dd>` : ''}
       <dt class="total">Total</dt><dd class="total" id="summary-total" data-testid="summary-total">${money(c.total)}</dd></dl>${extra}</aside>`;
   }
 
@@ -3483,7 +3558,7 @@ window.ShopLabScenarios = [
         ${o.scheduledDelivery ? `<p class="muted" id="order-schedule">Scheduled delivery: ${fmtDay(o.scheduledDelivery.date)}, ${esc(o.scheduledDelivery.label)}</p>` : ''}${o.deliveryInstructions ? `<p class="muted">Instructions: ${esc(o.deliveryInstructions)}</p>` : ''}
         <div class="form-actions"><div class="row-btns" style="margin:0"><button type="button" class="btn ghost" id="refresh-order" data-testid="refresh-order">Refresh status</button><button type="button" class="btn ghost" id="reorder-button" data-testid="reorder-button">Buy again</button><a class="btn ghost" href="#invoice-${o.id}" id="view-invoice" data-testid="view-invoice">View invoice</a></div>
           <div class="row-btns" style="margin:0">${o.status === 'placed' || o.status === 'processing' ? `<button type="button" class="btn danger" id="cancel-this-order" data-testid="cancel-order">Cancel order</button>` : ''}${o.status === 'delivered' ? `<button type="button" class="btn danger" id="request-return" data-testid="request-return">Request a return</button>` : ''}</div></div></div>
-        ${summaryHtml({ itemCount: o.items.reduce((s, i) => s + i.quantity, 0), subtotal: o.subtotal, discount: o.discount, coupon: { code: o.coupon }, shippingMethod: o.shippingMethod, shipping: o.shipping, tax: o.tax, total: o.total })}</div>`;
+        ${summaryHtml({ itemCount: o.items.reduce((s, i) => s + i.quantity, 0), subtotal: o.subtotal, discount: o.discount, coupon: { code: o.coupon }, shippingMethod: o.shippingMethod, shipping: o.shipping, tax: o.tax, paymentFee: o.paymentFee, total: o.total })}</div>`;
     $('#refresh-order').onclick = () => viewOrder(id);
     const c = $('#cancel-this-order'); if (c) c.onclick = () => cancelOrder(id, () => viewOrder(id));
     const rb = $('#request-return'); if (rb) rb.onclick = () => returnModal(o);
@@ -3670,8 +3745,8 @@ window.ShopLabScenarios = [
     const groups = {};
     ShopLabCore.GROUPS.forEach(g => { groups[g] = []; });
     ShopLabCore.ENDPOINTS.forEach((e, i) => { groups[e.group].push([e, i]); });
-    const base = MODE === 'server' ? location.origin : 'http://localhost:3000';
-    app.innerHTML = `<div class="page-head"><h1>API console</h1><p>${MODE === 'server' ? `Requests go over HTTP to <code>${esc(base)}/api</code>, the same URL your API tests use.` : 'In demo mode requests are answered by the in-browser API, with the same rules and status codes as the server kit. Copy the cURL to run against the kit later.'} Pick an endpoint to load an example request.</p></div>
+    const base = MODE === 'server' ? location.origin : MODE === 'remote' ? S.apiBase : MODE === 'sw' ? location.href.split('#')[0].split('?')[0].replace(/\/[^/]*$/, '') : 'http://localhost:3000';
+    app.innerHTML = `<div class="page-head"><h1>API console</h1><p>${MODE === 'server' || MODE === 'remote' ? `Requests go over HTTP to <code>${esc(base)}/api</code>, the same URL your API tests use.` : MODE === 'sw' ? `Requests are real HTTP calls to <code>${esc(base)}/api</code>, answered by a service worker in this browser, so they appear in DevTools but not in Postman. Connect a hosted API in Test settings for Postman.` : 'In demo mode requests are answered inside the page, with the same rules and status codes as the server kit. Copy the cURL to run against the kit later.'} Pick an endpoint to load an example request.</p></div>
       <div class="api"><nav class="ep-list" aria-label="Endpoints" data-testid="endpoint-list">${Object.keys(groups).map(g => `<div class="ep-group"><h3>${esc(g)}</h3>${groups[g].map(([e, i]) => `<button type="button" class="ep" data-ep="${i}" data-testid="endpoint"><span class="method m-${e.method}">${e.method}</span><code>${esc(e.path)}</code><small>${esc(e.desc)} ${e.auth !== 'none' ? `<span class="lock">${e.auth === 'admin' ? 'Admin token.' : 'Needs token.'}</span>` : ''}</small></button>`).join('')}</div>`).join('')}</nav>
       <div class="panel" data-testid="api-console">
         <div class="req-line"><div><label for="api-method">Method</label><select id="api-method" data-testid="api-method">${['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].map(m => `<option>${m}</option>`).join('')}</select></div>
@@ -4075,7 +4150,7 @@ window.ShopLabScenarios = [
     const r = await request('GET', '/api/config', { auth: false });
     if (nav !== S.nav) return;
     const cfg = r.ok ? r.body : { latencyMs: 0, failureRate: 0 };
-    app.innerHTML = `<div class="page-head"><h1>Test settings</h1><p>Turn on the things real sites throw at your tests. Browser settings apply to this browser only. Chaos settings apply to ${MODE === 'server' ? 'everyone using this server' : 'this browser'}.</p></div>
+    app.innerHTML = `<div class="page-head"><h1>Test settings</h1><p>Turn on the things real sites throw at your tests. Browser settings apply to this browser only. Chaos settings apply to ${MODE === 'server' || MODE === 'remote' ? 'everyone using this API server' : 'this browser'}.</p></div>
       <div class="two-col even">
         <section class="panel" aria-labelledby="int-title"><h2 id="int-title">Interruptions</h2>
           <label class="switch" for="pref-cookie"><input type="checkbox" id="pref-cookie" data-testid="pref-cookie" role="switch" ${pr.cookieBanner ? 'checked' : ''}><span class="track" aria-hidden="true"></span>Show the cookie banner until a choice is made</label>
@@ -4095,6 +4170,12 @@ window.ShopLabScenarios = [
           <div class="row-btns"><button type="button" class="btn" id="save-chaos" data-testid="save-chaos">Save chaos settings</button><button type="button" class="btn ghost" id="reset-chaos" data-testid="reset-chaos">Turn chaos off</button></div>
           <p class="muted" style="font-size:.88rem">Failed requests return HTTP 503 <code>CHAOS_FAILURE</code>. The health, config and reset endpoints are never slowed or failed, so you can always recover.</p>
         </section></div>
+      ${MODE === 'server' ? '' : `<section class="panel" style="margin-top:1.75rem" aria-labelledby="api-server-title" data-testid="api-server-settings"><h2 id="api-server-title">API server</h2>
+        <p>The store is using: <strong id="api-mode-label" data-testid="api-mode-label">${MODE === 'remote' ? 'your hosted API at ' + esc(S.apiBase) : MODE === 'sw' ? 'the live in-browser API (service worker)' : 'the in-page demo API'}</strong></p>
+        <p class="muted">Deploy the server kit (Render, Railway or any Node host) and connect it here. The store then calls your API over the internet, the way real sites call their backend, so Postman, REST Assured, Cypress <code>cy.intercept</code> and Playwright <code>page.route</code> all see the same requests. You can also open the site with <code>?api=https://your-api.example.com</code>.</p>
+        <form id="api-base-form" class="coupon-row" novalidate><div style="flex:1"><label for="api-base-input">API base URL</label><input id="api-base-input" type="url" data-testid="api-base-input" placeholder="https://shoplab-api.onrender.com" value="${esc(store.get(API_BASE_KEY) || '')}"></div><button class="btn" type="submit" id="api-base-save" data-testid="api-base-save">Connect</button></form>
+        <div class="field-error" id="api-base-error" data-testid="api-base-error" role="alert"></div>
+        ${store.get(API_BASE_KEY) ? '<p style="margin-top:.8rem"><button type="button" class="btn small ghost" id="api-base-clear" data-testid="api-base-clear">Disconnect and use the built-in API</button></p>' : ''}</section>`}
       <section class="panel" style="margin-top:1.75rem" aria-labelledby="skip-title"><h2 id="skip-title">Skip interruptions in automated tests</h2>
         <p>Real teams pre-set consent state rather than clicking banners in every test. Set these browser storage keys before the page loads:</p>
         <pre class="out" data-testid="skip-snippet">// Playwright
@@ -4115,6 +4196,22 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
         <h3 style="margin-top:1.2rem">Start from a clean browser</h3><p class="muted">Removes every ShopLab key: login, guest cart, settings, comparison and, in demo mode, the store data.</p>
         <button type="button" class="btn danger" id="clear-browser" data-testid="clear-browser">Clear all ShopLab browser data</button></section>`;
     const savePrefs = () => { writeJSON('shoplab_prefs', { cookieBanner: $('#pref-cookie').checked, newsletter: $('#pref-newsletter').checked, newsletterDelay: Math.max(0, Math.min(120, parseInt($('#pref-newsletter-delay').value, 10) || 0)), miniCart: $('#pref-minicart').checked }); toast('Browser settings saved.', 'success'); };
+    const abf = $('#api-base-form');
+    if (abf) abf.onsubmit = async e => {
+      e.preventDefault();
+      const v = normBase($('#api-base-input').value), errEl = $('#api-base-error');
+      errEl.textContent = '';
+      if (!/^https:\/\/[^\s/]+/i.test(v) && !/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test(v)) { errEl.textContent = 'Use an https:// address (or http://localhost for a local server).'; return; }
+      const btn = $('#api-base-save'); setBusy(btn, true, 'Connecting…');
+      const okConn = await connectRemote(v, true);
+      setBusy(btn, false);
+      if (!okConn) { errEl.textContent = `No ShopLab API answered at ${v}/api/health. Check the address and that the server allows CORS.`; return; }
+      store.set(API_BASE_KEY, v); setToken(null);
+      toast('Connected. Reloading the store with your API…', 'success');
+      setTimeout(() => location.reload(), 600);
+    };
+    const abc = $('#api-base-clear');
+    if (abc) abc.onclick = () => { store.set(API_BASE_KEY, null); setToken(null); location.reload(); };
     $('#reset-announcement').onclick = () => { store.set('shoplab_announce_closed', null); renderAnnouncement(); toast('The announcement bar is back.', 'success'); };
     ['#pref-cookie', '#pref-newsletter', '#pref-newsletter-delay', '#pref-minicart'].forEach(sel => { $(sel).onchange = savePrefs; });
     $('#reset-cookie').onclick = () => { store.set('shoplab_cookie_consent', null); $('#cookie-state').textContent = 'Saved choice: none yet'; showCookieBanner(); toast('Cookie choice forgotten.', 'success'); };
@@ -4969,17 +5066,22 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
     const nav = S.nav;
     if (!requireLogin('checkout')) return;
     const ck = S.checkout;
-    if (ck.placed) return renderOrderPlaced();
     const r = await request('GET', '/api/cart');
     if (nav !== S.nav) return;
     if (!r.ok) return;
     S.cart = r.body; updateBadges();
     if (!S.cart.items.length) { app.innerHTML = '<div class="empty" data-testid="checkout-empty"><h1>Nothing to check out</h1><p class="muted">Your cart is empty.</p><a class="btn" href="#shop">Go to the shop</a></div>'; return; }
     const names = ['Shipping address', 'Delivery', 'Payment', 'Review'];
-    const fee = ck.payment && ck.payment.method === 'cod' ? ShopLabCore.COD_FEE : 0;
+    const pmNow = (ck.payment && ck.payment.method) || 'card';
+    const loadSummary = async method => { const sr = await request('GET', `/api/checkout/summary?paymentMethod=${method}&zip=${encodeURIComponent((ck.address || {}).zip || '')}`); return sr.ok ? sr.body : null; };
+    const sum = await loadSummary(pmNow);
+    if (nav !== S.nav) return;
+    const fee = sum ? sum.paymentFee : 0;
+    const etaHtml = sm => sm ? `<p class="muted small" id="summary-eta" data-testid="summary-eta">Estimated delivery: ${fmtDay(sm.estimatedDelivery)}</p>` : '';
+    const paintSummary = sm => { const old = $('.summary'); if (old && sm) old.outerHTML = summaryHtml(sm, etaHtml(sm)); };
     app.innerHTML = `<div class="page-head"><h1>Checkout</h1><p class="secure-note" style="justify-content:flex-start">🔒 Secure checkout</p></div>
       <ol class="steps" aria-label="Checkout progress" data-testid="checkout-steps">${names.map((n, i) => `<li class="${i + 1 < ck.step ? 'done' : ''}" ${i + 1 === ck.step ? 'aria-current="step"' : ''} id="step-${i + 1}">${i + 1 < ck.step ? `<button type="button" class="step-link" data-goto="${i + 1}" aria-label="Go back to ${n}">${n}</button>` : n}</li>`).join('')}</ol>
-      <div class="two-col"><div class="panel" id="checkout-panel" data-testid="checkout-step-${ck.step}"></div>${summaryHtml(S.cart, fee ? `<p class="fee-line" id="summary-cod-fee" data-testid="summary-cod-fee"><span>Cash on delivery fee</span><strong>${money(fee)}</strong></p><p class="fee-line total-line"><span>Total to pay</span><strong id="summary-total-with-fee" data-testid="summary-total-with-fee">${money(r2(S.cart.total + fee))}</strong></p>` : '')}</div>`;
+      <div class="two-col"><div class="panel" id="checkout-panel" data-testid="checkout-step-${ck.step}"></div>${summaryHtml(sum || S.cart, etaHtml(sum))}</div>`;
     const bindGoto = () => $$('[data-goto]').forEach(b => { b.onclick = () => { ck.step = +b.dataset.goto; viewCheckout(); }; });
     bindGoto();
     const panel = $('#checkout-panel');
@@ -5062,7 +5164,7 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
           </div></div>
         <label class="check" style="margin-top:1rem"><input type="checkbox" id="leave-at-door" data-testid="leave-at-door" ${ck.leaveAtDoor ? 'checked' : ''}> Leave the parcel at the door if nobody is home</label>
         <div class="form-actions"><button type="button" class="btn ghost" id="back-to-address">Back</button><button class="btn" type="submit" id="continue-to-payment" data-testid="continue-button">Continue to payment</button></div></form>`;
-      $$('input[name="method"]').forEach(i => { i.onchange = async () => { const res = await request('PUT', '/api/cart/shipping', { body: { method: i.value } }); if (res.ok) { S.cart = res.body; const old = $('.summary'); if (old) old.outerHTML = summaryHtml(S.cart); } }; });
+      $$('input[name="method"]').forEach(i => { i.onchange = async () => { const res = await request('PUT', '/api/cart/shipping', { body: { method: i.value } }); if (res.ok) { S.cart = res.body; paintSummary(await loadSummary(pmNow)); } }; });
       $('#schedule-toggle').onchange = e => { $('#schedule-fields').hidden = !e.target.checked; };
       $('#back-to-address').onclick = () => { ck.step = 1; viewCheckout(); };
       $('#delivery-form').onsubmit = e => {
@@ -5081,13 +5183,14 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
         ck.step = 3; viewCheckout();
       };
     } else if (ck.step === 3) {
-      const codOk = S.cart.total <= ShopLabCore.COD_LIMIT && !/9$/.test(ck.address.zip || '');
+      const codOk = sum ? sum.codAvailable : S.cart.total <= ShopLabCore.COD_LIMIT;
+      const codWhy = sum && sum.codReason ? sum.codReason : 'Not available for this order';
       const pm = ck.payment || { method: 'card' };
       if (pm.method === 'cod' && !codOk) pm.method = 'card';
       let upiVerified = pm.method === 'upi' && !!pm.upiId;
       panel.innerHTML = `<h2>Payment</h2><form id="payment-form" novalidate data-testid="payment-form" autocomplete="off">
         <fieldset class="pay-methods" data-testid="pay-methods"><legend class="sr-only">Payment method</legend>
-          ${[['card', '💳', 'Card'], ['upi', '📱', 'UPI'], ['netbanking', '🏦', 'Net banking'], ['cod', '💵', 'Cash on delivery']].map(([v, ic, l]) => `<label class="pay-method" for="pay-${v}"><input type="radio" name="payMethod" value="${v}" id="pay-${v}" data-testid="pay-${v}" ${pm.method === v ? 'checked' : ''} ${v === 'cod' && !codOk ? 'disabled' : ''}><span class="pm-icon" aria-hidden="true">${ic}</span><span>${l}${v === 'cod' ? `<small>${codOk ? '+' + money(ShopLabCore.COD_FEE) + ' fee' : 'Not available for this order'}</small>` : ''}</span></label>`).join('')}
+          ${[['card', '💳', 'Card'], ['upi', '📱', 'UPI'], ['netbanking', '🏦', 'Net banking'], ['cod', '💵', 'Cash on delivery']].map(([v, ic, l]) => `<label class="pay-method" for="pay-${v}"><input type="radio" name="payMethod" value="${v}" id="pay-${v}" data-testid="pay-${v}" ${pm.method === v ? 'checked' : ''} ${v === 'cod' && !codOk ? 'disabled' : ''}><span class="pm-icon" aria-hidden="true">${ic}</span><span>${l}${v === 'cod' ? `<small>${codOk ? '+' + money(ShopLabCore.COD_FEE) + ' fee' : esc(codWhy)}</small>` : ''}</span></label>`).join('')}
         </fieldset>
         <div class="pay-panel" id="pay-panel-card" data-testid="pay-panel-card">
           <p class="alert info">Test cards: <code>4111 1111 1111 1111</code> is approved, <code>4000 0000 0000 0002</code> is declined, and <code>4000 0000 0000 3220</code> asks your bank to verify. Use any future expiry and any 3-digit CVV.</p>
@@ -5113,7 +5216,7 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
         <div class="form-actions"><button type="button" class="btn ghost" id="back-to-delivery">Back</button><button class="btn" type="submit" id="continue-to-review" data-testid="continue-button">Review order</button></div></form>`;
       const method = () => (document.querySelector('input[name="payMethod"]:checked') || {}).value || 'card';
       const showPanel = () => { const m = method(); ['card', 'upi', 'netbanking', 'cod'].forEach(k => { const box = $('#pay-panel-' + k); box.hidden = k !== m; $$('input, select', box).forEach(i => { i.disabled = k !== m; }); }); };
-      $$('input[name="payMethod"]').forEach(x => { x.onchange = showPanel; });
+      $$('input[name="payMethod"]').forEach(x => { x.onchange = async () => { showPanel(); paintSummary(await loadSummary(method())); }; });
       showPanel();
       const num = $('#card-number'), brand = () => { $('#card-brand').textContent = cardBrand(num.value) || 'Card'; };
       num.oninput = () => { const dg = num.value.replace(/\D/g, '').slice(0, 19); num.value = dg.replace(/(\d{4})(?=\d)/g, '$1 '); brand(); };
@@ -5154,7 +5257,7 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
         ck.step = 4; viewCheckout();
       };
     } else {
-      const ad = ck.address, pm = ck.payment || {}, grand = r2(S.cart.total + fee), m = ShopLabCore.SHIPPING[S.cart.shippingMethod];
+      const ad = ck.address, pm = ck.payment || {}, grand = sum ? sum.total : r2(S.cart.total + fee), m = ShopLabCore.SHIPPING[S.cart.shippingMethod];
       if (pm.method === 'card' && !pm.cvv) { ck.step = 3; viewCheckout(); return; }
       panel.innerHTML = `<h2>Review and place order</h2>
         <section class="review-block"><div class="rb-head"><h3>Ship to</h3><button type="button" class="link-btn" data-goto="1" id="change-address" data-testid="change-address">Change</button></div>
@@ -5202,16 +5305,24 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
           if (code === 'AUTHENTICATION_REQUIRED') return threeDS(res.body.error.challenge ? res.body.error.challenge.amount : grand, c2 => place(c2), () => orderError({ status: 402, body: { error: { message: 'You cancelled the bank check. No payment was taken.' } } }));
           return orderError(res);
         }
-        ck.placed = res.body; ck.payment = null; ck.notes = '';
+        S.checkout = { step: 1, address: ck.address, addressChoice: ck.addressChoice, addressType: ck.addressType };
         S.cart = null; await refreshCounts();
-        renderOrderPlaced();
+        go('order-confirmation-' + res.body.id);
       };
       $('#place-order').onclick = () => place();
     }
   }
-  function renderOrderPlaced() {
-    const o = S.checkout.placed;
-    S.checkout = { step: 1, address: S.checkout.address, addressChoice: S.checkout.addressChoice, addressType: S.checkout.addressType };
+  async function viewOrderConfirmation(id) {
+    const nav = S.nav;
+    if (!requireLogin('order-confirmation-' + id)) return;
+    app.innerHTML = '<div class="skeleton" style="height:320px"></div>';
+    const r = await request('GET', '/api/orders/' + id);
+    if (nav !== S.nav) return;
+    if (!r.ok) { app.innerHTML = `<div class="empty" data-testid="order-error"><h1>Order unavailable</h1><p>${esc(errMsg(r))}</p><a class="btn" href="#orders">Your orders</a></div>`; return; }
+    document.title = `Order #${id} confirmed | ShopLab`;
+    renderOrderPlaced(r.body);
+  }
+  function renderOrderPlaced(o) {
     store.set('shoplab_inbox_email', o.shippingAddress.email);
     const sd = o.scheduledDelivery;
     app.innerHTML = `<div class="panel success-box" data-testid="order-confirmation"><p class="big" aria-hidden="true">🎉</p><h1>Thank you, your order is placed</h1>
@@ -5231,10 +5342,134 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
     $('#fb-submit').onclick = () => { $('#fb-thanks').hidden = false; $('#fb-thanks').textContent = `Thanks for your feedback! You rated checkout ${rating} out of 5.`; $('#fb-submit').disabled = true; starsEl.forEach(s => { s.disabled = true; }); $('#fb-comment').disabled = true; };
   }
 
+  // ================= networking modes and API activity =================
+  function apiUrl(path) {
+    if (MODE === 'remote') return S.apiBase + path;
+    if (MODE === 'sw') return '.' + path;
+    return path;
+  }
+  function modeHtml() {
+    if (MODE === 'server') return `<strong>Server mode.</strong> The REST API is live at <code>${esc(location.origin)}/api</code>. Point Postman or REST Assured at it.`;
+    if (MODE === 'remote') return `<strong>Hosted API.</strong> The store calls <code>${esc(S.apiBase)}/api</code> over the internet. Postman and REST Assured can use the same URL.`;
+    if (MODE === 'sw') return `<strong>Live API.</strong> Every action is a real HTTP request to <code>${esc(location.pathname.replace(/[^/]*$/, ''))}api/…</code>, answered by a service worker in this browser. Watch them in DevTools → Network.`;
+    return '<strong>Demo mode.</strong> The API runs inside this page. Open the site over https or localhost for real network requests.';
+  }
+  async function startServiceWorker() {
+    if (!('serviceWorker' in navigator) || !window.isSecureContext || location.protocol === 'file:') return false;
+    try { if (window.top !== window.self) return false; } catch (e) { return false; }
+    try {
+      const reg = await navigator.serviceWorker.register('sw.js');
+      if (!navigator.serviceWorker.controller) {
+        await new Promise((resolve, reject) => {
+          const t = setTimeout(() => reject(new Error('timeout')), 6000);
+          navigator.serviceWorker.addEventListener('controllerchange', () => { clearTimeout(t); resolve(); }, { once: true });
+          const sw = reg.active || reg.waiting || reg.installing;
+          if (sw && reg.active) reg.active.postMessage('claim');
+        });
+      }
+      const r = await fetch('./api/health', { cache: 'no-store' });
+      const j = await r.json();
+      return r.ok && j.mode === 'service-worker';
+    } catch (e) { return false; }
+  }
+  async function connectRemote(base, quiet) {
+    if (!quiet) app.innerHTML = `<div class="empty" data-testid="api-connecting"><p class="big" aria-hidden="true">⏳</p><h1>Connecting to the ShopLab API</h1><p class="muted">Calling <code>${esc(base)}/api/health</code>. Free hosting can take up to a minute to wake up after a quiet period.</p></div>`;
+    try {
+      const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 70000);
+      const r = await fetch(base + '/api/health', { signal: ctl.signal, cache: 'no-store' });
+      clearTimeout(t);
+      const j = await r.json();
+      return r.ok && j.status === 'ok';
+    } catch (e) { return false; }
+  }
+  async function chooseMode() {
+    if (window.__SHOPLAB_MODE__ === 'server') {
+      MODE = 'server';
+      if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
+      return;
+    }
+    const qp = new URLSearchParams(location.search).get('api');
+    if (qp === 'off' || qp === 'local') store.set(API_BASE_KEY, null);
+    else if (qp) store.set(API_BASE_KEY, normBase(qp));
+    const base = store.get(API_BASE_KEY);
+    if (base) {
+      if (await connectRemote(base)) { MODE = 'remote'; S.apiBase = base; return; }
+      S.apiFallback = base;
+    }
+    if (await startServiceWorker()) { MODE = 'sw'; return; }
+    MODE = 'mock';
+    core = makeLocalCore();
+  }
+
+  // ---------- API activity panel ----------
+  const ACT = { list: [], open: store.get('shoplab_api_panel') === '1', paused: false, sel: null, seq: 0 };
+  const LABELS = [
+    ['POST', /^\/api\/auth\/login$/, 'Log in'], ['POST', /^\/api\/auth\/logout$/, 'Log out'], ['POST', /^\/api\/auth\/register$/, 'Create account'],
+    ['GET', /^\/api\/auth\/me$/, 'Get current user'], ['PATCH', /^\/api\/auth\/me$/, 'Update profile'], ['POST', /^\/api\/auth\/verify-otp$/, 'Verify login code'],
+    ['POST', /^\/api\/auth\/email-code$/, 'Email a login code'], ['POST', /^\/api\/auth\/resend-otp$/, 'Resend login code'], ['POST', /^\/api\/auth\/oauth$/, 'ShopLab ID sign-in'],
+    ['POST', /^\/api\/auth\/forgot-password$/, 'Request password reset'], ['POST', /^\/api\/auth\/reset-password$/, 'Reset password'],
+    ['GET', /^\/api\/products$/, 'List products'], ['GET', /^\/api\/products\/\d+$/, 'Get product details'], ['GET', /^\/api\/products\/\d+\/reviews$/, 'Get reviews'],
+    ['POST', /^\/api\/products\/\d+\/reviews$/, 'Post a review'], ['POST', /^\/api\/products\/\d+\/notify$/, 'Back-in-stock alert'], ['GET', /^\/api\/categories$/, 'List categories'],
+    ['GET', /^\/api\/delivery$/, 'Check delivery'], ['GET', /^\/api\/cart$/, 'Get cart'], ['POST', /^\/api\/cart\/items$/, 'Add to cart'],
+    ['PATCH', /^\/api\/cart\/items\/\d+$/, 'Change quantity'], ['DELETE', /^\/api\/cart\/items\/\d+$/, 'Remove from cart'], ['DELETE', /^\/api\/cart$/, 'Empty cart'],
+    ['POST', /^\/api\/cart\/coupon$/, 'Apply coupon'], ['DELETE', /^\/api\/cart\/coupon$/, 'Remove coupon'], ['PUT', /^\/api\/cart\/shipping$/, 'Choose shipping'],
+    ['GET', /^\/api\/checkout\/summary$/, 'Get order summary'], ['POST', /^\/api\/orders$/, 'Place order'], ['GET', /^\/api\/orders$/, 'List orders'],
+    ['GET', /^\/api\/orders\/\d+$/, 'Get order'], ['POST', /^\/api\/orders\/\d+\/cancel$/, 'Cancel order'], ['POST', /^\/api\/orders\/\d+\/return$/, 'Request a return'],
+    ['POST', /^\/api\/orders\/\d+\/reorder$/, 'Buy again'], ['POST', /^\/api\/orders\/track$/, 'Track order'], ['GET', /^\/api\/wishlist$/, 'Get wishlist'],
+    ['POST', /^\/api\/wishlist$/, 'Save to wishlist'], ['DELETE', /^\/api\/wishlist\/\d+$/, 'Remove from wishlist'], ['GET', /^\/api\/addresses$/, 'Get saved addresses'],
+    ['GET', /^\/api\/inbox$/, 'Check inbox'], ['GET', /^\/api\/inbox\/\d+$/, 'Read email'], ['POST', /^\/api\/reset$/, 'Reset store data']
+  ];
+  function apiLabel(method, path) { const r = LABELS.find(([m, re]) => m === method && re.test(path)); return r ? r[2] : ''; }
+  function logCall(method, url, full, reqHeaders, payload, out) {
+    if (ACT.paused) return;
+    const path = String(url).replace(/^https?:\/\/[^/]+/i, '').split('?')[0];
+    const shown = Object.assign({}, reqHeaders);
+    if (shown.authorization) shown.authorization = shown.authorization.slice(0, 17) + '…';
+    let reqBody = null;
+    if (payload !== undefined && payload !== '') { try { reqBody = JSON.parse(payload); if (reqBody && typeof reqBody === 'object') { reqBody = Object.assign({}, reqBody); ['password', 'newPassword', 'currentPassword'].forEach(k => { if (reqBody[k]) reqBody[k] = '••••••'; }); if (reqBody.payment && reqBody.payment.cvv) reqBody.payment = Object.assign({}, reqBody.payment, { cvv: '•••' }); } } catch (e) { reqBody = String(payload).slice(0, 2000); } }
+    ACT.list.unshift({ id: ++ACT.seq, at: new Date(), method, url: String(url), full: String(full), path, label: apiLabel(method, path), status: out.status, time: out.time, reqHeaders: shown, reqBody, resHeaders: out.headers || {}, resBody: out.body });
+    if (ACT.list.length > 150) ACT.list.length = 150;
+    const c = $('#aa-count'); if (c) c.textContent = ACT.list.length;
+    if (ACT.open) renderActivity();
+  }
+  function curlFor(c) {
+    const base = MODE === 'server' ? location.origin : MODE === 'remote' ? S.apiBase : MODE === 'sw' ? location.href.split('#')[0].split('?')[0].replace(/\/[^/]*$/, '') : 'http://localhost:3000';
+    let cmd = `curl -i -X ${c.method} '${/^https?:/i.test(c.url) ? c.url : base + c.url}'`;
+    if (c.reqHeaders.authorization) cmd += ` \\\n  -H 'Authorization: Bearer <your token>'`;
+    if (c.reqBody !== null) cmd += ` \\\n  -H 'Content-Type: application/json' \\\n  -d '${JSON.stringify(c.reqBody).replace(/'/g, "'\\''")}'`;
+    return cmd;
+  }
+  function renderActivity() {
+    let root = $('#api-activity');
+    const btn = $('#api-activity-toggle');
+    if (btn) btn.setAttribute('aria-expanded', String(ACT.open));
+    document.body.classList.toggle('aa-open', ACT.open);
+    if (!ACT.open) { if (root) root.hidden = true; return; }
+    if (!root) { root = document.createElement('section'); root.id = 'api-activity'; root.className = 'api-activity'; root.setAttribute('data-testid', 'api-activity'); root.setAttribute('aria-label', 'API activity'); document.body.appendChild(root); }
+    root.hidden = false;
+    const sel = ACT.list.find(x => x.id === ACT.sel) || ACT.list[0];
+    const pretty = v => v === null || v === undefined ? '(none)' : typeof v === 'string' ? v : JSON.stringify(v, null, 2);
+    const listScroll = $('#aa-list') ? $('#aa-list').scrollTop : 0;
+    root.innerHTML = `<div class="aa-head"><strong>API activity</strong><span class="muted small" id="aa-summary">${ACT.list.length} call${ACT.list.length === 1 ? '' : 's'}, newest first. ${MODE === 'mock' ? 'Answered inside the page.' : MODE === 'sw' ? 'Real HTTP requests answered by the service worker.' : 'Real HTTP requests.'}</span>
+      <span class="aa-tools"><label class="check small" style="margin:0"><input type="checkbox" id="aa-pause" data-testid="aa-pause" ${ACT.paused ? 'checked' : ''}> Pause</label><button type="button" class="btn small ghost" id="aa-clear" data-testid="aa-clear">Clear</button><button type="button" class="icon-btn" id="aa-close" data-testid="aa-close" aria-label="Close API activity">✕</button></span></div>
+      <div class="aa-body"><ol class="aa-list" id="aa-list" data-testid="aa-list">${ACT.list.length ? ACT.list.map(c => `<li><button type="button" class="aa-row ${sel && c.id === sel.id ? 'sel' : ''}" data-call="${c.id}" data-testid="api-call" data-method="${c.method}" data-path="${esc(c.path)}" data-status="${c.status}"><span class="method m-${c.method}">${c.method}</span><span class="aa-path">${esc(c.path)}</span><span class="code-pill code-${String(c.status)[0]}">${c.status || 'ERR'}</span><span class="aa-ms">${c.time} ms</span>${c.label ? `<span class="aa-label">${esc(c.label)}</span>` : ''}</button></li>`).join('') : '<li class="muted small" style="padding:.8rem">No calls yet. Log in, open a product or check out to see the API at work.</li>'}</ol>
+      <div class="aa-detail" id="aa-detail" data-testid="aa-detail">${sel ? `<p><strong>${esc(sel.label || 'Request')}</strong> <span class="muted small">${sel.at.toLocaleTimeString()}</span></p><p class="small"><code>${sel.method} ${esc(sel.full)}</code></p>
+        <h3>Request headers</h3><pre class="out">${esc(pretty(sel.reqHeaders))}</pre><h3>Request body</h3><pre class="out">${esc(pretty(sel.reqBody))}</pre>
+        <h3>Response ${sel.status}</h3><pre class="out">${esc(Object.keys(sel.resHeaders).sort().map(k => k + ': ' + sel.resHeaders[k]).join('\n') || '(none)')}</pre><pre class="out" id="aa-response-body" data-testid="aa-response-body">${esc(pretty(sel.resBody).slice(0, 6000))}</pre>
+        <h3>As cURL</h3><pre class="out" id="aa-curl">${esc(curlFor(sel))}</pre>` : ''}</div></div>`;
+    const l = $('#aa-list'); if (l) l.scrollTop = listScroll;
+    $$('.aa-row', root).forEach(b => { b.onclick = () => { ACT.sel = +b.dataset.call; renderActivity(); }; });
+    $('#aa-pause').onchange = e => { ACT.paused = e.target.checked; };
+    $('#aa-clear').onclick = () => { ACT.list = []; ACT.sel = null; const c = $('#aa-count'); if (c) c.textContent = 0; renderActivity(); };
+    $('#aa-close').onclick = () => { ACT.open = false; store.set('shoplab_api_panel', null); renderActivity(); };
+  }
+
   // ---------------- boot ----------------
   async function init() {
-    applyTheme(); renderModeStrip();
+    applyTheme();
     if ((location.hash.slice(1)) === 'oauth') document.body.classList.add('popup-mode');
+    await chooseMode();
+    renderModeStrip(); renderActivity();
     renderAnnouncement(); renderCategoryBar();
     if (S.token) {
       const r = await request('GET', '/api/auth/me', { silent401: true });
@@ -5242,6 +5477,7 @@ driver.execute_script("localStorage.setItem('shoplab_cookie_consent', '{\\"neces
     }
     renderUserMenu(); await refreshCounts(); router();
     showCookieBanner();
+    if (S.apiFallback) toast(`Could not reach the API at ${S.apiFallback}. Using the built-in API instead. Check the address in Test settings.`, 'error', 9000);
   }
   init();
 })();
