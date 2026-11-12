@@ -1,4 +1,4 @@
-/* ShopLab practice API service worker. Built 2026-11-10T14:31:53.970Z. Keep this file next to index.html. */
+/* ShopLab practice API service worker. Built 2026-11-12T12:43:14.943Z. Keep this file next to index.html. */
 var ShopLabCore = (function () {
   'use strict';
 
